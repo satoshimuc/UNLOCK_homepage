@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UNLOCK</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <!-- Montserrat is the closest free alternative to Gotham -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Base Settings */
+        :root {
+            --text-main: #111111;
+            --text-sub: #666666;
+            --bg-body: #ffffff;
+            --line-color: #e5e5e5;
+        }
+
+        body {
+            /* Hiragino Maru Gothic priority, fallback to M PLUS Rounded 1c */
+            font-family: "Hiragino Maru Gothic ProN", "Hiragino Maru Gothic Pro", "M PLUS Rounded 1c", sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: 0.03em;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* Logo Font (Gotham Style) */
+        .font-logo {
+            font-family: "Gotham", "Montserrat", sans-serif;
+            font-weight: 800; /* Extra Bold for that Gotham feel */
+            letter-spacing: 0.05em;
+        }
+
+        /* Bold elements */
+        h1, h2, h3, h4, .font-heavy {
+            font-weight: 800; 
+        }
+
+        /* Utility */
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Minimal Buttons */
+        .btn-minimal {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 18px 0;
+            background-color: #111;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            border-radius: 50px;
+            border: 1px solid #111;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-minimal:active {
+            background-color: #333;
+            border-color: #333;
+            transform: scale(0.98);
+        }
+
+        /* List Items */
+        .list-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 2px solid var(--line-color);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+        .list-row:first-child {
+            border-top: 2px solid var(--line-color);
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+    <!-- Header -->
+    <header class="py-8 flex justify-center items-center sticky top-0 bg-white/90 backdrop-blur-sm z-50">
+        <h1 class="text-2xl font-logo text-slate-900 tracking-widest">UNLOCK</h1>
+    </header>
+
+    <main class="wrapper">
+        
+        <!-- Hero Message -->
+        <section class="py-16 text-center fade-in" style="animation-delay: 0.1s;">
+            <p class="text-[10px] font-logo font-bold text-gray-400 mb-6 tracking-[0.2em]">ABOUT US</p>
+            <h2 class="text-2xl leading-relaxed mb-8">
+                脳とからだを、<br>
+                もう一度あそばせる。
+            </h2>
+            <p class="text-sm text-gray-600 leading-loose text-justify inline-block max-w-xs font-medium">
+                私たちは、ひと・もの・ことの可能性を解放するブランドです。遊びを通じて、眠っている感覚を呼び覚まします。
+            </p>
+        </section>
+
+        <!-- Services -->
+        <section class="mt-12 fade-in" style="animation-delay: 0.2s;">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-xl font-logo tracking-wider">Service</h3>
+                <span class="text-xs font-bold text-gray-400">事業内容</span>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Kids -->
+                <div>
+                    <div class="mb-4">
+                        <span class="text-[10px] font-logo font-bold uppercase tracking-wider text-gray-400 block mb-1">For Kids</span>
+                        <h4 class="text-lg">子ども向け事業</h4>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 pl-4 border-l-4 border-gray-200 font-medium">
+                        <li>知育玩具 開発 / 販売</li>
+                        <li>絵本 / アニメ 製作</li>
+                        <li>知育プログラム開発</li>
+                    </ul>
+                </div>
+
+                <!-- Corporate -->
+                <div>
+                    <div class="mb-4">
+                        <span class="text-[10px] font-logo font-bold uppercase tracking-wider text-gray-400 block mb-1">For Corporate</span>
+                        <h4 class="text-lg">法人向け事業</h4>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 pl-4 border-l-4 border-gray-200 font-medium">
+                        <li>健康経営支援</li>
+                        <li>ライフキネティック プログラム開発</li>
+                        <li>健康アプリケーション 開発 / 運営</li>
+                    </ul>
+                </div>
+
+                <!-- Professional -->
+                <div>
+                    <div class="mb-4">
+                        <span class="text-[10px] font-logo font-bold uppercase tracking-wider text-gray-400 block mb-1">For Professional</span>
+                        <h4 class="text-lg">プロフェッショナル向け事業</h4>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 pl-4 border-l-4 border-gray-200 font-medium">
+                        <li>能力開発プログラム開発</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <section class="mt-20 fade-in" style="animation-delay: 0.3s;">
+             <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-logo tracking-wider">Partners</h3>
+            </div>
+            <div class="grid grid-cols-1">
+                <div class="list-row group">
+                    <a href="https://setagayautd.com/"><span class="text-base group-hover:opacity-60 transition">世田谷ユナイテッド</span></a>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </div>
+                <div class="list-row group">
+                    <a href="https://kamakura-inter.com/"><span class="text-base group-hover:opacity-60 transition">鎌倉インテル</span></a>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </div>
+                <div class="list-row group">
+                    <span class="text-base group-hover:opacity-60 transition">noue knospe</span>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note -->
+        <section class="mt-20 mb-12 fade-in" style="animation-delay: 0.4s;">
+             <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-logo tracking-wider">Note</h3>
+            </div>
+            
+            <div class="grid grid-cols-1">
+                <a href="https://note.com/unlock_kinetik/m/m5628fa3edb14" class="list-row group">
+                    <span class="text-base group-hover:opacity-60 transition">健康経営について</span>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </a>
+                <a href="https://note.com/unlock_kinetik/n/n75bc7dbec7f3" class="list-row group">
+                    <span class="text-base group-hover:opacity-60 transition">ライフキネティック関連</span>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="mt-16 text-center fade-in" style="animation-delay: 0.5s;">
+            <p class="text-xs font-bold text-gray-500 mb-6">ご質問・ご相談はこちらから</p>
+            <button onclick="handleContact()" class="btn-minimal">
+                <a href="https://line.me/R/ti/p/@458zzinx">お問い合わせ</a>
+            </button>
+        </section>
+
+        <footer class="mt-20 text-center text-[11px] font-logo font-bold text-gray-300 tracking-widest uppercase">
+            &copy; 2024 UNLOCK.
+        </footer>
+
+    </main>
+
+    <!-- Simple Bottom Bar (Fixed) -->
+<!--    <div class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-100 px-6 py-4 flex justify-between items-center z-40 md:hidden">
+        <span class="text-sm font-logo tracking-widest">UNLOCK</span>
+        <button onclick="handleContact()" class="text-xs font-bold border-2 border-gray-200 px-5 py-2 rounded-full hover:bg-gray-50 transition">
+            Contact
+        </button>
+    </div> -->
+
+    <!-- LIFF SDK -->
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    
+    <!-- Application Logic -->
+    <script>
+        lucide.createIcons();
+
+        function handleContact() {
+            if (liff.isInClient()) {
+                liff.openWindow({
+                    url: "https://line.me/", 
+                    external: true
+                });
+            } else {
+                alert("お問い合わせ（外部ブラウザが開きます）");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // LIFF Init
+            liff.init({ liffId: "LIFF_ID_PLACEHOLDER" })
+                .then(() => { console.log("LIFF initialized"); })
+                .catch((err) => { console.error("LIFF error", err); });
+        });
+    </script>
+</body>
+</html>
