@@ -66,11 +66,36 @@
             border: 1px solid #111;
             transition: all 0.3s ease;
             text-decoration: none;
+            cursor: pointer;
         }
         .btn-minimal:active {
             background-color: #333;
             border-color: #333;
             transform: scale(0.98);
+        }
+
+        /* Outline Button (for Service links) */
+        .btn-outline {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 16px 24px;
+            background-color: #fff;
+            color: #111;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 16px;
+            border: 2px solid #111;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            cursor: pointer;
+            margin-bottom: 12px;
+            box-shadow: 4px 4px 0px #111; /* Pop shadow effect */
+        }
+        .btn-outline:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #111;
         }
 
         /* List Items */
@@ -98,6 +123,44 @@
         @keyframes fadeIn {
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="pb-24">
@@ -110,7 +173,7 @@
     <main class="wrapper">
         
         <!-- Hero Message -->
-        <section class="py-16 text-center fade-in" style="animation-delay: 0.1s;">
+        <section class="py-12 text-center fade-in" style="animation-delay: 0.1s;">
             <p class="text-[10px] font-logo font-bold text-gray-400 mb-6 tracking-[0.2em]">ABOUT US</p>
             <h2 class="text-2xl leading-relaxed mb-8">
                 脳とからだを、<br>
@@ -122,7 +185,7 @@
         </section>
 
         <!-- Services -->
-        <section class="mt-12 fade-in" style="animation-delay: 0.2s;">
+        <section class="mt-8 fade-in" style="animation-delay: 0.2s;">
             <div class="flex items-center justify-between mb-8">
                 <h3 class="text-xl font-logo tracking-wider">Service</h3>
                 <span class="text-xs font-bold text-gray-400">事業内容</span>
@@ -168,6 +231,27 @@
             </div>
         </section>
 
+        <!-- Featured Actions (Moved here) -->
+        <section class="mt-16 fade-in" style="animation-delay: 0.25s;">
+             <div class="space-y-4">
+                <a href="https://miniapp.line.me/2008640533-Zejb4k2z" class="btn-outline group">
+                    <span class="flex items-center gap-3">
+                        <i data-lucide="brain-circuit" class="w-5 h-5 text-gray-900"></i>
+                        UNLOCK脳トレ
+                    </span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+                </a>
+
+                <button onclick="openModal()" class="btn-outline group">
+                    <span class="flex items-center gap-3">
+                        <i data-lucide="baby" class="w-5 h-5 text-gray-900"></i>
+                        子供向けのトレーニング
+                    </span>
+                    <i data-lucide="images" class="w-5 h-5 transition-transform group-hover:scale-110"></i>
+                </button>
+            </div>
+        </section>
+
         <!-- Partners -->
         <section class="mt-20 fade-in" style="animation-delay: 0.3s;">
              <div class="flex items-center justify-between mb-6">
@@ -175,15 +259,15 @@
             </div>
             <div class="grid grid-cols-1">
                 <div class="list-row group">
-                    <a href="https://setagayautd.com/"><span class="text-base group-hover:opacity-60 transition">世田谷ユナイテッド</span></a>
+                    <a href="https://setagayautd.com/" target="_blank" class="flex-1 text-base group-hover:opacity-60 transition">世田谷ユナイテッド</a>
                     <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
                 </div>
                 <div class="list-row group">
-                    <a href="https://kamakura-inter.com/"><span class="text-base group-hover:opacity-60 transition">鎌倉インテル</span></a>
+                    <a href="https://kamakura-inter.com/" target="_blank" class="flex-1 text-base group-hover:opacity-60 transition">鎌倉インテル</a>
                     <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
                 </div>
                 <div class="list-row group">
-                    <span class="text-base group-hover:opacity-60 transition">noue knospe</span>
+                    <span class="flex-1 text-base group-hover:opacity-60 transition">noue knospe</span>
                     <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
                 </div>
             </div>
@@ -196,33 +280,51 @@
             </div>
             
             <div class="grid grid-cols-1">
-                <a href="https://note.com/unlock_kinetik/m/m5628fa3edb14" class="list-row group">
+                <a href="https://note.com/unlock_kinetik/m/m5628fa3edb14" target="_blank" class="list-row group">
                     <span class="text-base group-hover:opacity-60 transition">健康経営について</span>
                     <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
                 </a>
-                <a href="https://note.com/unlock_kinetik/n/n75bc7dbec7f3" class="list-row group">
+                <a href="https://note.com/unlock_kinetik/n/n75bc7dbec7f3" target="_blank" class="list-row group">
                     <span class="text-base group-hover:opacity-60 transition">ライフキネティック関連</span>
                     <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
                 </a>
             </div>
         </section>
 
-        <!-- Contact CTA -->
-<section class="mt-16 text-center fade-in" style="animation-delay: 0.5s;">
-  <p class="text-xs font-bold text-gray-500 mb-6">ご質問・ご相談はこちらから</p>
+        <!-- Social Media Links (Moved here) -->
+        <section class="mt-20 fade-in" style="animation-delay: 0.45s;">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-logo tracking-wider">Social</h3>
+            </div>
+            <div class="grid grid-cols-1">
+                <a href="https://instagram.com/unlock_jpn" target="_blank" class="list-row group">
+                    <span class="text-base group-hover:opacity-60 transition flex items-center gap-3">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                        Instagram
+                    </span>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </a>
+                <a href="https://x.com/satoshimuc" target="_blank" class="list-row group">
+                    <span class="text-base group-hover:opacity-60 transition flex items-center gap-3">
+                        <!-- Twitter Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+                        X (Twitter)
+                    </span>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-900 stroke-[3]"></i>
+                </a>
+            </div>
+        </section>
 
-  <a class="btn-minimal"
-     href="https://line.me/R/oaMessage/%40458zzinx"
-     target="_blank" rel="noopener">
-    お問い合わせ
-  </a>
-</section>
-<!--        <section class="mt-16 text-center fade-in" style="animation-delay: 0.5s;">
+        <!-- Contact CTA -->
+        <section class="mt-16 text-center fade-in" style="animation-delay: 0.5s;">
             <p class="text-xs font-bold text-gray-500 mb-6">ご質問・ご相談はこちらから</p>
-            <button onclick="handleContact()" class="btn-minimal">
-                <a href="https://line.me/R/oaMessage/@458zzinx">お問い合わせ</a>
-            </button>
-        </section> -->
+
+            <a class="btn-minimal"
+                href="https://line.me/R/oaMessage/%40458zzinx"
+                target="_blank" rel="noopener">
+                お問い合わせ
+            </a>
+        </section>
 
         <footer class="mt-20 text-center text-[11px] font-logo font-bold text-gray-300 tracking-widest uppercase">
             &copy; 2025 UNLOCK.
@@ -230,13 +332,25 @@
 
     </main>
 
-    <!-- Simple Bottom Bar (Fixed) -->
-<!--    <div class="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-100 px-6 py-4 flex justify-between items-center z-40 md:hidden">
-        <span class="text-sm font-logo tracking-widest">UNLOCK</span>
-        <button onclick="handleContact()" class="text-xs font-bold border-2 border-gray-200 px-5 py-2 rounded-full hover:bg-gray-50 transition">
-            Contact
-        </button>
-    </div> -->
+    <!-- Modal for Kids Training Images -->
+    <div id="imageModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="close-btn" onclick="closeModal()">
+                <i data-lucide="x" class="w-5 h-5 text-gray-500"></i>
+            </div>
+            <h4 class="text-center font-bold mb-4 text-lg">トレーニングイメージ</h4>
+            <div class="space-y-4">
+                <div class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative overflow-hidden">
+                    <span class="text-gray-400 text-sm">Image 1</span>
+                    <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Kids Training 1">
+                </div>
+                <div class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative overflow-hidden">
+                    <span class="text-gray-400 text-sm">Image 2</span>
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Kids Training 2">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- LIFF SDK -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
@@ -245,19 +359,25 @@
     <script>
         lucide.createIcons();
 
-        function handleContact() {
-            if (liff.isInClient()) {
-                liff.openWindow({
-                    url: "https://line.me/", 
-                    external: true
-                });
-            } else {
-                alert("お問い合わせ（外部ブラウザが開きます）");
-            }
+        // Modal Logic
+        function openModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
         }
 
+        function closeModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // LIFF Logic
         document.addEventListener("DOMContentLoaded", function() {
-            // LIFF Init
             liff.init({ liffId: "LIFF_ID_PLACEHOLDER" })
                 .then(() => { console.log("LIFF initialized"); })
                 .catch((err) => { console.error("LIFF error", err); });
