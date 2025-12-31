@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>UNLOCK</title>
+    <title>新春UNLOCK</title>
     
     <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT8CBC1JLV"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      gtag('config', 'G-ZT8CBC1JLV');
     </script>
 
     <!-- Tailwind CSS -->
@@ -19,341 +20,452 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
     
     <style>
-        :root { --bg-dots: radial-gradient(#bae6fd 20%, transparent 20%); }
+        :root {
+            --color-red: #ef4444;
+            --color-white: #ffffff;
+            --color-gold: #d4af37;
+        }
         body {
-            font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
-            background-color: #ffffff; color: #334155;
+            font-family: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+            background-color: #991b1b; /* 背景を濃い赤（毛氈の色）に */
+            color: #334155;
             touch-action: manipulation; user-select: none; overflow-x: hidden;
         }
-        /* Background & Animation */
-        .bg-pattern-dots { background-color: #ffffff; background-image: var(--bg-dots); background-size: 20px 20px; opacity: 0.4; }
-        .wave-decoration {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 60px;
-            background: repeating-linear-gradient(-45deg, #fef08a, #fef08a 10px, #fde047 10px, #fde047 20px);
-            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.5'/%3E%3C/svg%3E");
-            mask-size: cover; mask-repeat: no-repeat; opacity: 0.8; z-index: -1;
+        h1, h2, h3, .font-serif {
+            font-family: "Yuji Syuku", serif;
         }
-        @keyframes bounce-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        .bg-pattern-seigaiha {
+            background-color: #fdf2f0;
+            background-image: 
+                radial-gradient(circle at 100% 150%, #fdf2f0 24%, #fee2e2 25%, #fee2e2 28%, #fdf2f0 29%, #fdf2f0 36%, #fee2e2 37%, #fee2e2 40%, transparent 40%, transparent),
+                radial-gradient(circle at 0    150%, #fdf2f0 24%, #fee2e2 25%, #fee2e2 28%, #fdf2f0 29%, #fdf2f0 36%, #fee2e2 37%, #fee2e2 40%, transparent 40%, transparent),
+                radial-gradient(circle at 50%  100%, #fee2e2 10%, #fdf2f0 11%, #fdf2f0 23%, #fee2e2 24%, #fee2e2 30%, #fdf2f0 31%, #fdf2f0 43%, #fee2e2 44%, #fee2e2 50%, #fdf2f0 51%, #fdf2f0 63%, #fee2e2 64%, #fee2e2 71%, transparent 71%, transparent),
+                radial-gradient(circle at 100% 50%, #fee2e2 5%, #fdf2f0 6%, #fdf2f0 15%, #fee2e2 16%, #fee2e2 20%, #fdf2f0 21%, #fdf2f0 30%, #fee2e2 31%, #fee2e2 35%, #fdf2f0 36%, #fdf2f0 45%, #fee2e2 46%, #fee2e2 49%, transparent 50%, transparent),
+                radial-gradient(circle at 0    50%, #fee2e2 5%, #fdf2f0 6%, #fdf2f0 15%, #fee2e2 16%, #fee2e2 20%, #fdf2f0 21%, #fdf2f0 30%, #fee2e2 31%, #fee2e2 35%, #fdf2f0 36%, #fdf2f0 45%, #fee2e2 46%, #fee2e2 49%, transparent 50%, transparent);
+            background-size: 60px 30px;
+        }
+
+        /* Animations */
+        @keyframes bounce-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         .animate-bounce-gentle { animation: bounce-gentle 3s ease-in-out infinite; }
-        @keyframes pop-in { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
-        .animate-pop { animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes stamp-seal { 0% { transform: scale(3) rotate(-20deg); opacity: 0; } 80% { transform: scale(0.8) rotate(5deg); opacity: 1; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
-        .animate-stamp { animation: stamp-seal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes flash-bg { 0%, 100% { background-color: transparent; } 50% { background-color: rgba(239, 68, 68, 0.1); } }
-        .animate-flash { animation: flash-bg 0.5s infinite; }
+        
+        @keyframes pop-in { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .animate-pop { animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        
+        @keyframes shake-omikuji { 0% { transform: rotate(0deg); } 25% { transform: rotate(10deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-10deg); } 100% { transform: rotate(0deg); } }
+        .animate-shake { animation: shake-omikuji 0.5s ease-in-out infinite; }
+
+        @keyframes shine { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+        
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spin-slow 10s linear infinite; }
+        
+        @keyframes confuse-shake { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } }
+        .animate-confuse { animation: confuse-shake 0.2s infinite; }
 
         /* UI Components */
-        .btn-beanbag { border-radius: 9999px; border-bottom-width: 6px; transition: all 0.1s; position: relative; overflow: hidden; }
-        .btn-beanbag:active { transform: translateY(4px); border-bottom-width: 2px; }
-        .btn-beanbag::after { content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 2px dashed rgba(255,255,255,0.4); border-radius: 9999px; pointer-events: none; }
-        .card-pop { background: white; border-radius: 30px; box-shadow: 0 10px 0 #e2e8f0; border: 2px solid #f1f5f9; overflow: hidden; }
-        .text-outline { text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 4px rgba(0,0,0,0.1); }
+        .btn-newyear {
+            position: relative;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border-radius: 9999px;
+            box-shadow: 0 4px 0 #b91c1c, 0 8px 10px rgba(0,0,0,0.2);
+            transition: all 0.1s;
+            overflow: hidden;
+        }
+        .btn-newyear::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
+            background-size: 200% 200%;
+            animation: shine 3s infinite linear;
+            pointer-events: none;
+        }
+        .btn-newyear:active { transform: translateY(4px); box-shadow: 0 0 0 #b91c1c, inset 0 2px 5px rgba(0,0,0,0.2); }
         
-        .level-btn { transition: all 0.2s; border: 2px solid transparent; }
-        .level-btn.selected { background-color: #f0f9ff; border-color: #3b82f6; transform: scale(1.02); box-shadow: 0 4px 0 #bfdbfe; }
-        .level-btn:not(.selected) { opacity: 0.7; background-color: #f8fafc; border-color: #e2e8f0; }
-        .level-btn-olympic { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #fbbf24; box-shadow: 0 4px 0 #d97706; color: #b45309; }
-        .level-btn-olympic.selected { background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%); transform: scale(1.05); box-shadow: 0 0 15px rgba(251, 191, 36, 0.5), 0 4px 0 #d97706; border-color: #b45309; opacity: 1; }
+        .card-washi {
+            background-color: #fff;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            border: 2px solid #e2e8f0;
+            border-radius: 24px;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.05);
+        }
 
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
-        .calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: 700; color: #94a3b8; position: relative; }
-        .calendar-day.stamped { background-color: #fef08a; color: #854d0e; box-shadow: 0 2px 0 #fde047; }
-        .stamp-mark { position: absolute; font-size: 1rem; color: #ef4444; filter: drop-shadow(0 2px 0 rgba(255,255,255,0.5)); animation: stamp-seal 0.3s forwards; }
+        /* Level Buttons */
+        .level-btn { transition: all 0.2s; position: relative; overflow: hidden; }
+        .level-btn.selected { transform: scale(1.05); border-width: 2px; }
+        .level-btn:not(.selected) { opacity: 0.7; transform: scale(0.95); filter: grayscale(0.5); }
+        
+        .level-ume { background: #fee2e2; border-color: #f87171; color: #b91c1c; }
+        .level-take { background: #dcfce7; border-color: #4ade80; color: #15803d; }
+        .level-matsu { background: #dbeafe; border-color: #60a5fa; color: #1d4ed8; }
+        .level-fuji { 
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); 
+            border-color: #fbbf24; color: #b45309; 
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .mizuhiki-line {
+            height: 4px; width: 100%;
+            background: repeating-linear-gradient(90deg, #ef4444, #ef4444 10px, #ffffff 10px, #ffffff 20px, #d4af37 20px, #d4af37 30px);
+        }
+        
+        .menu-item {
+            background: white; border-radius: 16px; 
+            border: 2px solid #fee2e2;
+            box-shadow: 0 4px 0 #fecaca;
+            transition: all 0.1s;
+        }
+        .menu-item:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
+
+        .writing-vertical { writing-mode: vertical-rl; text-orientation: upright; }
     </style>
 </head>
-<body class="h-screen w-full flex flex-col items-center justify-center relative text-slate-700">
-
-    <div class="absolute inset-0 bg-pattern-dots -z-20"></div>
-    <div class="absolute top-10 left-[-20px] w-24 h-24 bg-red-400 rounded-full opacity-20 animate-bounce-gentle"></div>
-    <div class="absolute bottom-20 right-[-10px] w-32 h-32 bg-yellow-400 rounded-full opacity-20 animate-bounce-gentle" style="animation-delay: 1s;"></div>
-    <div class="wave-decoration"></div>
+<body class="h-screen w-full flex flex-col items-center justify-center relative text-slate-700 bg-pattern-seigaiha">
 
     <div id="app" class="w-full max-w-md h-full flex flex-col relative px-5 py-4 z-10 overflow-y-auto no-scrollbar">
         
-        <!-- Header -->
-        <header id="app-header" class="hidden justify-between items-center mb-2 animate-pop pt-2">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="app.switchView('lp')">
-                <span class="text-xl font-bold tracking-tight text-slate-800">UNLOCK</span>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="app.switchView('calendar')" class="text-xs font-bold bg-white px-3 py-1.5 rounded-full border-2 border-slate-100 text-blue-500 shadow-sm active:scale-95 transition-transform">
-                    <i class="fa-solid fa-calendar-days mr-1"></i> <span data-i18n="header_record">記録</span>
-                </button>
+        <!-- Header (Hidden on Language/Nengajo View) -->
+        <header id="app-header" class="hidden justify-center items-center mb-4 animate-pop pt-2">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="app.switchView('menu')">
+                <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-serif font-bold text-xs border-2 border-white shadow-sm">福</div>
+                <span class="text-xl font-bold tracking-tight text-slate-800 font-serif">新春UNLOCK</span>
             </div>
         </header>
 
-        <!-- [VIEW: LANGUAGE] -->
+        <!-- [VIEW: LANGUAGE (NENGAJO)] -->
         <div id="view-language" class="flex flex-1 flex-col justify-center items-center animate-pop">
-            <h1 class="text-5xl font-black text-slate-800 mb-8 tracking-tight">UNLOCK</h1>
-            <div class="w-full max-w-xs flex flex-col gap-4">
-                <button onclick="app.setLanguage('ja')" class="w-full bg-white border-2 border-red-200 hover:bg-red-50 text-slate-700 font-bold text-lg py-5 rounded-3xl shadow-lg flex items-center justify-between px-6 active:scale-95 transition-transform">
-                    <span>🇯🇵 日本語</span><i class="fa-solid fa-chevron-right text-red-400"></i>
+            
+            <!-- Nengajo Card -->
+            <div class="bg-white w-full max-w-[340px] aspect-[100/148] shadow-2xl rounded-sm p-6 relative flex flex-col items-center overflow-hidden border-l border-b border-r border-slate-300 transform rotate-1 transition-transform hover:rotate-0 duration-500">
+                
+                <!-- Postcard Decorations -->
+                <div class="absolute top-3 left-3 text-[10px] font-bold text-slate-300 tracking-widest font-sans">POST CARD</div>
+                <div class="absolute top-4 left-4 w-12 h-14 border border-red-200 rounded flex items-center justify-center opacity-40">
+                    <span class="text-xs text-red-300 font-serif font-bold">年賀</span>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="flex-1 flex flex-col items-center justify-center w-full z-10">
+                    
+                    <!-- Vertical Title -->
+                    <h1 class="text-5xl font-black text-red-600 font-serif writing-vertical text-center leading-loose tracking-widest mb-4 drop-shadow-sm h-48">
+                        謹賀新年
+                    </h1>
+                    
+                    <!-- Icon -->
+                    <div class="mb-6 relative">
+                        <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center animate-bounce-gentle border border-red-100">
+                            <i class="fa-solid fa-mountain-sun text-red-500 text-4xl"></i>
+                        </div>
+                        <div class="absolute -right-2 -top-2 text-yellow-500 animate-spin-slow text-xl"><i class="fa-solid fa-sun"></i></div>
+                    </div>
+
+                    <!-- Greeting -->
+                    <p class="text-sm font-serif text-slate-600 text-center mb-6 leading-7 tracking-wider">
+                        旧年中は脳をご愛用いただき<br>
+                        誠にありがとうございました<br>
+                        本年も何卒よろしく<br>
+                        お願い申し上げます
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="w-full flex flex-col gap-3 px-4">
+                        <button onclick="app.setLanguage('ja')" class="w-full bg-red-600 text-white font-serif font-bold py-3 rounded shadow-md border-b-4 border-red-800 active:translate-y-1 active:border-b-0 active:bg-red-700 transition-all flex items-center justify-center gap-2">
+                            <span class="tracking-widest">日本語で始める</span>
+                        </button>
+                        <button onclick="app.setLanguage('en')" class="w-full text-slate-400 font-serif font-bold py-1 text-[10px] hover:text-slate-500 transition-colors">
+                            English Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card Texture/Overlay -->
+                <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')] opacity-30 pointer-events-none"></div>
+            </div>
+            
+            <p class="mt-8 text-xs text-white/50 font-serif font-bold tracking-widest">元旦 @ 2026 UNLOCK</p>
+        </div>
+
+        <!-- [VIEW: MENU] -->
+        <div id="view-menu" class="hidden flex-1 flex-col justify-center items-center animate-pop w-full">
+            <h2 class="text-2xl font-bold text-white mb-6 font-serif text-center drop-shadow-md" data-i18n="menu_title">お品書き</h2>
+            
+            <div class="grid grid-cols-2 gap-3 w-full mb-4">
+                <button onclick="app.selectGame('stroop')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                    <i class="fa-solid fa-palette text-red-500 text-3xl mb-2"></i>
+                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_stroop">紅白 文字合戦</span>
                 </button>
-                <button onclick="app.setLanguage('en')" class="w-full bg-white border-2 border-blue-200 hover:bg-blue-50 text-slate-700 font-bold text-lg py-5 rounded-3xl shadow-lg flex items-center justify-between px-6 active:scale-95 transition-transform">
-                    <span>🇺🇸 English</span><i class="fa-solid fa-chevron-right text-blue-400"></i>
+                <button onclick="app.selectGame('direction')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                    <i class="fa-solid fa-compass text-blue-500 text-3xl mb-2"></i>
+                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_direction">獅子舞ナビ</span>
+                </button>
+                <button onclick="app.selectGame('math_reflex')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                    <i class="fa-solid fa-abacus text-green-500 text-3xl mb-2"></i>
+                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_math_reflex">丁半 計算</span>
+                </button>
+                <button onclick="app.selectGame('memory_flash')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                    <i class="fa-solid fa-eye text-purple-500 text-3xl mb-2"></i>
+                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_memory_flash">初夢おぼえ</span>
+                </button>
+                <button onclick="app.selectGame('karuta')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                    <i class="fa-solid fa-layer-group text-orange-500 text-3xl mb-2"></i>
+                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_karuta">新春 かるた</span>
+                </button>
+                <button onclick="app.selectGame('high_low')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                    <i class="fa-solid fa-sack-dollar text-yellow-500 text-3xl mb-2"></i>
+                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_high_low">お年玉ハイロー</span>
                 </button>
             </div>
+            <p class="text-xs text-white/60 mt-2">※何度でも遊べます</p>
         </div>
 
         <!-- [VIEW: LP] -->
         <div id="view-lp" class="hidden flex-1 flex-col justify-center items-center animate-pop relative pb-8">
             <div class="text-center mb-6">
-                <div class="mb-4 inline-block">
-                    <div class="flex justify-center items-center relative h-28 w-28 mx-auto animate-bounce-gentle">
-                        <div class="absolute top-0 left-4 w-14 h-14 bg-red-500 rounded-full border-4 border-white shadow-lg z-10"></div>
-                        <div class="absolute top-4 right-2 w-12 h-12 bg-blue-500 rounded-full border-4 border-white shadow-lg z-0"></div>
-                        <div class="absolute bottom-2 left-8 w-16 h-16 bg-yellow-400 rounded-full border-4 border-white shadow-lg z-20 flex items-center justify-center">
-                            <!-- 今日のゲームアイコンを表示 -->
-                            <i id="lp-game-icon" class="fa-solid fa-brain text-yellow-700 text-4xl opacity-50"></i>
+                <div class="mb-6 inline-block relative">
+                    <div class="flex justify-center items-center relative h-32 w-32 mx-auto animate-bounce-gentle">
+                        <div class="absolute inset-0 border-4 border-red-500 rounded-full opacity-20 bg-white/50"></div>
+                        <div class="absolute inset-2 border-2 border-gold rounded-full opacity-40 border-dashed"></div>
+                        <div class="absolute w-20 h-20 bg-white rounded-full shadow-lg z-20 flex items-center justify-center border-2 border-red-100">
+                            <i id="lp-game-icon" class="fa-solid fa-dragon text-red-500 text-4xl"></i>
                         </div>
+                        <i class="fa-regular fa-snowflake absolute top-0 right-0 text-white/50 text-2xl animate-spin-slow"></i>
+                        <i class="fa-solid fa-fan absolute bottom-0 left-0 text-gold text-2xl"></i>
                     </div>
                 </div>
-                <h1 class="text-2xl font-bold text-slate-800 mb-2 leading-tight">
-                    <span data-i18n="lp_title_1">脳とからだを、</span><br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500" data-i18n="lp_title_2">もう一度あそばせよう。</span>
-                </h1>
                 
-                <!-- 今日のメニュー表示 -->
-                <div class="bg-white/80 border-2 border-slate-100 rounded-xl px-4 py-2 mt-2 mb-2 inline-block shadow-sm">
-                    <p class="text-xs font-bold text-slate-400 mb-1">TODAY'S MENU</p>
-                    <p class="text-lg font-black text-slate-700" id="lp-game-title">...</p>
+                <div class="bg-white border-2 border-red-100 rounded-xl px-6 py-3 mt-4 mb-2 inline-block shadow-sm relative overflow-hidden">
+                    <div class="mizuhiki-line absolute top-0 left-0 opacity-50"></div>
+                    <p class="text-xs font-bold text-red-400 mb-1 tracking-widest">SELECTED GAME</p>
+                    <p class="text-xl font-black text-slate-700 font-serif" id="lp-game-title">...</p>
                 </div>
-
-                <p class="text-slate-500 font-medium text-xs px-4 mt-2" data-i18n="lp_desc">毎日違うメニューで脳を刺激！</p>
+                <p id="lp-game-desc" class="text-white font-medium text-xs px-4 mt-2 leading-relaxed drop-shadow-md">...</p>
             </div>
-            <button onclick="app.checkLoginAndStart()" class="w-full bg-gradient-to-r from-red-400 to-red-500 border-red-600 text-white font-bold text-xl py-5 shadow-lg shadow-red-200 btn-beanbag group">
-                <i class="fa-solid fa-play mr-2"></i> <span data-i18n="btn_start">あそびを始める</span>
+            
+            <button onclick="app.toDifficulty()" class="w-full btn-newyear font-bold text-xl py-5 shadow-lg shadow-red-900/50 group mb-3">
+                <i class="fa-solid fa-play text-yellow-300 mr-2"></i> <span data-i18n="btn_start">これにする</span>
+            </button>
+            <button onclick="app.switchView('menu')" class="text-white/70 text-sm font-bold underline">
+                <span data-i18n="btn_back_menu">お品書きに戻る</span>
             </button>
         </div>
 
         <!-- [VIEW: DIFFICULTY] -->
         <div id="view-difficulty" class="hidden flex-1 flex-col justify-center items-center animate-pop">
-            <h2 class="text-xl font-bold text-slate-800 mb-2" data-i18n="diff_title">レベルを選ぼう</h2>
+            <h2 class="text-xl font-bold text-white mb-2 font-serif drop-shadow-md" data-i18n="diff_title">難易度を選ぶ</h2>
+            <p class="text-xs text-white/80 mb-6" data-i18n="diff_desc">松竹梅、どれにする？</p>
             
-            <div class="w-full grid grid-cols-2 gap-3 mb-4">
-                <button onclick="app.setDifficulty('easy')" id="btn-easy" class="level-btn rounded-2xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer">
-                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mb-1 text-green-500"><i class="fa-solid fa-egg"></i></div>
-                    <span class="text-sm font-bold" data-i18n="lvl_easy">初級</span><span class="text-[10px] text-slate-400 font-medium" data-i18n="lvl_easy_sub">小学生</span>
+            <div class="w-full grid grid-cols-2 gap-3 mb-6">
+                <button onclick="app.setDifficulty('easy')" id="btn-easy" class="level-btn level-ume rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
+                    <div class="text-3xl mb-2">🌸</div>
+                    <span class="text-lg font-bold font-serif" data-i18n="lvl_easy">梅 (初級)</span>
+                    <span class="text-[10px] opacity-80" data-i18n="lvl_easy_sub">のんびりと</span>
                 </button>
-                <button onclick="app.setDifficulty('normal')" id="btn-normal" class="level-btn selected rounded-2xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer">
-                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mb-1 text-blue-500"><i class="fa-solid fa-seedling"></i></div>
-                    <span class="text-sm font-bold" data-i18n="lvl_normal">中級</span><span class="text-[10px] text-slate-400 font-medium" data-i18n="lvl_normal_sub">中高生</span>
+                <button onclick="app.setDifficulty('normal')" id="btn-normal" class="level-btn level-take selected rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
+                    <div class="text-3xl mb-2">🎋</div>
+                    <span class="text-lg font-bold font-serif" data-i18n="lvl_normal">竹 (中級)</span>
+                    <span class="text-[10px] opacity-80" data-i18n="lvl_normal_sub">そこそこに</span>
                 </button>
-                <button onclick="app.setDifficulty('pro')" id="btn-pro" class="level-btn rounded-2xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer">
-                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mb-1 text-red-500"><i class="fa-solid fa-crown"></i></div>
-                    <span class="text-sm font-bold" data-i18n="lvl_pro">プロ級</span><span class="text-[10px] text-slate-400 font-medium" data-i18n="lvl_pro_sub">プロ</span>
+                <button onclick="app.setDifficulty('pro')" id="btn-pro" class="level-btn level-matsu rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
+                    <div class="text-3xl mb-2">🎍</div>
+                    <span class="text-lg font-bold font-serif" data-i18n="lvl_pro">松 (上級)</span>
+                    <span class="text-[10px] opacity-80" data-i18n="lvl_pro_sub">キレキレで</span>
                 </button>
-                <button onclick="app.setDifficulty('olympic')" id="btn-olympic" class="level-btn-olympic rounded-2xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-yellow-300 opacity-20 animate-pulse"></div>
-                    <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center mb-1 text-yellow-600 relative z-10"><i class="fa-solid fa-medal"></i></div>
-                    <span class="text-sm font-bold text-yellow-900 relative z-10" data-i18n="lvl_olympic">五輪級</span><span class="text-[10px] text-yellow-700 font-bold relative z-10" data-i18n="lvl_olympic_sub">神</span>
+                <button onclick="app.setDifficulty('olympic')" id="btn-olympic" class="level-btn level-fuji rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
+                    <div class="text-3xl mb-2">🗻</div>
+                    <span class="text-lg font-bold font-serif" data-i18n="lvl_olympic">富士 (鬼)</span>
+                    <span class="text-[10px] opacity-80" data-i18n="lvl_olympic_sub">無理ゲー</span>
                 </button>
             </div>
-            <button onclick="app.enterHome()" class="w-full bg-gradient-to-r from-blue-400 to-blue-500 border-blue-600 text-white font-bold text-xl py-4 shadow-lg shadow-blue-200 btn-beanbag">OK</button>
+            <button onclick="app.enterHome()" class="w-full bg-slate-800 text-white font-bold text-lg py-4 rounded-full shadow-lg active:scale-95 transition-transform">決定</button>
+            <button onclick="app.switchView('menu')" class="mt-4 text-white/70 text-sm font-bold underline"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
         </div>
 
         <!-- [VIEW: HOME] -->
         <div id="view-home" class="hidden flex-1 flex-col justify-center items-center animate-pop">
             <div class="text-center mb-4">
-                <h2 class="text-xl font-bold text-slate-800" data-i18n="home_title">今日のあそび</h2>
-                <div id="level-badge" class="inline-block bg-slate-100 text-slate-500 text-[10px] font-bold px-3 py-1 rounded-full mt-1">LEVEL</div>
+                <h2 class="text-xl font-bold text-white font-serif drop-shadow-md" data-i18n="home_title">今日の書初め</h2>
+                <div id="level-badge" class="inline-block bg-white text-red-500 text-[10px] font-bold px-3 py-1 rounded-full mt-1 shadow-sm">LEVEL</div>
             </div>
 
-            <div class="card-pop w-full p-6 mb-6 relative overflow-hidden bg-white">
-                <div class="absolute -top-6 -right-6 w-20 h-20 bg-yellow-100 rounded-full"></div>
-                <div class="relative z-10">
-                    <span class="inline-block bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-full mb-2">TODAY'S MISSION</span>
-                    <h3 id="daily-title" class="text-xl font-bold mb-1 text-slate-800">Title</h3>
-                    <p id="daily-desc" class="text-xs font-medium text-slate-500 mb-3 leading-relaxed">...</p>
-                    <div class="flex gap-2">
-                        <div class="bg-slate-100 px-3 py-1 rounded-lg text-xs font-bold text-slate-500"><i class="fa-regular fa-clock mr-1"></i> 30s</div>
+            <div class="card-washi w-full p-6 mb-6 relative overflow-hidden">
+                <div class="relative z-10 text-center">
+                    <span class="inline-block bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded mb-3">TODAY'S MISSION</span>
+                    <h3 id="daily-title" class="text-2xl font-black mb-2 text-slate-800 font-serif">Title</h3>
+                    <p id="daily-desc" class="text-sm font-medium text-slate-600 mb-4 leading-relaxed">...</p>
+                    <div class="flex justify-center gap-2">
+                        <div class="bg-slate-50 px-4 py-1 rounded-full text-xs font-bold text-slate-500 border border-slate-200"><i class="fa-regular fa-clock mr-1"></i> 30秒一本勝負</div>
                     </div>
                 </div>
             </div>
 
-            <button onclick="app.startGame()" class="w-full bg-gradient-to-r from-blue-400 to-blue-500 border-blue-600 text-white font-bold text-xl py-5 shadow-lg shadow-blue-200 btn-beanbag">
-                <span data-i18n="btn_game_start">スタート！</span>
+            <button onclick="app.startGame()" class="w-full btn-newyear text-xl py-5 shadow-lg shadow-red-900/50">
+                <span data-i18n="btn_game_start">いざ、勝負！</span>
             </button>
-            <button onclick="app.switchView('difficulty')" class="mt-4 text-slate-400 text-xs font-bold underline" data-i18n="btn_change_lvl">レベル変更</button>
+            <button onclick="app.switchView('difficulty')" class="mt-6 text-white/70 text-xs font-bold underline" data-i18n="btn_change_lvl">難易度を変える</button>
         </div>
 
         <!-- [VIEW: GAME] -->
         <div id="view-game" class="hidden flex-1 flex-col relative h-full">
-            <div class="w-full bg-slate-100 rounded-full h-3 mb-4 border border-slate-200 p-0.5 mt-2">
-                <div id="timer-bar" class="bg-gradient-to-r from-green-400 to-green-500 h-full rounded-full transition-all duration-1000 ease-linear shadow-sm" style="width: 100%"></div>
+            <!-- Timer -->
+            <div class="w-full bg-white/20 rounded-full h-2 mb-4 overflow-hidden mt-2">
+                <div id="timer-bar" class="bg-white h-full rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.5)]" style="width: 100%"></div>
             </div>
 
-            <div class="flex justify-between items-end mb-2 px-1">
+            <div class="flex justify-between items-end mb-2 px-2 border-b-2 border-white/20 pb-2 text-white">
                 <div class="flex flex-col">
-                     <span class="text-[10px] font-bold text-slate-400" id="game-level-badge">LEVEL</span>
-                     <div class="text-xs font-bold text-slate-400 bg-white px-2 py-0.5 rounded-full border border-slate-100">SCORE</div>
+                     <span class="text-[10px] font-bold opacity-80" id="game-level-badge">LEVEL</span>
+                     <div class="text-xs font-bold bg-white/20 px-2 py-0.5 rounded-full border border-white/30">得点</div>
                 </div>
-                <div id="score-display" class="text-4xl font-black text-slate-800 text-outline drop-shadow-sm">0</div>
+                <div class="flex items-baseline gap-1">
+                    <span id="score-display" class="text-4xl font-black font-serif drop-shadow-md">0</span>
+                    <span class="text-xs font-bold opacity-80">点</span>
+                </div>
             </div>
 
-            <div id="game-stage" class="flex-1 card-pop flex flex-col p-4 mb-4 relative transition-colors duration-300">
-                <div id="instruction-overlay" class="absolute inset-0 bg-white/95 z-30 flex flex-col justify-center items-center text-center p-6">
-                    <h3 class="text-xl font-bold mb-2 text-blue-500" data-i18n="overlay_rule">あそびかた</h3>
-                    <p id="game-rule-text" class="font-medium text-slate-700 mb-4 text-base">...</p>
-                    <div class="text-3xl font-black text-red-500 animate-pulse">Ready...</div>
+            <div id="game-stage" class="flex-1 card-washi flex flex-col p-4 mb-4 relative transition-colors duration-300 items-center justify-center">
+                <!-- Overlay Instruction -->
+                <div id="instruction-overlay" class="absolute inset-0 bg-white/95 z-30 flex flex-col justify-center items-center text-center p-6 rounded-2xl">
+                    <div class="text-5xl text-red-500 mb-4 animate-bounce"><i class="fa-solid fa-clover"></i></div>
+                    <h3 class="text-2xl font-bold mb-2 text-slate-800 font-serif" data-i18n="overlay_rule">ルール</h3>
+                    <p id="game-rule-text" class="font-medium text-slate-600 mb-6 text-lg">...</p>
+                    <div class="text-4xl font-black text-red-500 animate-pulse font-serif">よーい...</div>
                 </div>
-                <div id="stimulus-container" class="w-full h-full flex flex-col relative"></div>
+                <!-- Game Content -->
+                <div id="stimulus-container" class="w-full h-full flex flex-col relative items-center justify-center"></div>
             </div>
 
-            <div id="controls-area" class="grid grid-cols-2 gap-3 h-32 mb-2"></div>
+            <div id="controls-area" class="grid grid-cols-2 gap-3 h-48 mb-2"></div>
         </div>
 
-        <!-- [VIEW: RESULT] -->
+        <!-- [VIEW: RESULT (OMIKUJI)] -->
         <div id="view-result" class="hidden flex-1 flex-col justify-center items-center animate-pop">
-            <div class="text-center mb-4">
-                <div class="text-5xl mb-2 animate-bounce">🎉</div>
-                <h2 class="text-2xl font-bold text-slate-800" data-i18n="res_title">おしまい！</h2>
+            
+            <div class="text-center mb-6">
+                <h2 class="text-3xl font-bold text-white font-serif drop-shadow-md" data-i18n="res_title">あっぱれ！</h2>
+                <p class="text-xs font-bold text-white/80 mt-1">今年の運勢は…？</p>
             </div>
 
-            <div class="card-pop w-full p-5 text-center mb-4 border-b-8 border-yellow-200 bg-white relative">
-                <div id="result-stamp-area" class="absolute top-2 right-2 opacity-0">
-                    <i class="fa-solid fa-certificate text-red-500 text-5xl drop-shadow-md"></i>
+            <div class="card-washi w-full py-6 px-6 text-center mb-4 bg-white relative border-4 border-double border-red-100 flex flex-col items-center">
+                
+                <!-- Omikuji Display Area -->
+                <div id="omikuji-result-area" class="w-full text-left">
+                    <!-- Dynamic Content -->
                 </div>
-                <div class="text-xs font-bold text-slate-400 mb-1" data-i18n="res_score">今回のスコア</div>
-                <div id="final-score" class="text-5xl font-black text-red-500 mb-1 text-outline">0</div>
-                <p id="result-difficulty" class="text-[10px] font-bold text-blue-400 mb-3">MODE: NORMAL</p>
-                <p id="feedback-text" class="font-medium text-slate-700 text-base border-t-2 border-dashed border-slate-100 pt-3">...</p>
-            </div>
 
-            <div class="flex w-full gap-2 mb-3">
-                <button onclick="app.share('twitter')" class="flex-1 bg-black text-white font-bold py-3 rounded-2xl shadow-md flex items-center justify-center gap-1 active:scale-95 transition-transform text-sm"><i class="fa-brands fa-x-twitter"></i> Share</button>
-                <button onclick="app.share('line')" class="flex-1 bg-[#06C755] text-white font-bold py-3 rounded-2xl shadow-md flex items-center justify-center gap-1 active:scale-95 transition-transform text-sm"><i class="fa-brands fa-line"></i> Share</button>
-            </div>
+                <div class="w-full h-px bg-slate-100 my-4"></div>
 
-            <div class="w-full flex flex-col gap-2">
-                <button onclick="app.switchView('calendar')" class="w-full bg-yellow-400 border-yellow-600 text-yellow-900 font-bold text-lg py-3 btn-beanbag">
-                    <i class="fa-solid fa-stamp mr-2"></i> <span data-i18n="btn_stamp">スタンプ帳</span>
-                </button>
-                <button onclick="liff.closeWindow()" class="w-full bg-slate-700 border-slate-900 text-white font-bold text-lg py-3 btn-beanbag">
-                    <span data-i18n="btn_close">とじる</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- [VIEW: LIMIT & CALENDAR] -->
-        <div id="view-limit" class="hidden flex-1 flex-col justify-center items-center animate-pop">
-            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-4 animate-bounce-gentle border-4 border-white shadow-lg text-green-500"><i class="fa-solid fa-check text-4xl"></i></div>
-            <h2 class="text-xl font-bold text-slate-800 mb-2" data-i18n="limit_title">本日は完了！</h2>
-            <p class="text-slate-500 font-medium text-xs text-center mb-6 px-4" data-i18n="limit_desc">明日も遊びにきてね！</p>
-            <button onclick="app.switchView('calendar')" class="w-full bg-yellow-400 border-yellow-600 text-yellow-900 font-bold text-lg py-3 btn-beanbag"><i class="fa-solid fa-book-open mr-2"></i> <span data-i18n="btn_stamp">スタンプ帳</span></button>
-        </div>
-
-        <div id="view-calendar" class="hidden flex-1 flex-col items-center animate-pop w-full">
-            <h2 class="text-xl font-bold text-slate-800 mb-4" data-i18n="cal_title">あそびの記録</h2>
-            <div class="card-pop w-full p-4 bg-white mb-4">
-                <div class="flex justify-between items-center mb-2 border-b-2 border-slate-100 pb-2"><span id="calendar-month-label" class="text-base font-bold text-slate-700">2023.10</span></div>
-                <div class="calendar-grid mb-1 text-[10px] font-bold text-slate-400">
-                    <div class="text-center text-red-400">S</div><div class="text-center">M</div><div class="text-center">T</div><div class="text-center">W</div><div class="text-center">T</div><div class="text-center">F</div><div class="text-center text-blue-400">S</div>
+                <div class="flex items-end justify-center gap-2 mb-2">
+                    <div class="text-xs font-bold text-slate-400 mb-1">SCORE</div>
+                    <div id="final-score" class="text-5xl font-black text-slate-800 font-serif leading-none">0</div>
                 </div>
-                <div id="calendar-days" class="calendar-grid"></div>
             </div>
-            <div class="bg-white/80 p-3 rounded-2xl w-full text-center mb-4">
-                <p class="text-[10px] font-bold text-slate-500 mb-1" data-i18n="cal_streak">継続日数</p>
-                <p class="text-2xl font-black text-blue-500" id="streak-count">0 <span class="text-xs">Days</span></p>
+
+            <!-- LINE CTA Button -->
+            <a href="https://line.me/" target="_blank" class="w-full bg-[#06C755] text-white font-bold py-4 rounded-2xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform mb-3 relative overflow-hidden group border border-green-400">
+                <i class="fa-brands fa-line text-2xl"></i>
+                <span class="text-lg">公式アカウントを友だち追加</span>
+                <i class="fa-solid fa-chevron-right ml-auto mr-2 opacity-50"></i>
+            </a>
+
+            <div class="flex w-full gap-2 mb-4">
+                <button onclick="app.share('twitter')" class="flex-1 bg-black text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs"><i class="fa-brands fa-x-twitter"></i> Xでシェア</button>
+                <button onclick="app.enterHome()" class="flex-1 bg-slate-200 text-slate-600 font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs">もう一度</button>
             </div>
-            <button onclick="liff.closeWindow()" class="w-full bg-slate-700 border-slate-900 text-white font-bold text-lg py-3 btn-beanbag mt-auto"><span data-i18n="btn_close">とじる</span></button>
+            
+            <button onclick="app.switchView('menu')" class="text-white/70 text-xs font-bold underline p-2"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
         </div>
-        
+
         <!-- [VIEW: LOADING] -->
         <div id="view-loading" class="hidden flex-1 flex-col justify-center items-center">
-            <div class="flex gap-2 mb-4">
-                <div class="w-4 h-4 bg-red-400 rounded-full animate-bounce" style="animation-delay: 0s"></div>
-                <div class="w-4 h-4 bg-yellow-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
-                <div class="w-4 h-4 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+            <div class="flex gap-3 mb-4">
+                <div class="w-4 h-4 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                <div class="w-4 h-4 bg-white border-2 border-slate-200 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                <div class="w-4 h-4 bg-gold rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
             </div>
+            <p class="text-xs font-bold text-white tracking-widest">LOADING...</p>
         </div>
     </div>
 
     <!-- SCRIPT -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-        const AppConfig = { gameDuration: 30, storageBaseKey: 'unlock_data_v12_' };
+        const AppConfig = { gameDuration: 30, storageBaseKey: 'newyear_unlock_v8_' };
         
-        // --- RANDOM SEED GENERATOR ---
-        class SeededRandom {
-            constructor(seed) { this.seed = seed; }
-            next() {
-                this.seed ^= this.seed << 13; this.seed ^= this.seed >> 17; this.seed ^= this.seed << 5;
-                return (this.seed >>> 0) / 4294967296;
+        // --- DATA: Omikuji (Positive Vibes) ---
+        const OmikujiData = {
+            daikichi: {
+                title: "大吉",
+                subtitle: "（この1年）",
+                text: "今年のあなた、脳みそが“勝手に進化”する年。<br>新しいことに手を出すたび、体も「お、いいね」ってついてくる。<br>ズラして、遊んで、笑ってるうちに、気づいたら強くなってる。",
+                word: "今年の成長、たぶん自分がいちばんビックリする。"
+            },
+            chukichi: {
+                title: "中吉",
+                subtitle: "（この1年）",
+                text: "中吉ってさ、実は“安定して強い”って意味だからね。<br>今年は、脳と体が無理なく回る仕組みを作れる年。<br>コツは「頑張る」じゃなくて「区切る」。それだけで毎日が上向く。",
+                word: "今年のあなた、ちゃんと続く。これ最強。"
+            },
+            kichi: {
+                title: "吉",
+                subtitle: "（この1年）",
+                text: "吉、いいよ。すごくいい。伸びる年のど真ん中だよ。<br>派手じゃないのに、積み上がって、気づいたら「え、こんなできる？」ってなる。<br>水・睡眠・散歩の三兄弟が、今年のあなたをめっちゃ守る。",
+                word: "地味に積んだ人が、いちばんハッピーになる仕様。"
+            },
+            suekichi: {
+                title: "末吉",
+                subtitle: "（この1年）",
+                text: "末吉はね、“これから上がる”って宣言だから。最高じゃん。<br>今年は、整えた分だけ運が貯金されて、後半でドン！って効いてくる。<br>休むのも、ほぐすのも、全部トレーニング。",
+                word: "今年の後半、あなたが主人公になるやつ。"
             }
-            pick(array) { return array[Math.floor(this.next() * array.length)]; }
-        }
+        };
 
         // --- DICTIONARY ---
         const Dict = {
             ja: {
-                header_record: "記録", lp_title_1: "脳とからだを、", lp_title_2: "もう一度あそばせよう。", lp_desc: "毎日生成される新鮮な脳トレ。\n直感と反射でアンロック！",
-                btn_start: "あそびを始める", diff_title: "レベルを選ぼう", diff_desc: "今日の調子はどう？",
-                lvl_easy: "初級", lvl_easy_sub: "小学生", lvl_normal: "中級", lvl_normal_sub: "中高生", lvl_pro: "プロ級", lvl_pro_sub: "プロ", lvl_olympic: "五輪級", lvl_olympic_sub: "神",
-                home_title: "今日のあそび", btn_game_start: "スタート！", btn_change_lvl: "レベル変更",
-                overlay_rule: "あそびかた", res_title: "おしまい！", res_score: "今回のスコア", btn_stamp: "スタンプ帳", btn_close: "とじる",
-                limit_title: "本日は完了！", limit_desc: "今日の分のスタンプはゲットしました。\n明日も遊びにきてね！",
-                cal_title: "あそびの記録", cal_streak: "継続日数",
-                mem_remember: "覚えて！", mem_ask: "はどこ？", msg_great: "すごい！天才かも！？", msg_good: "いい感じ！脳が起きたね！", msg_nice: "ナイスファイト！",
-                share_text: "【UNLOCK】今日の脳トレ結果！スコア: ",
+                menu_title: "お品書き",
+                btn_start: "これにする", btn_back_menu: "お品書きに戻る",
+                diff_title: "難易度を選ぶ", diff_desc: "松竹梅、どれにする？",
+                lvl_easy: "梅 (初級)", lvl_easy_sub: "のんびりと", lvl_normal: "竹 (中級)", lvl_normal_sub: "そこそこに", lvl_pro: "松 (上級)", lvl_pro_sub: "キレキレで", lvl_olympic: "富士 (鬼)", lvl_olympic_sub: "無理ゲー",
+                home_title: "挑戦状", btn_game_start: "いざ、勝負！", btn_change_lvl: "難易度を変える",
+                overlay_rule: "遊び方", res_title: "あっぱれ！", res_score: "スコア", btn_close: "とじる",
+                mem_remember: "覚えて！", mem_ask: "はどこ？", 
+                share_text: "【新春UNLOCK】今年のおみくじ結果！スコア: ",
                 // Games
-                game_type_stroop: "識別スイッチ", game_desc_stroop: "指示に従って「正解」を選べ！",
-                game_type_direction: "空間ナビ", game_desc_direction: "向きを判断して入力せよ！",
-                game_type_math_reflex: "直感計算", game_desc_math_reflex: "計算結果を仕分けろ！",
-                game_type_memory_flash: "瞬間フラッシュ", game_desc_memory_flash: "一瞬の配置を記憶せよ！",
-                game_type_rps: "後出しジャンケン", game_desc_rps: "指示通りの手を打て！",
-                game_type_high_low: "ハイ＆ロー", game_desc_high_low: "大きい数字を選べ！",
-                rule_tap_ans: "正解をタップ！", rule_tap_dir: "方向を入力！", rule_tap_calc: "答えを選べ！", rule_tap_mem: "場所を思い出せ！", rule_tap_rps: "勝つか負けるか！？", rule_tap_hl: "大きいほうは？",
+                game_type_stroop: "紅白 文字合戦", game_desc_stroop: "文字の意味ではなく、\n「色」を答えよ！",
+                game_type_direction: "獅子舞ナビ", game_desc_direction: "獅子舞が向いている\n方向を答えよ！",
+                game_type_math_reflex: "丁半 計算", game_desc_math_reflex: "答えは「丁(偶数)」か\n「半(奇数)」か！？",
+                game_type_memory_flash: "初夢おぼえ", game_desc_memory_flash: "縁起物の場所を\n一瞬で記憶せよ！",
+                game_type_karuta: "新春 かるた", game_desc_karuta: "読み札に合う絵札を\n素早く取れ！", 
+                game_type_high_low: "お年玉ハイロー", game_desc_high_low: "金額が大きいのは\nどっちの袋！？",
+                rule_tap_ans: "正解の色を選べ！", rule_tap_dir: "向いている方は？", rule_tap_calc: "丁か半か？", rule_tap_mem: "場所を思い出せ！", rule_tap_karuta: "正しい札を選べ！", rule_tap_hl: "大きいほうは？", 
                 txt_color: "色", txt_read: "読み", txt_win: "勝って", txt_lose: "負けて", txt_draw: "あいこ",
                 txt_same: "そのまま", txt_rev: "反対", txt_r90: "右90度", txt_l90: "左90度",
-                txt_even: "偶数", txt_odd: "奇数", txt_prime: "素数", txt_comp: "合成数"
+                txt_even: "丁(偶)", txt_odd: "半(奇)", txt_prime: "素数", txt_comp: "合成数"
             },
             en: {
-                header_record: "Record", lp_title_1: "Unlock your Brain,", lp_title_2: "Unlock your Body.", lp_desc: "Daily generated brain training.\nUnlock your potential!",
-                btn_start: "Start Game", diff_title: "Select Level", diff_desc: "How are you feeling today?",
-                lvl_easy: "Easy", lvl_easy_sub: "Kids", lvl_normal: "Normal", lvl_normal_sub: "Standard", lvl_pro: "Pro", lvl_pro_sub: "Expert", lvl_olympic: "Olympic", lvl_olympic_sub: "GOD",
-                home_title: "Today's Mission", btn_game_start: "START!", btn_change_lvl: "Change Level",
-                overlay_rule: "How to Play", res_title: "Finish!", res_score: "Score", btn_stamp: "Stamps", btn_close: "Close",
-                limit_title: "All Done!", limit_desc: "You got today's stamp.\nSee you tomorrow!",
-                cal_title: "History", cal_streak: "Streak",
-                mem_remember: "Memorize!", mem_ask: "Where was", msg_great: "Amazing!", msg_good: "Good job!", msg_nice: "Nice try!",
-                share_text: "[UNLOCK] Today's Score: ",
-                game_type_stroop: "Identity Switch", game_desc_stroop: "Follow the rule!",
-                game_type_direction: "Space Navi", game_desc_direction: "Judge direction!",
-                game_type_math_reflex: "Math Reflex", game_desc_math_reflex: "Calculate instantly!",
-                game_type_memory_flash: "Flash Memory", game_desc_memory_flash: "Memorize positions!",
-                game_type_rps: "RPS Master", game_desc_rps: "Win or Lose?",
-                game_type_high_low: "High & Low", game_desc_high_low: "Which is bigger?",
-                rule_tap_ans: "Tap Correct!", rule_tap_dir: "Input Direction!", rule_tap_calc: "Solve it!", rule_tap_mem: "Recall!", rule_tap_rps: "Win or Lose!", rule_tap_hl: "Pick Higher!",
+                menu_title: "Game Menu",
+                btn_start: "Select", btn_back_menu: "Back to Menu",
+                diff_title: "Select Level", diff_desc: "Choose your difficulty",
+                lvl_easy: "Plum (Easy)", lvl_easy_sub: "Slow", lvl_normal: "Bamboo (Normal)", lvl_normal_sub: "Standard", lvl_pro: "Pine (Pro)", lvl_pro_sub: "Fast", lvl_olympic: "Fuji (God)", lvl_olympic_sub: "Dream",
+                home_title: "Mission", btn_game_start: "Let's Go!", btn_change_lvl: "Change Level",
+                overlay_rule: "How to Play", res_title: "Excellent!", res_score: "Score", btn_close: "Close",
+                mem_remember: "Memorize!", mem_ask: "Where was",
+                share_text: "[New Year UNLOCK] Omikuji Result: ",
+                game_type_stroop: "Red & White", game_desc_stroop: "Tap the COLOR,\nnot the word!",
+                game_type_direction: "Lion Dance", game_desc_direction: "Which way is\nthe Lion facing?",
+                game_type_math_reflex: "Odd or Even", game_desc_math_reflex: "Is the answer\nOdd or Even?",
+                game_type_memory_flash: "First Dream", game_desc_memory_flash: "Memorize the\nlucky items!",
+                game_type_karuta: "New Year Karuta", game_desc_karuta: "Pick the card\nthat matches the text!", 
+                game_type_high_low: "Lucky Bag", game_desc_high_low: "Which bag has\nmore money?",
+                rule_tap_ans: "Tap Correct Color!", rule_tap_dir: "Which direction?", rule_tap_calc: "Even or Odd?", rule_tap_mem: "Recall!", rule_tap_karuta: "Pick the Card!", rule_tap_hl: "Pick Higher!", 
                 txt_color: "Color", txt_read: "Read", txt_win: "Win", txt_lose: "Lose", txt_draw: "Draw",
                 txt_same: "Same", txt_rev: "Reverse", txt_r90: "Right 90", txt_l90: "Left 90",
                 txt_even: "Even", txt_odd: "Odd", txt_prime: "Prime", txt_comp: "Composite"
-            }
-        };
-
-        // --- GAME LOGIC GENERATOR (ROTATION) ---
-        const GameGenerator = {
-            generate: function(date) {
-                // 通算日数を計算してローテーションに使う
-                const start = new Date(date.getFullYear(), 0, 0);
-                const diff = date - start;
-                const oneDay = 1000 * 60 * 60 * 24;
-                const dayOfYear = Math.floor(diff / oneDay);
-                // 通算インデックス（年またぎも考慮し、簡易的にyear*366+day）
-                const totalDayIndex = (date.getFullYear() * 366) + dayOfYear;
-
-                const types = ['stroop', 'direction', 'math_reflex', 'memory_flash', 'rps', 'high_low'];
-                
-                // 完全なローテーション (Modulo演算)
-                // これにより、昨日と今日は必ず違うゲームになる
-                const typeIndex = totalDayIndex % types.length;
-                const type = types[typeIndex];
-                
-                const seed = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
-                return { type: type, seed: seed };
             }
         };
 
@@ -362,53 +474,55 @@
             userId: 'guest',
             setUserId: function(id) { this.userId = id || 'guest'; },
             getKey: function() { return AppConfig.storageBaseKey + this.userId; },
-            load: function() { const raw = localStorage.getItem(this.getKey()); return raw ? JSON.parse(raw) : { dates: [], lastScore: 0 }; },
+            load: function() { const raw = localStorage.getItem(this.getKey()); return raw ? JSON.parse(raw) : { lastScore: 0 }; },
             save: function(data) { localStorage.setItem(this.getKey(), JSON.stringify(data)); },
-            hasPlayedToday: function() { const data = this.load(); return data.dates.includes(new Date().toDateString()); },
-            recordPlay: function(score) { const data = this.load(); const today = new Date().toDateString(); if (!data.dates.includes(today)) data.dates.push(today); data.lastScore = score; this.save(data); }
+            recordPlay: function(score) { const data = this.load(); data.lastScore = score; this.save(data); }
         };
 
         // --- APP CONTROLLER ---
         const app = {
-            state: { lang: 'ja', currentView: 'language', score: 0, timeLeft: AppConfig.gameDuration, isPlaying: false, dailyGame: null, timerInterval: null, difficulty: 'normal', memoryAnswer: null, inputBlocked: false },
+            state: { lang: 'ja', currentView: 'language', score: 0, timeLeft: AppConfig.gameDuration, isPlaying: false, currentGameType: 'stroop', timerInterval: null, difficulty: 'normal', memoryAnswer: null, inputBlocked: false, currentOmikujiTitle: '' },
 
             init: function() {
-                const today = new Date();
-                this.state.dailyGame = GameGenerator.generate(today);
                 this.switchView('language');
             },
 
             setLanguage: function(lang) {
                 this.state.lang = lang;
                 this.updateTexts();
+                this.switchView('menu');
+            },
+            
+            selectGame: function(type) {
+                this.state.currentGameType = type;
+                this.updateTexts(); 
                 this.switchView('lp');
+            },
+            
+            toDifficulty: function() {
+                this.switchView('difficulty');
             },
 
             updateTexts: function() {
                 try {
                     const texts = Dict[this.state.lang];
-                    // LPのゲーム名表示更新
-                    const type = this.state.dailyGame.type;
-                    const lpTitle = document.getElementById('lp-game-title');
-                    const lpIcon = document.getElementById('lp-game-icon');
-                    if (lpTitle) lpTitle.innerText = texts[`game_type_${type}`];
+                    const type = this.state.currentGameType;
                     
-                    // アイコンのマッピング
-                    const icons = { stroop: 'fa-palette', direction: 'fa-arrows-up-down-left-right', math_reflex: 'fa-calculator', memory_flash: 'fa-eye', rps: 'fa-hand-scissors', high_low: 'fa-sort-numeric-up' };
-                    if (lpIcon) lpIcon.className = `fa-solid ${icons[type] || 'fa-brain'} text-yellow-700 text-3xl opacity-50`;
+                    const lpTitle = document.getElementById('lp-game-title');
+                    const lpDesc = document.getElementById('lp-game-desc');
+                    const lpIcon = document.getElementById('lp-game-icon');
+                    
+                    if (lpTitle) lpTitle.innerText = texts[`game_type_${type}`];
+                    if (lpDesc) lpDesc.innerText = texts[`game_desc_${type}`];
+                    
+                    const icons = { stroop: 'fa-palette', direction: 'fa-compass', math_reflex: 'fa-abacus', memory_flash: 'fa-eye', karuta: 'fa-layer-group', high_low: 'fa-sack-dollar' };
+                    if (lpIcon) lpIcon.className = `fa-solid ${icons[type] || 'fa-brain'} text-red-500 text-4xl`;
 
                     document.querySelectorAll('[data-i18n]').forEach(el => {
                         const key = el.getAttribute('data-i18n');
                         if (texts[key]) el.innerText = texts[key];
                     });
                 } catch(e) { console.error("Text update failed", e); }
-            },
-
-            getText: function(key) { return Dict[this.state.lang][key] || key; },
-
-            checkLoginAndStart: function() {
-                if (UserData.hasPlayedToday()) this.switchView('limit');
-                else this.switchView('difficulty');
             },
 
             setDifficulty: function(level) {
@@ -424,42 +538,38 @@
             enterHome: function() { this.setupHome(); this.switchView('home'); },
             
             setupHome: function() {
-                const type = this.state.dailyGame.type;
+                const type = this.state.currentGameType;
                 const texts = Dict[this.state.lang];
                 let tKey = `game_type_${type}`;
                 let dKey = `game_desc_${type}`;
-                
-                // Rule key mapping logic
                 let rKey = 'rule_tap_ans';
+                
                 if(type === 'direction') rKey = 'rule_tap_dir';
                 else if(type === 'math_reflex') rKey = 'rule_tap_calc';
                 else if(type === 'memory_flash') rKey = 'rule_tap_mem';
-                else if(type === 'rps') rKey = 'rule_tap_rps';
+                else if(type === 'karuta') rKey = 'rule_tap_karuta'; 
                 else if(type === 'high_low') rKey = 'rule_tap_hl';
 
                 document.getElementById('daily-title').innerText = texts[tKey] || type;
                 document.getElementById('daily-desc').innerText = texts[dKey] || "";
                 document.getElementById('game-rule-text').innerText = texts[rKey] || "";
                 
-                const diffLabels = { easy: {ja:"初級",en:"Easy"}, normal: {ja:"中級",en:"Normal"}, pro: {ja:"プロ級",en:"Pro"}, olympic: {ja:"五輪級",en:"Olympic"} };
+                const diffLabels = { easy: {ja:"梅",en:"Plum"}, normal: {ja:"竹",en:"Bamboo"}, pro: {ja:"松",en:"Pine"}, olympic: {ja:"富士",en:"Fuji"} };
                 const badge = document.getElementById('level-badge');
                 if (badge) {
                     badge.innerText = `LEVEL: ${diffLabels[this.state.difficulty][this.state.lang]}`;
-                    badge.className = "inline-block text-[10px] font-bold px-3 py-1 rounded-full " + (this.state.difficulty === 'olympic' ? "bg-yellow-100 text-yellow-600 border border-yellow-300" : "bg-slate-100 text-slate-500");
                 }
             },
 
             switchView: function(viewName) {
                 const header = document.getElementById('app-header');
-                const isGameOrRes = ['home', 'game', 'result', 'limit', 'calendar', 'difficulty'].includes(viewName);
+                const showHeader = ['menu', 'home', 'game', 'result', 'difficulty'].includes(viewName);
                 if (header) {
-                    if (isGameOrRes) { header.classList.remove('hidden'); header.classList.add('flex'); } 
+                    if (showHeader) { header.classList.remove('hidden'); header.classList.add('flex'); } 
                     else { header.classList.add('hidden'); header.classList.remove('flex'); }
                 }
                 
-                if (viewName === 'calendar') this.renderCalendar();
-
-                ['language', 'loading', 'lp', 'difficulty', 'home', 'game', 'result', 'limit', 'calendar'].forEach(v => {
+                ['language', 'loading', 'menu', 'lp', 'difficulty', 'home', 'game', 'result'].forEach(v => {
                     const el = document.getElementById(`view-${v}`);
                     if (el) {
                         if (v === viewName) { el.classList.remove('hidden'); if(v!=='loading') el.classList.add('flex'); } 
@@ -474,10 +584,10 @@
                 this.state.score = 0;
                 this.state.timeLeft = AppConfig.gameDuration;
                 document.getElementById('score-display').innerText = 0;
-                const stage = document.getElementById('game-stage');
-                if (this.state.difficulty === 'olympic') stage.classList.add('animate-flash'); else stage.classList.remove('animate-flash');
-                const diffLabels = { easy: "EASY", normal: "NORMAL", pro: "PRO", olympic: "GOD" };
+                
+                const diffLabels = { easy: "梅", normal: "竹", pro: "松", olympic: "富士" };
                 document.getElementById('game-level-badge').innerText = `LEVEL: ${diffLabels[this.state.difficulty]}`;
+                
                 const overlay = document.getElementById('instruction-overlay');
                 overlay.style.display = 'flex';
                 setTimeout(() => { overlay.style.display = 'none'; this.state.isPlaying = true; this.startTimer(); this.nextRound(); }, 2000);
@@ -485,24 +595,22 @@
 
             startTimer: function() {
                 const timerBar = document.getElementById('timer-bar');
-                timerBar.className = "h-full rounded-full transition-all duration-1000 ease-linear shadow-sm bg-gradient-to-r from-green-400 to-green-500";
+                timerBar.className = "h-full rounded-full transition-all duration-1000 ease-linear bg-red-500";
                 this.state.timerInterval = setInterval(() => {
                     this.state.timeLeft--;
                     const pct = (this.state.timeLeft / AppConfig.gameDuration) * 100;
                     timerBar.style.width = `${pct}%`;
-                    if (this.state.timeLeft <= 10) timerBar.className = "h-full rounded-full transition-all duration-1000 ease-linear shadow-sm bg-gradient-to-r from-red-400 to-red-500";
                     if (this.state.timeLeft <= 0) this.endGame();
                 }, 1000);
             },
 
             nextRound: function() {
                 if (!this.state.isPlaying) return;
-                const type = this.state.dailyGame.type;
+                const type = this.state.currentGameType;
                 const stage = document.getElementById('stimulus-container');
                 const controls = document.getElementById('controls-area');
                 stage.innerHTML = ''; controls.innerHTML = '';
                 
-                // Hide Controls for Touch Games
                 if (type === 'memory_flash') {
                     controls.style.display = 'none';
                     this.renderMemoryFlash(stage);
@@ -511,58 +619,68 @@
                     if (type === 'stroop') this.renderStroop(stage, controls);
                     else if (type === 'direction') this.renderDirection(stage, controls);
                     else if (type === 'math_reflex') this.renderMath(stage, controls);
-                    else if (type === 'rps') this.renderRPS(stage, controls);
+                    else if (type === 'karuta') this.renderKaruta(stage, controls); 
                     else if (type === 'high_low') this.renderHighLow(stage, controls);
                 }
             },
 
-            // --- 6 GAME ENGINES ---
-
+            // --- GAMES ---
+            
             // 1. Memory Flash
             renderMemoryFlash: function(stage) {
                 const texts = Dict[this.state.lang];
                 this.state.inputBlocked = true;
-                stage.innerHTML = `<div id="mem-question-area" class="w-full h-12 mb-2 flex items-center justify-center"></div><div id="mem-grid" class="flex-1 grid grid-cols-2 gap-3 w-full p-1"></div>`;
+                stage.innerHTML = `<div id="mem-question-area" class="w-full h-16 mb-2 flex items-center justify-center"></div><div id="mem-grid" class="flex-1 grid grid-cols-2 gap-2 w-full p-2 max-w-[320px]"></div>`;
                 const qArea = document.getElementById('mem-question-area');
                 const grid = document.getElementById('mem-grid');
-                let itemCount = 2;
-                if (this.state.difficulty === 'normal') itemCount = 3;
-                if (this.state.difficulty === 'pro' || this.state.difficulty === 'olympic') itemCount = 4;
                 
-                const icons = ['fa-apple-whole', 'fa-carrot', 'fa-lemon', 'fa-pepper-hot', 'fa-fish', 'fa-shrimp', 'fa-mug-hot', 'fa-ice-cream', 'fa-pizza-slice', 'fa-burger'];
+                let itemCount = 3; 
+                if (this.state.difficulty === 'normal') itemCount = 4;
+                if (this.state.difficulty === 'pro') itemCount = 5;
+                if (this.state.difficulty === 'olympic') itemCount = 6;
+                
+                if (itemCount > 4) grid.classList.add('grid-cols-3');
+
+                const icons = ['fa-mountain-sun', 'fa-feather-pointed', 'fa-carrot', 'fa-sun', 'fa-fan', 'fa-torii-gate', 'fa-om', 'fa-bottle-droplet', 'fa-shrimp', 'fa-fish'];
                 const shuffledIcons = icons.sort(() => 0.5 - Math.random()).slice(0, itemCount);
-                const positions = [0, 1, 2, 3];
-                const targetPositions = positions.sort(() => 0.5 - Math.random()).slice(0, itemCount);
+                
                 let slots = [];
-                for(let i=0; i<4; i++) {
+                for(let i=0; i<itemCount; i++) {
                     const btn = document.createElement('div');
-                    btn.className = "bg-slate-100 rounded-2xl flex items-center justify-center text-7xl shadow-inner border-2 border-slate-200 transition-all h-full";
+                    btn.className = "bg-white rounded-xl flex items-center justify-center text-3xl shadow-sm border border-slate-200 aspect-square";
                     btn.dataset.index = i;
                     grid.appendChild(btn);
                     slots.push(btn);
                 }
+                
+                const targetPositions = [...Array(itemCount).keys()].sort(() => 0.5 - Math.random());
+
                 targetPositions.forEach((posIndex, i) => {
                     const iconClass = shuffledIcons[i];
-                    slots[posIndex].innerHTML = `<i class="fa-solid ${iconClass} text-slate-700 animate-pop"></i>`;
+                    slots[posIndex].innerHTML = `<i class="fa-solid ${iconClass} text-red-600 animate-pop"></i>`;
                     slots[posIndex].dataset.icon = iconClass;
-                    slots[posIndex].classList.remove('bg-slate-100');
-                    slots[posIndex].classList.add('bg-white', 'shadow-md');
+                    slots[posIndex].classList.add('border-red-200', 'bg-red-50');
                 });
-                qArea.innerHTML = `<span class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-bold animate-pulse">${texts.mem_remember}</span>`;
-                let showTime = 1500;
-                if (this.state.difficulty === 'normal') showTime = 1000;
-                if (this.state.difficulty === 'pro') showTime = 600;
-                if (this.state.difficulty === 'olympic') showTime = 300;
+                
+                qArea.innerHTML = `<span class="bg-red-100 text-red-600 px-6 py-2 rounded-full font-bold font-serif shadow-sm text-sm">${texts.mem_remember}</span>`;
+                
+                let showTime = 1000;
+                if (this.state.difficulty === 'normal') showTime = 600;
+                if (this.state.difficulty === 'pro') showTime = 400;
+                if (this.state.difficulty === 'olympic') showTime = 200; 
+
                 setTimeout(() => {
                     slots.forEach(slot => {
-                        slot.innerHTML = ''; slot.classList.add('bg-slate-50', 'cursor-pointer', 'active:scale-95');
+                        slot.innerHTML = ''; 
+                        slot.classList.remove('bg-red-50', 'border-red-200');
+                        slot.classList.add('cursor-pointer', 'active:scale-95', 'hover:bg-slate-50');
                         slot.onclick = () => { if (this.state.inputBlocked) return; this.handleAnswer(slot.dataset.index == this.state.memoryAnswer); };
                     });
                     const targetIdxInArray = Math.floor(Math.random() * itemCount);
                     this.state.memoryAnswer = targetPositions[targetIdxInArray];
                     const targetIcon = shuffledIcons[targetIdxInArray];
                     this.state.inputBlocked = false;
-                    qArea.innerHTML = `<div class="flex items-center justify-center gap-2 animate-pop"><i class="fa-solid ${targetIcon} text-4xl text-slate-700"></i><span class="text-slate-600 font-bold text-lg">${texts.mem_ask}?</span></div>`;
+                    qArea.innerHTML = `<div class="flex items-center justify-center gap-3 animate-pop bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100"><i class="fa-solid ${targetIcon} text-3xl text-red-600"></i><span class="text-slate-700 font-bold font-serif">${texts.mem_ask}?</span></div>`;
                 }, showTime);
             },
 
@@ -570,32 +688,43 @@
             renderStroop: function(stage, controls) {
                 const texts = Dict[this.state.lang];
                 const allColors = [
-                    { name: {ja:'あか', en:'RED'}, code: 'text-red-500', bg: 'bg-red-400', border: 'border-red-600', val: 'red' },
-                    { name: {ja:'あお', en:'BLUE'}, code: 'text-blue-500', bg: 'bg-blue-400', border: 'border-blue-600', val: 'blue' },
-                    { name: {ja:'みどり', en:'GREEN'}, code: 'text-green-500', bg: 'bg-green-400', border: 'border-green-600', val: 'green' },
-                    { name: {ja:'きいろ', en:'YELLOW'}, code: 'text-yellow-500', bg: 'bg-yellow-400', border: 'border-yellow-600', val: 'yellow' }
+                    { name: {ja:'紅', en:'RED'}, code: 'text-red-600', bg: 'bg-red-500', val: 'red' },
+                    { name: {ja:'白', en:'WHITE'}, code: 'text-slate-200', bg: 'bg-slate-500', val: 'white', border: 'border-slate-300' },
+                    { name: {ja:'金', en:'GOLD'}, code: 'text-yellow-500', bg: 'bg-yellow-500', val: 'gold' },
+                    { name: {ja:'黒', en:'BLACK'}, code: 'text-slate-800', bg: 'bg-slate-800', val: 'black' }
                 ];
-                let pool = (this.state.difficulty === 'easy') ? allColors.slice(0, 2) : allColors;
-                const mode = Math.random() > 0.5 ? 'color' : 'text';
+                
+                let pool = allColors; 
                 const targetText = pool[Math.floor(Math.random() * pool.length)];
                 let targetColor = pool[Math.floor(Math.random() * pool.length)];
-                if (this.state.difficulty === 'olympic') {
+                
+                if (Math.random() > 0.2) {
                      const otherColors = pool.filter(c => c.val !== targetText.val);
-                     targetColor = otherColors[Math.floor(Math.random() * otherColors.length)];
+                     if(otherColors.length > 0) targetColor = otherColors[Math.floor(Math.random() * otherColors.length)];
                 }
-                const correctAnswer = mode === 'color' ? targetColor.val : targetText.val;
-                const fontSize = this.state.difficulty === 'olympic' ? 'text-5xl' : 'text-6xl';
-                stage.innerHTML = `<div class="h-full flex flex-col justify-center items-center"><div class="inline-block bg-slate-100 px-4 py-1 rounded-full text-sm font-bold text-slate-500 mb-4">${mode === 'color' ? texts.txt_color : texts.txt_read}?</div><div class="${fontSize} font-black ${targetColor.code} leading-none drop-shadow-sm transition-all">${targetText.name[this.state.lang]}</div></div>`;
+                const correctAnswer = targetColor.val;
+                
+                let displayClass = targetColor.code;
+                if(targetColor.val === 'white') displayClass = 'text-slate-300 text-shadow-sm';
+
+                const animationClass = this.state.difficulty === 'olympic' || this.state.difficulty === 'pro' ? 'animate-confuse' : '';
+
+                stage.innerHTML = `
+                    <div class="h-full flex flex-col justify-center items-center">
+                        <div class="inline-block bg-slate-100 px-4 py-1 rounded-full text-xs font-bold text-slate-500 mb-6">文字の色は？</div>
+                        <div class="text-7xl font-black font-serif ${displayClass} drop-shadow-md scale-110 ${animationClass}">${targetText.name[this.state.lang]}</div>
+                    </div>`;
+                
                 [...pool].sort(() => Math.random() - 0.5).forEach(opt => {
                     const btn = document.createElement('button');
-                    btn.className = `${opt.bg} ${opt.border} text-white btn-beanbag text-xl font-bold h-full flex items-center justify-center shadow-md`;
+                    btn.className = `${opt.bg} text-white btn-newyear text-lg font-bold font-serif h-full flex items-center justify-center shadow-md border-b-4 border-black/20`;
                     btn.innerText = opt.name[this.state.lang];
                     btn.onclick = () => this.handleAnswer(opt.val === correctAnswer);
                     controls.appendChild(btn);
                 });
-                controls.classList.remove('grid-cols-3'); controls.classList.add('grid-cols-2');
+                controls.classList.remove('grid-cols-2', 'grid-cols-3'); controls.classList.add('grid-cols-2');
             },
-            
+
             // 3. Direction
             renderDirection: function(stage, controls) {
                 const texts = Dict[this.state.lang];
@@ -604,14 +733,34 @@
                 const actualDir = dirs[Math.floor(Math.random() * dirs.length)];
                 let targetDir = actualDir;
                 let instruction = texts.txt_same;
-                let colorClass = "text-blue-500";
-                if (this.state.difficulty !== 'easy') {
-                     if(Math.random() > 0.5) { instruction = texts.txt_rev; colorClass = "text-red-500"; targetDir = this.getOppositeDir(actualDir); }
+                
+                let instructionColor = "text-slate-500"; 
+                let isReverse = false;
+
+                if (this.state.difficulty !== 'easy' && Math.random() > 0.4) {
+                     instruction = texts.txt_rev;
+                     targetDir = this.getOppositeDir(actualDir);
+                     isReverse = true;
                 }
-                stage.innerHTML = `<div class="h-full flex flex-col justify-center items-center"><div class="inline-block bg-slate-100 px-4 py-1 rounded-full text-sm font-bold mb-6 ${colorClass}">${instruction}</div><div class="text-7xl ${colorClass} drop-shadow-sm"><i class="fa-solid ${icons[actualDir]}"></i></div></div>`;
+                
+                if (this.state.difficulty === 'olympic' || this.state.difficulty === 'pro') {
+                    instructionColor = Math.random() > 0.5 ? "text-red-500" : "text-blue-500";
+                } else {
+                    instructionColor = isReverse ? "text-red-500" : "text-blue-500";
+                }
+
+                stage.innerHTML = `
+                    <div class="h-full flex flex-col justify-center items-center">
+                        <div class="inline-block bg-white border border-slate-200 px-4 py-2 rounded-full text-lg font-bold font-serif mb-6 ${instructionColor} shadow-sm border-b-4">${instruction}</div>
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gold blur-xl opacity-30 rounded-full"></div>
+                            <div class="text-8xl text-slate-700 drop-shadow-md relative z-10"><i class="fa-solid ${icons[actualDir]}"></i></div>
+                        </div>
+                    </div>`;
+                
                 dirs.forEach(d => {
                     const btn = document.createElement('button');
-                    btn.className = `bg-white border-slate-200 text-slate-400 border-b-4 rounded-3xl text-6xl font-bold h-full flex items-center justify-center shadow-sm active:translate-y-1 active:border-b-2 active:text-blue-500 transition-all`;
+                    btn.className = `bg-white border-2 border-slate-200 text-slate-500 border-b-4 rounded-2xl text-4xl font-bold h-full flex items-center justify-center shadow-sm active:translate-y-1 active:border-b-2 active:bg-red-50 transition-all`;
                     btn.innerHTML = `<i class="fa-solid ${icons[d]}"></i>`;
                     btn.onclick = () => this.handleAnswer(d === targetDir);
                     controls.appendChild(btn);
@@ -623,14 +772,49 @@
             // 4. Math
             renderMath: function(stage, controls) {
                 const texts = Dict[this.state.lang];
-                const num = Math.floor(Math.random() * 20) + 1; 
-                const isEven = num % 2 === 0;
-                stage.innerHTML = `<div class="h-full flex flex-col justify-center items-center"><div class="text-sm font-bold text-slate-400 mb-4">${texts.game_desc_math_reflex}</div><div class="text-6xl font-black text-slate-700">${num}</div></div>`;
+                
+                let n1, n2, n3, sum;
+                let op1 = "+";
+                let formulaStr = "";
+
+                if (this.state.difficulty === 'easy') {
+                    n1 = Math.floor(Math.random() * 9) + 1;
+                    n2 = Math.floor(Math.random() * 9) + 1;
+                    sum = n1 + n2;
+                    formulaStr = `<span>${n1}</span><span class="text-red-400 text-3xl mx-1">+</span><span>${n2}</span>`;
+                } else if (this.state.difficulty === 'normal') {
+                     n1 = Math.floor(Math.random() * 20) + 1;
+                     n2 = Math.floor(Math.random() * 20) + 1;
+                     if (Math.random() > 0.5) { sum = n1 + n2; op1="+"; } else { sum = n1 - n2; op1="-"; }
+                     formulaStr = `<span>${n1}</span><span class="text-red-400 text-3xl mx-1">${op1}</span><span>${n2}</span>`;
+                } else {
+                    n1 = Math.floor(Math.random() * 20) + 5;
+                    n2 = Math.floor(Math.random() * 10) + 2;
+                    n3 = Math.floor(Math.random() * 10) + 1;
+                    let op2 = Math.random() > 0.5 ? "+" : "-";
+                    op1 = Math.random() > 0.5 ? "+" : "-";
+                    sum = n1;
+                    if(op1 === "+") sum += n2; else sum -= n2;
+                    if(op2 === "+") sum += n3; else sum -= n3;
+                    formulaStr = `<span class="text-4xl">${n1}</span><span class="text-red-400 text-2xl mx-1">${op1}</span><span class="text-4xl">${n2}</span><span class="text-red-400 text-2xl mx-1">${op2}</span><span class="text-4xl">${n3}</span>`;
+                }
+
+                const isEven = Math.abs(sum) % 2 === 0;
+                
+                stage.innerHTML = `
+                    <div class="h-full flex flex-col justify-center items-center">
+                        <div class="text-xs font-bold text-slate-400 mb-4 bg-slate-100 px-3 py-1 rounded-full">丁(偶数) か 半(奇数) か？</div>
+                        <div class="flex items-center justify-center text-5xl font-black text-slate-800 font-serif bg-white px-6 py-4 rounded-xl border-2 border-slate-100 shadow-sm w-full">
+                            ${formulaStr}
+                        </div>
+                    </div>`;
+                
                 const mkBtn = (label, col, check) => {
                     const btn = document.createElement('button');
-                    const colorClass = col === 'blue' ? 'bg-blue-400 border-blue-600' : 'bg-red-400 border-red-600';
-                    btn.className = `${colorClass} text-white btn-beanbag text-lg font-bold h-full py-4 flex flex-col items-center justify-center shadow-md`;
-                    btn.innerHTML = `${label}`;
+                    const diceIcon = check ? 'fa-dice-four' : 'fa-dice-five'; 
+                    const bgClass = col === 'blue' ? 'bg-indigo-600' : 'bg-red-600';
+                    btn.className = `${bgClass} text-white btn-newyear text-2xl font-bold h-full py-4 flex flex-col items-center justify-center shadow-md font-serif border-2 border-white/20`;
+                    btn.innerHTML = `<div><i class="fa-solid ${diceIcon} text-3xl mb-1 opacity-50"></i><br>${label}</div>`;
                     btn.onclick = () => this.handleAnswer(check);
                     controls.appendChild(btn);
                 };
@@ -638,52 +822,103 @@
                 mkBtn(texts.txt_odd, 'red', !isEven);
                 controls.classList.remove('grid-cols-3'); controls.classList.add('grid-cols-2');
             },
-
-            // 5. RPS (Rock Paper Scissors)
-            renderRPS: function(stage, controls) {
-                const texts = Dict[this.state.lang];
-                const hands = ['rock', 'paper', 'scissors'];
-                const icons = { rock: 'fa-hand-back-fist', paper: 'fa-hand', scissors: 'fa-hand-scissors' };
-                const enemyHand = hands[Math.floor(Math.random()*3)];
-                const isWin = Math.random() > 0.5; // Win or Lose
-                const instruction = isWin ? texts.txt_win : texts.txt_lose;
-                const colorClass = isWin ? "text-red-500" : "text-blue-500";
+            
+            // 5. Karuta
+            renderKaruta: function(stage, controls) {
+                const pairs = [
+                    { t: {ja:'初日の出', en:'Sunrise'}, i: 'fa-mountain-sun' },
+                    { t: {ja:'初詣', en:'Shrine'}, i: 'fa-torii-gate' },
+                    { t: {ja:'お年玉', en:'Money'}, i: 'fa-envelope' },
+                    { t: {ja:'書き初め', en:'Writing'}, i: 'fa-pen-nib' },
+                    { t: {ja:'除夜の鐘', en:'Bell'}, i: 'fa-bell' },
+                    { t: {ja:'雪景色', en:'Snow'}, i: 'fa-snowflake' },
+                    { t: {ja:'お餅', en:'Mochi'}, i: 'fa-circle' },
+                    { t: {ja:'カメラ', en:'Camera'}, i: 'fa-camera' },
+                    { t: {ja:'門松', en:'Pine'}, i: 'fa-tree' },
+                    { t: {ja:'コマ', en:'Top'}, i: 'fa-dharmachakra' }
+                ];
                 
-                let targetHand = "";
-                if(isWin) {
-                    if(enemyHand==='rock') targetHand='paper'; if(enemyHand==='paper') targetHand='scissors'; if(enemyHand==='scissors') targetHand='rock';
-                } else {
-                    if(enemyHand==='rock') targetHand='scissors'; if(enemyHand==='paper') targetHand='rock'; if(enemyHand==='scissors') targetHand='paper';
-                }
+                let optionCount = 3;
+                if(this.state.difficulty === 'normal') optionCount = 4;
+                if(this.state.difficulty === 'pro' || this.state.difficulty === 'olympic') optionCount = 6;
 
-                stage.innerHTML = `<div class="h-full flex flex-col justify-center items-center"><div class="inline-block bg-slate-100 px-4 py-1 rounded-full text-sm font-bold mb-6 ${colorClass}">${instruction}!</div><div class="text-7xl text-slate-700 drop-shadow-sm"><i class="fa-solid ${icons[enemyHand]}"></i></div></div>`;
+                const shuffled = pairs.sort(() => 0.5 - Math.random());
+                const currentSet = shuffled.slice(0, optionCount);
+                const target = currentSet[Math.floor(Math.random() * optionCount)];
+
+                stage.innerHTML = `
+                    <div class="h-full flex flex-col justify-center items-center">
+                        <div class="inline-block bg-white border border-slate-200 px-6 py-2 rounded-full text-xs font-bold mb-4 text-slate-400">読み札</div>
+                        <div class="card-washi px-6 py-4 text-3xl font-black font-serif text-slate-800 drop-shadow-sm border-4 border-red-500 animate-pop">
+                            ${target.t[this.state.lang]}
+                        </div>
+                    </div>`;
                 
-                hands.forEach(h => {
+                currentSet.forEach(item => {
                     const btn = document.createElement('button');
-                    btn.className = `bg-white border-slate-200 text-slate-400 border-b-4 rounded-3xl text-5xl font-bold h-full flex items-center justify-center shadow-sm active:translate-y-1 active:border-b-2 active:text-blue-500 transition-all`;
-                    btn.innerHTML = `<i class="fa-solid ${icons[h]}"></i>`;
-                    btn.onclick = () => this.handleAnswer(h === targetHand);
+                    const textSize = optionCount >= 6 ? 'text-3xl' : 'text-5xl';
+                    btn.className = `bg-white border-2 border-red-100 text-red-500 border-b-4 rounded-xl ${textSize} font-bold h-full flex items-center justify-center shadow-sm active:translate-y-1 active:border-b-2 active:bg-red-50 transition-all`;
+                    btn.innerHTML = `<i class="fa-solid ${item.i}"></i>`;
+                    btn.onclick = () => this.handleAnswer(item === target);
                     controls.appendChild(btn);
                 });
-                controls.classList.remove('grid-cols-2'); controls.classList.add('grid-cols-3'); // 3 cols for RPS
+                
+                controls.classList.remove('grid-cols-2', 'grid-cols-3');
+                if(optionCount >= 5) controls.classList.add('grid-cols-3');
+                else controls.classList.add('grid-cols-2');
             },
-
+            
             // 6. High Low
             renderHighLow: function(stage, controls) {
-                const n1 = Math.floor(Math.random() * 50) + 1;
-                let n2 = Math.floor(Math.random() * 50) + 1;
-                while(n1 === n2) n2 = Math.floor(Math.random() * 50) + 1;
+                let val1, val2, str1, str2;
                 
-                stage.innerHTML = `<div class="h-full flex flex-col justify-center items-center"><div class="text-sm font-bold text-slate-400 mb-4">Which is Bigger?</div><div class="flex gap-8 items-center"><div class="text-5xl font-black text-slate-700">${n1}</div><div class="text-2xl text-slate-400">vs</div><div class="text-5xl font-black text-slate-700">${n2}</div></div></div>`;
+                if (this.state.difficulty === 'easy') {
+                    val1 = (Math.floor(Math.random() * 10) + 1) * 1000;
+                    val2 = (Math.floor(Math.random() * 10) + 1) * 1000;
+                    while(val1 === val2) val2 = (Math.floor(Math.random() * 10) + 1) * 1000;
+                    str1 = `¥${val1}`; str2 = `¥${val2}`;
+                } else {
+                    const base = Math.floor(Math.random() * 50) * 100; 
+                    const diff = (Math.floor(Math.random() * 10) + 1) * 100;
+                    
+                    const term1 = base + Math.floor(Math.random() * 2000);
+                    const term2 = Math.floor(Math.random() * 1000);
+                    val1 = term1 + term2;
+                    str1 = `${term1} + ${term2}`;
+                    
+                    const term3 = base + Math.floor(Math.random() * 2000);
+                    const term4 = Math.floor(Math.random() * 1000);
+                    val2 = term3 - term4; 
+                    str2 = `${term3} - ${term4}`;
+                    
+                    if(val1 === val2) val2 += 100;
+                }
                 
-                const mkBtn = (val) => {
+                stage.innerHTML = `
+                    <div class="h-full flex flex-col justify-center items-center">
+                        <div class="text-xs font-bold text-slate-400 mb-6 bg-slate-100 px-3 py-1 rounded-full">中身が多いのはどっち？</div>
+                        <div class="flex gap-2 items-center w-full justify-center px-1">
+                            <div class="flex flex-col items-center flex-1">
+                                <div class="text-base font-black text-slate-700 bg-white px-2 py-1 rounded mb-2 border border-slate-200 w-full text-center">${str1}</div>
+                                <i class="fa-solid fa-envelope text-6xl text-red-500 drop-shadow-md"></i>
+                            </div>
+                            <div class="text-lg text-slate-400 font-bold italic">VS</div>
+                            <div class="flex flex-col items-center flex-1">
+                                <div class="text-base font-black text-slate-700 bg-white px-2 py-1 rounded mb-2 border border-slate-200 w-full text-center">${str2}</div>
+                                <i class="fa-solid fa-envelope text-6xl text-blue-500 drop-shadow-md"></i>
+                            </div>
+                        </div>
+                    </div>`;
+                
+                const mkBtn = (val, color, isCorrect) => {
                     const btn = document.createElement('button');
-                    btn.className = `bg-blue-400 border-blue-600 text-white btn-beanbag text-3xl font-bold h-full py-4 flex flex-col items-center justify-center shadow-md`;
-                    btn.innerText = val;
-                    btn.onclick = () => this.handleAnswer(val === Math.max(n1, n2));
+                    const colorClass = color === 'red' ? 'bg-red-500' : 'bg-blue-500';
+                    btn.className = `${colorClass} text-white btn-newyear text-xl font-bold h-full py-4 flex flex-col items-center justify-center shadow-md font-serif`;
+                    btn.innerHTML = `こっち！`;
+                    btn.onclick = () => this.handleAnswer(isCorrect);
                     controls.appendChild(btn);
                 };
-                mkBtn(n1); mkBtn(n2);
+                mkBtn(val1, 'red', val1 >= val2); mkBtn(val2, 'blue', val2 >= val1);
                 controls.classList.remove('grid-cols-3'); controls.classList.add('grid-cols-2');
             },
 
@@ -692,20 +927,22 @@
                 const stage = document.getElementById('game-stage');
                 if (isCorrect) {
                     let points = 10;
-                    if(this.state.difficulty === 'normal') points = 15;
-                    if(this.state.difficulty === 'pro') points = 30;
-                    if(this.state.difficulty === 'olympic') points = 50;
+                    if(this.state.difficulty === 'normal') points = 20;
+                    if(this.state.difficulty === 'pro') points = 40;
+                    if(this.state.difficulty === 'olympic') points = 80;
                     this.state.score += points;
-                    stage.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.05)' }, { transform: 'scale(1)' }], { duration: 200 });
+                    stage.animate([{ transform: 'scale(1)', boxShadow: '0 0 0 rgba(239, 68, 68, 0)' }, { transform: 'scale(1.02)', boxShadow: '0 0 20px rgba(239, 68, 68, 0.3)' }, { transform: 'scale(1)', boxShadow: '0 0 0 rgba(239, 68, 68, 0)' }], { duration: 200 });
                 } else {
-                    if(this.state.difficulty === 'olympic') this.state.score = Math.max(0, this.state.score - 50);
-                    stage.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], { duration: 300 });
+                    let penalty = 0;
+                    if(this.state.difficulty === 'pro') penalty = 20;
+                    if(this.state.difficulty === 'olympic') penalty = 50; 
+                    this.state.score = Math.max(0, this.state.score - penalty);
+                    stage.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px) rotate(-1deg)' }, { transform: 'translateX(5px) rotate(1deg)' }, { transform: 'translateX(0)' }], { duration: 300 });
                 }
                 document.getElementById('score-display').innerText = this.state.score;
-                const type = this.state.dailyGame.type;
+                const type = this.state.currentGameType;
                 if(type === 'memory_flash') {
-                    // Memory game needs delay after click
-                    document.getElementById('mem-question-area').innerHTML = ''; // Clear question
+                    document.getElementById('mem-question-area').innerHTML = '';
                     setTimeout(() => this.nextRound(), 400);
                 } else {
                     this.nextRound();
@@ -713,45 +950,40 @@
             },
             
             endGame: function() {
-                this.state.isPlaying = false; clearInterval(this.state.timerInterval); UserData.recordPlay(this.state.score);
+                this.state.isPlaying = false; 
+                clearInterval(this.state.timerInterval); 
+                UserData.recordPlay(this.state.score);
                 document.getElementById('final-score').innerText = this.state.score;
+                
+                // --- OMIKUJI LOGIC ---
+                let resultData = OmikujiData.suekichi; // Default
+                if (this.state.score >= 200) resultData = OmikujiData.kichi;
+                if (this.state.score >= 400) resultData = OmikujiData.chukichi;
+                if (this.state.score >= 600) resultData = OmikujiData.daikichi;
+
+                // Update UI with detailed text
+                const area = document.getElementById('omikuji-result-area');
+                area.innerHTML = `
+                    <div class="flex items-center justify-center mb-4">
+                         <div class="text-6xl font-black text-red-600 font-serif drop-shadow-md animate-pop">${resultData.title} <span class="text-3xl">✨</span></div>
+                    </div>
+                    <div class="text-center text-xs font-bold text-slate-400 mb-3">${resultData.subtitle}</div>
+                    <div class="text-left text-sm font-medium text-slate-700 bg-red-50 p-4 rounded-xl border border-red-100 leading-relaxed mb-3">
+                        ${resultData.text}
+                    </div>
+                    <div class="text-center font-serif text-base text-red-600 font-bold border-t border-red-100 pt-3">
+                        ひとこと： ${resultData.word}
+                    </div>
+                `;
+                
+                this.state.currentOmikujiTitle = resultData.title;
                 this.switchView('result');
             },
             share: function(platform) {
                 const texts = Dict[this.state.lang];
-                const text = `${texts.share_text} ${this.state.score} (${this.state.difficulty.toUpperCase()}) #UNLOCK_BRAIN`;
+                const text = `${texts.share_text} ${this.state.score} (${this.state.currentOmikujiTitle}) #新春UNLOCK`;
                 const url = "https://liff.line.me/YOUR_LIFF_ID";
                 if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-                else window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
-            },
-            
-            renderCalendar: function() {
-                const today = new Date();
-                const year = today.getFullYear();
-                const month = today.getMonth();
-                document.getElementById('calendar-month-label').innerText = `${year}.${month + 1}`;
-                const firstDay = new Date(year, month, 1).getDay();
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-                const grid = document.getElementById('calendar-days');
-                grid.innerHTML = '';
-                const userData = UserData.load();
-                
-                for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
-                for (let d = 1; d <= daysInMonth; d++) {
-                    const dateStr = new Date(year, month, d).toDateString();
-                    const cell = document.createElement('div');
-                    cell.className = 'calendar-day';
-                    cell.innerText = d;
-                    if (userData.dates.includes(dateStr)) {
-                        cell.classList.add('stamped');
-                        const mark = document.createElement('i');
-                        mark.className = 'fa-solid fa-certificate stamp-mark';
-                        cell.appendChild(mark);
-                        cell.style.color = '#854d0e';
-                    }
-                    grid.appendChild(cell);
-                }
-                document.getElementById('streak-count').innerHTML = `${userData.dates.length} <span class="text-sm">Days</span>`;
             }
         };
 
