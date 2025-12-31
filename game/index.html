@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>新春UNLOCK</title>
     
-    <!-- Google Analytics -->
+    <!-- Google Analytics (Placeholder) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT8CBC1JLV"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -30,7 +29,7 @@
         }
         body {
             font-family: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
-            background-color: #991b1b; /* 背景を濃い赤（毛氈の色）に */
+            background-color: #fdf2f0;
             color: #334155;
             touch-action: manipulation; user-select: none; overflow-x: hidden;
         }
@@ -53,12 +52,9 @@
         @keyframes bounce-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         .animate-bounce-gentle { animation: bounce-gentle 3s ease-in-out infinite; }
         
-        @keyframes pop-in { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes pop-in { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         .animate-pop { animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
         
-        @keyframes shake-omikuji { 0% { transform: rotate(0deg); } 25% { transform: rotate(10deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-10deg); } 100% { transform: rotate(0deg); } }
-        .animate-shake { animation: shake-omikuji 0.5s ease-in-out infinite; }
-
         @keyframes shine { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
         
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -96,8 +92,8 @@
 
         /* Level Buttons */
         .level-btn { transition: all 0.2s; position: relative; overflow: hidden; }
-        .level-btn.selected { transform: scale(1.05); border-width: 2px; }
-        .level-btn:not(.selected) { opacity: 0.7; transform: scale(0.95); filter: grayscale(0.5); }
+        .level-btn.selected { transform: scale(1.02); border-width: 2px; }
+        .level-btn:not(.selected) { opacity: 0.7; transform: scale(0.98); filter: grayscale(0.5); }
         
         .level-ume { background: #fee2e2; border-color: #f87171; color: #b91c1c; }
         .level-take { background: #dcfce7; border-color: #4ade80; color: #15803d; }
@@ -121,112 +117,130 @@
         }
         .menu-item:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
 
-        .writing-vertical { writing-mode: vertical-rl; text-orientation: upright; }
+        .writing-vertical-box {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            white-space: nowrap;
+            letter-spacing: 0.15em;
+        }
+        /* Mobile height fix */
+        .h-dvh { height: 100vh; height: 100dvh; }
     </style>
 </head>
-<body class="h-screen w-full flex flex-col items-center justify-center relative text-slate-700 bg-pattern-seigaiha">
+<body class="h-dvh w-full flex flex-col items-center justify-center relative text-slate-700 bg-pattern-seigaiha overflow-hidden">
 
-    <div id="app" class="w-full max-w-md h-full flex flex-col relative px-5 py-4 z-10 overflow-y-auto no-scrollbar">
+    <!-- Japanese New Year Decorations -->
+    <div class="absolute top-0 left-0 w-32 h-32 opacity-20 pointer-events-none">
+        <svg viewBox="0 0 100 100" fill="#fca5a5"><path d="M50 50m-20 0a20 20 0 1 0 40 0a20 20 0 1 0 -40 0 M50 20a20 20 0 1 0 0 40a20 20 0 1 0 0 -40 M80 50a20 20 0 1 0 -40 0a20 20 0 1 0 40 0 M50 80a20 20 0 1 0 0 -40a20 20 0 1 0 0 40 M20 50a20 20 0 1 0 40 0a20 20 0 1 0 -40 0" /></svg>
+    </div>
+    <div class="absolute bottom-0 right-0 w-40 h-40 opacity-20 pointer-events-none">
+        <svg viewBox="0 0 100 100" fill="#86efac"><path d="M50 10 L80 40 L65 40 L90 70 L10 70 L35 40 L20 40 Z" /></svg>
+    </div>
+
+    <!-- Main Container -->
+    <div id="app" class="w-full max-w-md h-full flex flex-col relative px-5 py-4 z-10 overflow-y-auto no-scrollbar supports-scrollbars:pr-2">
         
-        <!-- Header (Hidden on Language/Nengajo View) -->
-        <header id="app-header" class="hidden justify-center items-center mb-4 animate-pop pt-2">
+        <!-- Header -->
+        <header id="app-header" class="hidden justify-center items-center mb-2 animate-pop pt-1 shrink-0">
             <div class="flex items-center gap-2 cursor-pointer" onclick="app.switchView('menu')">
-                <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-serif font-bold text-xs border-2 border-white shadow-sm">福</div>
-                <span class="text-xl font-bold tracking-tight text-slate-800 font-serif">新春UNLOCK</span>
+                <div class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center font-serif font-bold text-[10px] border-2 border-white shadow-sm">福</div>
+                <span class="text-lg font-bold tracking-tight text-slate-800 font-serif">新春UNLOCK</span>
             </div>
         </header>
 
         <!-- [VIEW: LANGUAGE (NENGAJO)] -->
-        <div id="view-language" class="flex flex-1 flex-col justify-center items-center animate-pop">
+        <div id="view-language" class="flex flex-1 flex-col justify-center items-center animate-pop min-h-[450px]">
             
             <!-- Nengajo Card -->
-            <div class="bg-white w-full max-w-[340px] aspect-[100/148] shadow-2xl rounded-sm p-6 relative flex flex-col items-center overflow-hidden border-l border-b border-r border-slate-300 transform rotate-1 transition-transform hover:rotate-0 duration-500">
+            <div class="bg-white w-full max-w-sm aspect-[100/148] shadow-2xl rounded-sm p-6 relative flex flex-col overflow-hidden border border-slate-200 transform rotate-1 transition-transform hover:rotate-0 duration-500">
                 
-                <!-- Postcard Decorations -->
-                <div class="absolute top-3 left-3 text-[10px] font-bold text-slate-300 tracking-widest font-sans">POST CARD</div>
-                <div class="absolute top-4 left-4 w-12 h-14 border border-red-200 rounded flex items-center justify-center opacity-40">
-                    <span class="text-xs text-red-300 font-serif font-bold">年賀</span>
+                <!-- Stamps -->
+                <div class="absolute top-5 left-5 w-12 h-14 border border-red-300 rounded flex items-center justify-center opacity-60">
+                    <div class="text-xs text-red-400 font-serif font-bold text-center leading-none writing-vertical-box" style="letter-spacing:0;">年賀</div>
                 </div>
-                
-                <!-- Main Content -->
-                <div class="flex-1 flex flex-col items-center justify-center w-full z-10">
+                <div class="absolute top-4 right-4 opacity-30">
+                    <div class="w-16 h-16 rounded-full border-2 border-red-500 flex items-center justify-center rotate-12">
+                        <span class="text-xs font-bold text-red-500 text-center leading-tight">2026<br>元旦</span>
+                    </div>
+                </div>
+
+                <!-- Main Content Layout -->
+                <div class="flex flex-row h-full mt-12 mb-4 items-center">
                     
-                    <!-- Vertical Title -->
-                    <h1 class="text-5xl font-black text-red-600 font-serif writing-vertical text-center leading-loose tracking-widest mb-4 drop-shadow-sm h-48">
-                        謹賀新年
-                    </h1>
-                    
-                    <!-- Icon -->
-                    <div class="mb-6 relative">
-                        <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center animate-bounce-gentle border border-red-100">
-                            <i class="fa-solid fa-mountain-sun text-red-500 text-4xl"></i>
+                    <!-- Vertical Text -->
+                    <div class="flex-none flex justify-center items-start pr-6 border-r border-dashed border-red-100 mr-6 h-48">
+                        <h1 class="text-5xl font-black text-red-600 font-serif writing-vertical-box leading-relaxed tracking-widest drop-shadow-sm h-full flex items-center">
+                            謹賀新年
+                        </h1>
+                    </div>
+
+                    <!-- Greeting & Icon -->
+                    <div class="flex-1 flex flex-col justify-center items-center text-center">
+                        <div class="mb-4 relative">
+                            <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center animate-bounce-gentle border border-red-100">
+                                <i class="fa-solid fa-dragon text-red-500 text-3xl"></i>
+                            </div>
+                            <div class="absolute -right-1 -top-1 text-yellow-500 animate-spin-slow text-lg"><i class="fa-solid fa-sun"></i></div>
                         </div>
-                        <div class="absolute -right-2 -top-2 text-yellow-500 animate-spin-slow text-xl"><i class="fa-solid fa-sun"></i></div>
-                    </div>
-
-                    <!-- Greeting -->
-                    <p class="text-sm font-serif text-slate-600 text-center mb-6 leading-7 tracking-wider">
-                        旧年中は脳をご愛用いただき<br>
-                        誠にありがとうございました<br>
-                        本年も何卒よろしく<br>
-                        お願い申し上げます
-                    </p>
-
-                    <!-- Buttons -->
-                    <div class="w-full flex flex-col gap-3 px-4">
-                        <button onclick="app.setLanguage('ja')" class="w-full bg-red-600 text-white font-serif font-bold py-3 rounded shadow-md border-b-4 border-red-800 active:translate-y-1 active:border-b-0 active:bg-red-700 transition-all flex items-center justify-center gap-2">
-                            <span class="tracking-widest">日本語で始める</span>
-                        </button>
-                        <button onclick="app.setLanguage('en')" class="w-full text-slate-400 font-serif font-bold py-1 text-[10px] hover:text-slate-500 transition-colors">
-                            English Mode
-                        </button>
+                        <p class="text-xs font-serif text-slate-600 leading-6 tracking-wider mb-2">
+                            旧年中は脳を<br>ご愛用いただき<br>
+                            誠にありがとう<br>ございました<br>
+                            本年も何卒よろしく<br>
+                            お願い申し上げます
+                        </p>
                     </div>
                 </div>
 
-                <!-- Card Texture/Overlay -->
+                <!-- Buttons area at bottom -->
+                <div class="w-full flex flex-col gap-2 mt-auto pt-4 border-t border-slate-100">
+                    <button onclick="app.setLanguage('ja')" class="w-full bg-red-600 text-white font-serif font-bold py-3 rounded shadow-md border-b-4 border-red-800 active:translate-y-1 active:border-b-0 active:bg-red-700 transition-all flex items-center justify-center gap-2">
+                        <span class="tracking-widest text-base">日本語で始める</span>
+                    </button>
+                    <button onclick="app.setLanguage('en')" class="w-full text-slate-400 font-serif font-bold py-1 text-[10px] hover:text-slate-500 transition-colors">
+                        English Mode
+                    </button>
+                </div>
+
+                <!-- Texture Overlay -->
                 <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')] opacity-30 pointer-events-none"></div>
             </div>
             
-            <p class="mt-8 text-xs text-white/50 font-serif font-bold tracking-widest">元旦 @ 2026 UNLOCK</p>
+            <p class="mt-4 text-[10px] text-red-900/50 font-serif font-bold tracking-widest">元旦 @ UNLOCK</p>
         </div>
 
         <!-- [VIEW: MENU] -->
         <div id="view-menu" class="hidden flex-1 flex-col justify-center items-center animate-pop w-full">
-            <h2 class="text-2xl font-bold text-white mb-6 font-serif text-center drop-shadow-md" data-i18n="menu_title">お品書き</h2>
+            <h2 class="text-2xl font-black text-red-900 mb-6 font-serif text-center drop-shadow-sm" data-i18n="menu_title">お品書き</h2>
             
-            <div class="grid grid-cols-2 gap-3 w-full mb-4">
-                <button onclick="app.selectGame('stroop')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
-                    <i class="fa-solid fa-palette text-red-500 text-3xl mb-2"></i>
-                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_stroop">紅白 文字合戦</span>
+            <div class="grid grid-cols-2 gap-3 w-full mb-4 max-w-[340px]">
+                <!-- 1. Math -->
+                <button onclick="app.selectGame('math_reflex')" class="menu-item p-3 flex flex-col items-center justify-center aspect-[4/3] active:scale-95">
+                    <div class="relative mb-2"><i class="fa-solid fa-abacus text-green-500 text-3xl"></i><i class="fa-solid fa-dice-five absolute -top-1 -right-2 text-green-300 text-sm"></i></div>
+                    <span class="font-bold text-xs text-slate-700 font-serif" data-i18n="game_type_math_reflex">丁半 計算</span>
                 </button>
-                <button onclick="app.selectGame('direction')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
-                    <i class="fa-solid fa-compass text-blue-500 text-3xl mb-2"></i>
-                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_direction">獅子舞ナビ</span>
-                </button>
-                <button onclick="app.selectGame('math_reflex')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
-                    <i class="fa-solid fa-abacus text-green-500 text-3xl mb-2"></i>
-                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_math_reflex">丁半 計算</span>
-                </button>
-                <button onclick="app.selectGame('memory_flash')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                <!-- 2. Memory -->
+                <button onclick="app.selectGame('memory_flash')" class="menu-item p-3 flex flex-col items-center justify-center aspect-[4/3] active:scale-95">
                     <i class="fa-solid fa-eye text-purple-500 text-3xl mb-2"></i>
-                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_memory_flash">初夢おぼえ</span>
+                    <span class="font-bold text-xs text-slate-700 font-serif" data-i18n="game_type_memory_flash">初夢おぼえ</span>
                 </button>
-                <button onclick="app.selectGame('karuta')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                <!-- 3. Karuta -->
+                <button onclick="app.selectGame('karuta')" class="menu-item p-3 flex flex-col items-center justify-center aspect-[4/3] active:scale-95">
                     <i class="fa-solid fa-layer-group text-orange-500 text-3xl mb-2"></i>
-                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_karuta">新春 かるた</span>
+                    <span class="font-bold text-xs text-slate-700 font-serif" data-i18n="game_type_karuta">新春 かるた</span>
                 </button>
-                <button onclick="app.selectGame('high_low')" class="menu-item p-4 flex flex-col items-center justify-center aspect-square">
+                <!-- 4. HighLow -->
+                <button onclick="app.selectGame('high_low')" class="menu-item p-3 flex flex-col items-center justify-center aspect-[4/3] active:scale-95">
                     <i class="fa-solid fa-sack-dollar text-yellow-500 text-3xl mb-2"></i>
-                    <span class="font-bold text-sm text-slate-700 font-serif" data-i18n="game_type_high_low">お年玉ハイロー</span>
+                    <span class="font-bold text-xs text-slate-700 font-serif" data-i18n="game_type_high_low">お年玉ハイロー</span>
                 </button>
             </div>
-            <p class="text-xs text-white/60 mt-2">※何度でも遊べます</p>
+            <p class="text-xs text-red-900/60 mt-1">※何度でも遊べます</p>
         </div>
 
         <!-- [VIEW: LP] -->
-        <div id="view-lp" class="hidden flex-1 flex-col justify-center items-center animate-pop relative pb-8">
+        <div id="view-lp" class="hidden flex-1 flex-col justify-center items-center animate-pop relative pb-6">
             <div class="text-center mb-6">
-                <div class="mb-6 inline-block relative">
+                <div class="mb-4 inline-block relative">
                     <div class="flex justify-center items-center relative h-32 w-32 mx-auto animate-bounce-gentle">
                         <div class="absolute inset-0 border-4 border-red-500 rounded-full opacity-20 bg-white/50"></div>
                         <div class="absolute inset-2 border-2 border-gold rounded-full opacity-40 border-dashed"></div>
@@ -238,191 +252,303 @@
                     </div>
                 </div>
                 
-                <div class="bg-white border-2 border-red-100 rounded-xl px-6 py-3 mt-4 mb-2 inline-block shadow-sm relative overflow-hidden">
+                <div class="bg-white border-2 border-red-100 rounded-xl px-6 py-3 mt-4 mb-2 inline-block shadow-sm relative overflow-hidden max-w-[280px]">
                     <div class="mizuhiki-line absolute top-0 left-0 opacity-50"></div>
                     <p class="text-xs font-bold text-red-400 mb-1 tracking-widest">SELECTED GAME</p>
                     <p class="text-xl font-black text-slate-700 font-serif" id="lp-game-title">...</p>
                 </div>
-                <p id="lp-game-desc" class="text-white font-medium text-xs px-4 mt-2 leading-relaxed drop-shadow-md">...</p>
+                <p id="lp-game-desc" class="text-red-900/80 font-medium text-xs px-4 mt-2 leading-relaxed max-w-[300px] text-center">...</p>
             </div>
             
-            <button onclick="app.toDifficulty()" class="w-full btn-newyear font-bold text-xl py-5 shadow-lg shadow-red-900/50 group mb-3">
+            <button onclick="app.toDifficulty()" class="w-full max-w-[280px] btn-newyear font-bold text-xl py-5 shadow-lg shadow-red-900/50 group mb-3">
                 <i class="fa-solid fa-play text-yellow-300 mr-2"></i> <span data-i18n="btn_start">これにする</span>
             </button>
-            <button onclick="app.switchView('menu')" class="text-white/70 text-sm font-bold underline">
+            <button onclick="app.switchView('menu')" class="text-red-900/70 text-sm font-bold underline py-2">
                 <span data-i18n="btn_back_menu">お品書きに戻る</span>
             </button>
         </div>
 
         <!-- [VIEW: DIFFICULTY] -->
         <div id="view-difficulty" class="hidden flex-1 flex-col justify-center items-center animate-pop">
-            <h2 class="text-xl font-bold text-white mb-2 font-serif drop-shadow-md" data-i18n="diff_title">難易度を選ぶ</h2>
-            <p class="text-xs text-white/80 mb-6" data-i18n="diff_desc">松竹梅、どれにする？</p>
+            <h2 class="text-2xl font-black text-red-900 mb-2 font-serif drop-shadow-sm" data-i18n="diff_title">難易度を選ぶ</h2>
+            <p class="text-xs text-red-900/80 mb-6" data-i18n="diff_desc">松竹梅、どれにする？</p>
             
-            <div class="w-full grid grid-cols-2 gap-3 mb-6">
-                <button onclick="app.setDifficulty('easy')" id="btn-easy" class="level-btn level-ume rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
-                    <div class="text-3xl mb-2">🌸</div>
-                    <span class="text-lg font-bold font-serif" data-i18n="lvl_easy">梅 (初級)</span>
+            <div class="w-full max-w-[280px] grid grid-cols-2 gap-3 mb-6">
+                <button onclick="app.setDifficulty('easy')" id="btn-easy" class="level-btn level-ume rounded-xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer shadow-sm">
+                    <div class="text-2xl mb-2">🌸</div>
+                    <span class="text-base font-bold font-serif" data-i18n="lvl_easy">梅 (初級)</span>
                     <span class="text-[10px] opacity-80" data-i18n="lvl_easy_sub">のんびりと</span>
                 </button>
-                <button onclick="app.setDifficulty('normal')" id="btn-normal" class="level-btn level-take selected rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
-                    <div class="text-3xl mb-2">🎋</div>
-                    <span class="text-lg font-bold font-serif" data-i18n="lvl_normal">竹 (中級)</span>
+                <button onclick="app.setDifficulty('normal')" id="btn-normal" class="level-btn level-take selected rounded-xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer shadow-sm">
+                    <div class="text-2xl mb-2">🎋</div>
+                    <span class="text-base font-bold font-serif" data-i18n="lvl_normal">竹 (中級)</span>
                     <span class="text-[10px] opacity-80" data-i18n="lvl_normal_sub">そこそこに</span>
                 </button>
-                <button onclick="app.setDifficulty('pro')" id="btn-pro" class="level-btn level-matsu rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
-                    <div class="text-3xl mb-2">🎍</div>
-                    <span class="text-lg font-bold font-serif" data-i18n="lvl_pro">松 (上級)</span>
+                <button onclick="app.setDifficulty('pro')" id="btn-pro" class="level-btn level-matsu rounded-xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer shadow-sm">
+                    <div class="text-2xl mb-2">🎍</div>
+                    <span class="text-base font-bold font-serif" data-i18n="lvl_pro">松 (上級)</span>
                     <span class="text-[10px] opacity-80" data-i18n="lvl_pro_sub">キレキレで</span>
                 </button>
-                <button onclick="app.setDifficulty('olympic')" id="btn-olympic" class="level-btn level-fuji rounded-2xl p-3 flex flex-col items-center justify-center h-32 cursor-pointer shadow-sm">
-                    <div class="text-3xl mb-2">🗻</div>
-                    <span class="text-lg font-bold font-serif" data-i18n="lvl_olympic">富士 (鬼)</span>
+                <button onclick="app.setDifficulty('olympic')" id="btn-olympic" class="level-btn level-fuji rounded-xl p-3 flex flex-col items-center justify-center h-28 cursor-pointer shadow-sm">
+                    <div class="text-2xl mb-2">🗻</div>
+                    <span class="text-base font-bold font-serif" data-i18n="lvl_olympic">富士 (鬼)</span>
                     <span class="text-[10px] opacity-80" data-i18n="lvl_olympic_sub">無理ゲー</span>
                 </button>
             </div>
-            <button onclick="app.enterHome()" class="w-full bg-slate-800 text-white font-bold text-lg py-4 rounded-full shadow-lg active:scale-95 transition-transform">決定</button>
-            <button onclick="app.switchView('menu')" class="mt-4 text-white/70 text-sm font-bold underline"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
+            <button onclick="app.enterHome()" class="w-full max-w-[280px] bg-slate-800 text-white font-bold text-lg py-4 rounded-full shadow-lg active:scale-95 transition-transform">決定</button>
+            <button onclick="app.switchView('menu')" class="mt-4 text-red-900/70 text-sm font-bold underline py-2"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
         </div>
 
         <!-- [VIEW: HOME] -->
         <div id="view-home" class="hidden flex-1 flex-col justify-center items-center animate-pop">
             <div class="text-center mb-4">
-                <h2 class="text-xl font-bold text-white font-serif drop-shadow-md" data-i18n="home_title">今日の書初め</h2>
-                <div id="level-badge" class="inline-block bg-white text-red-500 text-[10px] font-bold px-3 py-1 rounded-full mt-1 shadow-sm">LEVEL</div>
+                <h2 class="text-2xl font-black text-red-900 font-serif drop-shadow-sm" data-i18n="home_title">今日の書初め</h2>
+                <div id="level-badge" class="inline-block bg-white text-red-500 text-[10px] font-bold px-3 py-1 rounded-full mt-1 shadow-sm border border-red-100">LEVEL</div>
             </div>
 
-            <div class="card-washi w-full p-6 mb-6 relative overflow-hidden">
+            <div class="card-washi w-full max-w-[300px] p-6 mb-6 relative overflow-hidden">
                 <div class="relative z-10 text-center">
                     <span class="inline-block bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded mb-3">TODAY'S MISSION</span>
                     <h3 id="daily-title" class="text-2xl font-black mb-2 text-slate-800 font-serif">Title</h3>
                     <p id="daily-desc" class="text-sm font-medium text-slate-600 mb-4 leading-relaxed">...</p>
                     <div class="flex justify-center gap-2">
-                        <div class="bg-slate-50 px-4 py-1 rounded-full text-xs font-bold text-slate-500 border border-slate-200"><i class="fa-regular fa-clock mr-1"></i> 30秒一本勝負</div>
+                        <div class="bg-slate-50 px-3 py-1 rounded-full text-[10px] font-bold text-slate-500 border border-slate-200"><i class="fa-regular fa-clock mr-1"></i> 30秒一本勝負</div>
                     </div>
                 </div>
             </div>
 
-            <button onclick="app.startGame()" class="w-full btn-newyear text-xl py-5 shadow-lg shadow-red-900/50">
+            <button onclick="app.startGame()" class="w-full max-w-[300px] btn-newyear text-xl py-5 shadow-lg shadow-red-900/50">
                 <span data-i18n="btn_game_start">いざ、勝負！</span>
             </button>
-            <button onclick="app.switchView('difficulty')" class="mt-6 text-white/70 text-xs font-bold underline" data-i18n="btn_change_lvl">難易度を変える</button>
+            <button onclick="app.switchView('difficulty')" class="mt-6 text-red-900/70 text-xs font-bold underline py-2" data-i18n="btn_change_lvl">難易度を変える</button>
         </div>
 
         <!-- [VIEW: GAME] -->
-        <div id="view-game" class="hidden flex-1 flex-col relative h-full">
-            <!-- Timer -->
-            <div class="w-full bg-white/20 rounded-full h-2 mb-4 overflow-hidden mt-2">
-                <div id="timer-bar" class="bg-white h-full rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.5)]" style="width: 100%"></div>
+        <div id="view-game" class="hidden flex-1 flex-col relative h-full w-full">
+            <div class="w-full bg-white/40 rounded-full h-2 mb-2 overflow-hidden mt-2 shrink-0 border border-white/20">
+                <div id="timer-bar" class="bg-white h-full rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.8)]" style="width: 100%"></div>
             </div>
 
-            <div class="flex justify-between items-end mb-2 px-2 border-b-2 border-white/20 pb-2 text-white">
+            <div class="flex justify-between items-end mb-2 px-2 border-b-2 border-white/30 pb-2 text-white shrink-0">
                 <div class="flex flex-col">
-                     <span class="text-[10px] font-bold opacity-80" id="game-level-badge">LEVEL</span>
-                     <div class="text-xs font-bold bg-white/20 px-2 py-0.5 rounded-full border border-white/30">得点</div>
+                     <span class="text-[10px] font-bold opacity-90 drop-shadow-sm" id="game-level-badge">LEVEL</span>
+                     <div class="text-xs font-bold bg-white/20 px-2 py-0.5 rounded-full border border-white/40 backdrop-blur-sm">得点</div>
                 </div>
                 <div class="flex items-baseline gap-1">
                     <span id="score-display" class="text-4xl font-black font-serif drop-shadow-md">0</span>
-                    <span class="text-xs font-bold opacity-80">点</span>
+                    <span class="text-xs font-bold opacity-90">点</span>
                 </div>
             </div>
 
-            <div id="game-stage" class="flex-1 card-washi flex flex-col p-4 mb-4 relative transition-colors duration-300 items-center justify-center">
-                <!-- Overlay Instruction -->
+            <div id="game-stage" class="flex-1 card-washi flex flex-col p-3 mb-2 relative transition-colors duration-300 items-center justify-center min-h-0">
                 <div id="instruction-overlay" class="absolute inset-0 bg-white/95 z-30 flex flex-col justify-center items-center text-center p-6 rounded-2xl">
                     <div class="text-5xl text-red-500 mb-4 animate-bounce"><i class="fa-solid fa-clover"></i></div>
                     <h3 class="text-2xl font-bold mb-2 text-slate-800 font-serif" data-i18n="overlay_rule">ルール</h3>
-                    <p id="game-rule-text" class="font-medium text-slate-600 mb-6 text-lg">...</p>
+                    <p id="game-rule-text" class="font-medium text-slate-600 mb-4 text-base">...</p>
                     <div class="text-4xl font-black text-red-500 animate-pulse font-serif">よーい...</div>
                 </div>
-                <!-- Game Content -->
                 <div id="stimulus-container" class="w-full h-full flex flex-col relative items-center justify-center"></div>
             </div>
-
-            <div id="controls-area" class="grid grid-cols-2 gap-3 h-48 mb-2"></div>
+            <div id="controls-area" class="grid grid-cols-2 gap-2 h-40 mb-2 shrink-0"></div>
         </div>
 
-        <!-- [VIEW: RESULT (OMIKUJI)] -->
-        <div id="view-result" class="hidden flex-1 flex-col justify-center items-center animate-pop">
+        <!-- [VIEW: RESULT (BRAIN DIAGNOSIS)] -->
+        <div id="view-result" class="hidden flex-1 flex-col justify-center items-center animate-pop w-full pb-4">
             
-            <div class="text-center mb-6">
-                <h2 class="text-3xl font-bold text-white font-serif drop-shadow-md" data-i18n="res_title">あっぱれ！</h2>
-                <p class="text-xs font-bold text-white/80 mt-1">今年の運勢は…？</p>
+            <div class="text-center mb-3 mt-1">
+                <h2 class="text-4xl font-black text-red-600 font-serif drop-shadow-md tracking-wider" data-i18n="res_title">UNLOCK完了！</h2>
+                <p class="text-xs font-bold text-red-900/80 mt-1">今年の主役脳は…？</p>
             </div>
 
-            <div class="card-washi w-full py-6 px-6 text-center mb-4 bg-white relative border-4 border-double border-red-100 flex flex-col items-center">
+            <div class="card-washi w-full max-w-[340px] py-6 px-5 text-center mb-4 bg-white relative border-4 border-double border-red-100 flex flex-col items-center">
                 
-                <!-- Omikuji Display Area -->
-                <div id="omikuji-result-area" class="w-full text-left">
+                <!-- Diagnosis Content -->
+                <div id="brain-result-area" class="w-full text-left">
                     <!-- Dynamic Content -->
                 </div>
 
                 <div class="w-full h-px bg-slate-100 my-4"></div>
 
-                <div class="flex items-end justify-center gap-2 mb-2">
+                <div class="flex items-end justify-center gap-2 mb-1">
                     <div class="text-xs font-bold text-slate-400 mb-1">SCORE</div>
                     <div id="final-score" class="text-5xl font-black text-slate-800 font-serif leading-none">0</div>
                 </div>
             </div>
 
             <!-- LINE CTA Button -->
-            <a href="https://line.me/" target="_blank" class="w-full bg-[#06C755] text-white font-bold py-4 rounded-2xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform mb-3 relative overflow-hidden group border border-green-400">
-                <i class="fa-brands fa-line text-2xl"></i>
-                <span class="text-lg">公式アカウントを友だち追加</span>
-                <i class="fa-solid fa-chevron-right ml-auto mr-2 opacity-50"></i>
+            <a href="https://line.me/" target="_blank" class="w-full max-w-[300px] bg-[#06C755] text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform mb-3 relative overflow-hidden group border border-green-400">
+                <i class="fa-brands fa-line text-xl absolute left-4"></i>
+                <span class="text-sm">公式アカウントを友だち追加</span>
+                <i class="fa-solid fa-chevron-right absolute right-4 opacity-50 text-xs"></i>
             </a>
 
-            <div class="flex w-full gap-2 mb-4">
-                <button onclick="app.share('twitter')" class="flex-1 bg-black text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs"><i class="fa-brands fa-x-twitter"></i> Xでシェア</button>
-                <button onclick="app.enterHome()" class="flex-1 bg-slate-200 text-slate-600 font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs">もう一度</button>
+            <div class="flex w-full max-w-[300px] gap-2 mb-3">
+                <button onclick="app.share('twitter')" class="flex-1 bg-black text-white font-bold py-2.5 rounded-lg shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs"><i class="fa-brands fa-x-twitter"></i> Xでシェア</button>
+                <button onclick="app.enterHome()" class="flex-1 bg-slate-200 text-slate-600 font-bold py-2.5 rounded-lg shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs">もう一度</button>
             </div>
             
-            <button onclick="app.switchView('menu')" class="text-white/70 text-xs font-bold underline p-2"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
+            <button onclick="app.switchView('menu')" class="text-red-900/70 text-xs font-bold underline p-2 mb-2"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
         </div>
 
         <!-- [VIEW: LOADING] -->
         <div id="view-loading" class="hidden flex-1 flex-col justify-center items-center">
-            <div class="flex gap-3 mb-4">
-                <div class="w-4 h-4 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
-                <div class="w-4 h-4 bg-white border-2 border-slate-200 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
-                <div class="w-4 h-4 bg-gold rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+            <div class="flex gap-2 mb-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                <div class="w-3 h-3 bg-white border-2 border-slate-200 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                <div class="w-3 h-3 bg-gold rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
             </div>
-            <p class="text-xs font-bold text-white tracking-widest">LOADING...</p>
+            <p class="text-[10px] font-bold text-white tracking-widest">LOADING...</p>
         </div>
     </div>
 
     <!-- SCRIPT -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-        const AppConfig = { gameDuration: 30, storageBaseKey: 'newyear_unlock_v8_' };
+        const AppConfig = { gameDuration: 30, storageBaseKey: 'newyear_unlock_v18_' };
         
-        // --- DATA: Omikuji (Positive Vibes) ---
-        const OmikujiData = {
-            daikichi: {
-                title: "大吉",
-                subtitle: "（この1年）",
-                text: "今年のあなた、脳みそが“勝手に進化”する年。<br>新しいことに手を出すたび、体も「お、いいね」ってついてくる。<br>ズラして、遊んで、笑ってるうちに、気づいたら強くなってる。",
-                word: "今年の成長、たぶん自分がいちばんビックリする。"
+        // --- DATA: Brain Diagnosis ---
+        const BrainData = [
+            { 
+                name: "前頭前野", 
+                kana: "ぜんとうぜんや", 
+                role: "脳の社長室。決める、止める、選ぶ、段取りする。「やる気」じゃなくて「やる順番」を作るところ。<br>ここが元気だと、人生がスッキリ見えるし、ここが疲れてると、冷蔵庫の前でずっと悩む（何食べるかで30分ね）。",
+                unlock: "朝いちで「今日やる1個」を決めて、紙に書く。で、最初の1分だけ着手。社長は長い会議いらないの。“指示”が出た瞬間に現場（他の脳）が働くから。迷ったら「10分だけやる」でOK。決断は短いほど強い。",
+                word: "「社長は1個だけ言えばいいのよ。」"
             },
-            chukichi: {
-                title: "中吉",
-                subtitle: "（この1年）",
-                text: "中吉ってさ、実は“安定して強い”って意味だからね。<br>今年は、脳と体が無理なく回る仕組みを作れる年。<br>コツは「頑張る」じゃなくて「区切る」。それだけで毎日が上向く。",
-                word: "今年のあなた、ちゃんと続く。これ最強。"
+            { 
+                name: "背外側前頭前野", 
+                kana: "DLPFC", 
+                role: "脳の作業机。集中して考える、情報を一時的に持つ、論理で組み立てる。<br>ここが強いと“頭の中の付箋”がきれいに貼れてる感じ。弱ると付箋が床に散らばって、踏んで滑る。",
+                unlock: "25分集中→3分動く。机仕事のまま脳を回そうとすると、机と同化して思考が固まるのよ。短い集中を繰り返すと、机が片付いていく感じになる。スマホは別室。DLPFCは誘惑に弱いから、隔離が優しさ。",
+                word: "「机、詰めるな。区切れ。」"
             },
-            kichi: {
-                title: "吉",
-                subtitle: "（この1年）",
-                text: "吉、いいよ。すごくいい。伸びる年のど真ん中だよ。<br>派手じゃないのに、積み上がって、気づいたら「え、こんなできる？」ってなる。<br>水・睡眠・散歩の三兄弟が、今年のあなたをめっちゃ守る。",
-                word: "地味に積んだ人が、いちばんハッピーになる仕様。"
+            { 
+                name: "眼窩前頭皮質", 
+                kana: "OFC", 
+                role: "脳の買い物担当。「AとBどっちが得？」を比べて、気分と価値で選ぶところ。<br>ここが働くと、選ぶのが上手い。止まると、通販のカートに入れたまま永遠に悩む。",
+                unlock: "迷ったら“試食”する。10分だけやる、1回だけ使う、短く体験する。脳はカタログより実物で決めるから。比較の沼は時間を食うだけ。小さく試すと、OFCが「こっち！」って言い出す。",
+                word: "「悩むなら、試しちゃいなよ。」"
             },
-            suekichi: {
-                title: "末吉",
-                subtitle: "（この1年）",
-                text: "末吉はね、“これから上がる”って宣言だから。最高じゃん。<br>今年は、整えた分だけ運が貯金されて、後半でドン！って効いてくる。<br>休むのも、ほぐすのも、全部トレーニング。",
-                word: "今年の後半、あなたが主人公になるやつ。"
+            { 
+                name: "前部帯状皮質", 
+                kana: "ACC", 
+                role: "脳のツッコミ役。間違いに気づく、切り替える、注意を戻す。「あ、今ズレた」を検知してくれる。<br>ここが元気だと、ミスしても立て直しが速い。疲れてると、ミスに気づかず“まっすぐ迷子”になる。",
+                unlock: "わざと“ちょいムズ”を入れる。逆手、逆足、逆順、テンポ変え。ミスった瞬間にACCが起きるのよ。「おっ、イベント発生！」って。完璧にやるより、ズレを楽しむ方が脳が育つ。",
+                word: "「ミスはね、脳の起床ボタン。」"
+            },
+            { 
+                name: "運動野", 
+                kana: "", 
+                role: "体を動かす司令塔。考えてから動くんじゃなくて、動くことで考えも始まる。<br>ここが回ると、気分も上がる。回らないと、脳が“頭だけの会議”をずっとやって疲れる。",
+                unlock: "まず1分、足を動かす。早歩き、足踏み、階段ちょい上り。運動野は「ちょっとでいいから動け」派。やる気は後から来る。動くと血流が上がって、他の脳も「じゃあ俺も」って起きる。",
+                word: "「考える前に、足いけ。」"
+            },
+            { 
+                name: "体性感覚野", 
+                kana: "", 
+                role: "触覚・痛み・位置感覚。体の地図アプリ。ここが正確だと、姿勢や動きが安定して、疲れにくい。<br>ここがボヤけると、肩こりも増えるし、動きも雑になる。",
+                unlock: "目を閉じて左右で違う動き。右手グー左手パー→入れ替え、足も混ぜる。脳が「地図描き直すぞ」って張り切る。触って、感じて、ズラす。感覚を起こすと、体の調子が整う。",
+                word: "「体はね、地図が命。」"
+            },
+            { 
+                name: "小脳", 
+                kana: "", 
+                role: "バランス、タイミング、微調整。“上手くなる”担当の親方。繰り返しで勝手に洗練していく。<br>ここが育つと、動きが軽くなるし、失敗が減る。",
+                unlock: "片足立ち＋手拍子、ボールキャッチ、リズム遊び。フラつくほど小脳が喜ぶ。「お、修正ポイント発見！」ってね。うまくやるより、揺れを経験したほうが伸びる。",
+                word: "「フラついた？伸びしろだね。」"
+            },
+            { 
+                name: "大脳基底核", 
+                kana: "", 
+                role: "習慣の自動運転。クセ工場。意志より強い。ここに入った行動は、勝手に回る。良いクセも悪いクセも、いったん工場が回ると止まらない。",
+                unlock: "「毎日30秒」だけ固定する。時間より“同じタイミング”が大事。歯みがき前、風呂の前、寝る前。工場はルールが好きだから、短く、同じ場所、同じ順番。これで習慣が生まれる。",
+                word: "「習慣は気合いじゃない、仕組み。」"
+            },
+            { 
+                name: "海馬", 
+                kana: "", 
+                role: "記憶の整理整頓。学びを“自分の話”にする編集者。ここが働くと、経験が資産になる。働かないと、全部が流れていって「何してたっけ？」になる。",
+                unlock: "夜に「今日よかった3つ」。短くていい。できれば“なぜ良かった”も一言。海馬はストーリーが大好物。良い出来事を保存すると、次の日の気分が底上げされる。",
+                word: "「思い出は、作るんじゃなくて保存。」"
+            },
+            { 
+                name: "扁桃体", 
+                kana: "", 
+                role: "感情の警報機。危険もワクワクも、まずここが鳴らす。鳴るのは悪じゃない。鳴らない方が困る。問題は“鳴りっぱなし”ね。",
+                unlock: "ドキッとしたら、吐く息を長く3回。扁桃体に「了解、でも今は大丈夫」って伝える。体を先に落ち着かせると、感情が味方になる。不安は燃料。扱い方で推進力に変わる。",
+                word: "「警報は止めるな、なだめろ。」"
+            },
+            { 
+                name: "島皮質", 
+                kana: "Insula", 
+                role: "体内センサーの実況中継。疲れ、心拍、胃の感じ、呼吸。直感の材料を集めてる場所。<br>ここが鋭いと、無理する前に気づける。鈍いと、限界まで行ってから倒れる。",
+                unlock: "1日1回「体どこ固い？」を聞く。首？背中？お腹？ で、30秒だけ触ってゆるめる。体の声は小さいから、聞きに行く。ここが育つと、パフォーマンスが安定する。",
+                word: "「体の声はね、小声だから聞け。」"
+            },
+            { 
+                name: "視覚野", 
+                kana: "後頭葉", 
+                role: "見る、色、形、動き。脳のカメラ＆編集室。ここが元気だと、世界が鮮やかに見える。疲れると、視界が灰色になって、気分も曇る。",
+                unlock: "散歩で「青いもの10個」探す。もしくは「丸いもの」。視覚野は“探し物”が大好き。見つけるたびに脳が小さく喜ぶ。これが意外と効く。",
+                word: "「探せ。世界が増える。」"
+            },
+            { 
+                name: "聴覚野", 
+                kana: "側頭葉", 
+                role: "音の分析とリズム。脳のDJ。会話の抑揚、環境音、音楽で気分を整える。ここが働くと、リズムで集中が作れる。",
+                unlock: "手拍子を一定→途中でテンポ変える。足踏みも足す。リズムを変えると、脳が「おっ」って起きる。音は脳のスイッチ。静かすぎても眠るから、ちょい刺激が吉。",
+                word: "「リズムは、脳の目覚まし。」"
+            },
+            { 
+                name: "ウェルニッケ野", 
+                kana: "", 
+                role: "言葉の理解。「相手が何言ってるか」を意味に変える翻訳機。ここが強いと、会話が早い。弱いと、言葉は聞こえるのに意味が入らない。",
+                unlock: "人の話を聞いたら、頭の中で「一言で言うと？」を作る。要約は理解の完成。長話も、まとめた瞬間に自分のものになる。",
+                word: "「わかった＝一言で言える。」"
+            },
+            { 
+                name: "ブローカ野", 
+                kana: "", 
+                role: "話す・書く・言葉を出す。言語の工場。ここが回ると、考えが外に出て整理される。回らないと、頭の中でグルグルして疲れる。",
+                unlock: "15秒メモ。うまい文章いらない。箇条書きでいい。言葉にすると、脳が“片付け始める”。話すのもOK。ひとり実況でも効果ある（変な人に見えるけどね）。",
+                word: "「出せば、整う。」"
+            },
+            { 
+                name: "視床", 
+                kana: "ししょう", 
+                role: "感覚の中継センター。注意の交通整理。情報が多いと渋滞する。渋滞すると、何も入らないし、何も出ない。",
+                unlock: "通知を1時間切る。視床は“交通量の制限”に弱いから、外から減らしてあげるとスッキリする。部屋を片付けるみたいに、情報も片付ける。",
+                word: "「情報、入れすぎるな。詰まる。」"
+            },
+            { 
+                name: "視床下部", 
+                kana: "", 
+                role: "体温・食欲・ホルモン・睡眠。体の自動調整室。ここが整うと、気分もやる気も勝手に整う。逆に崩れると、全部が雑になる。",
+                unlock: "朝日を浴びて水一杯。可能なら同じ時間に起きる。視床下部は“時計”が命。時計が合うと、ホルモンも眠気も味方になる。",
+                word: "「朝日と水で、体は起動。」"
+            },
+            { 
+                name: "側坐核", 
+                kana: "そくざかく", 
+                role: "やる気・報酬・快感。「もう一回！」担当。ここが動くと、続けられる。動かないと、何やっても重い。",
+                unlock: "作業の最後に“ごほうび1分”を固定。音楽一曲、ストレッチ、コーヒー一口。脳はね、ニンジンがあると走る。馬みたいでかわいい。",
+                word: "「ニンジン用意しとけ。」"
+            },
+            { 
+                name: "頭頂連合野", 
+                kana: "", 
+                role: "空間認知、注意の配分、同時処理の整理係。ここが強いと、周りを見ながら動ける。弱いと、目の前のことだけで手一杯になる。",
+                unlock: "足踏みしながら1〜20数える。できたら手を左右交互に動かす。脳に“交通整理の訓練”を遊びで入れる。やるほど現実のマルチタスクがラクになる。",
+                word: "「同時は、遊びで慣れろ。」"
+            },
+            { 
+                name: "脳梁", 
+                kana: "のうりょう", 
+                role: "左右の脳をつなぐ連携ケーブル。論理と直感、言葉と動き、右と左の協力プレー。ここが強いと、動きも発想もスムーズ。",
+                unlock: "交差運動（右手で左ひざ→反対も）を20回。これ、地味だけど効く。左右が仲良くなると、脳内の“連絡ミス”が減るのよ。",
+                word: "「左右、ケンカさせるな。組ませろ。」"
             }
-        };
+        ];
 
         // --- DICTIONARY ---
         const Dict = {
@@ -432,12 +558,10 @@
                 diff_title: "難易度を選ぶ", diff_desc: "松竹梅、どれにする？",
                 lvl_easy: "梅 (初級)", lvl_easy_sub: "のんびりと", lvl_normal: "竹 (中級)", lvl_normal_sub: "そこそこに", lvl_pro: "松 (上級)", lvl_pro_sub: "キレキレで", lvl_olympic: "富士 (鬼)", lvl_olympic_sub: "無理ゲー",
                 home_title: "挑戦状", btn_game_start: "いざ、勝負！", btn_change_lvl: "難易度を変える",
-                overlay_rule: "遊び方", res_title: "あっぱれ！", res_score: "スコア", btn_close: "とじる",
+                overlay_rule: "遊び方", res_title: "UNLOCK完了！", res_score: "スコア", btn_close: "とじる",
                 mem_remember: "覚えて！", mem_ask: "はどこ？", 
-                share_text: "【新春UNLOCK】今年のおみくじ結果！スコア: ",
+                share_text: "【新春UNLOCK】私の今年の主役脳は「TYPE」でした！ #新春UNLOCK",
                 // Games
-                game_type_stroop: "紅白 文字合戦", game_desc_stroop: "文字の意味ではなく、\n「色」を答えよ！",
-                game_type_direction: "獅子舞ナビ", game_desc_direction: "獅子舞が向いている\n方向を答えよ！",
                 game_type_math_reflex: "丁半 計算", game_desc_math_reflex: "答えは「丁(偶数)」か\n「半(奇数)」か！？",
                 game_type_memory_flash: "初夢おぼえ", game_desc_memory_flash: "縁起物の場所を\n一瞬で記憶せよ！",
                 game_type_karuta: "新春 かるた", game_desc_karuta: "読み札に合う絵札を\n素早く取れ！", 
@@ -453,11 +577,9 @@
                 diff_title: "Select Level", diff_desc: "Choose your difficulty",
                 lvl_easy: "Plum (Easy)", lvl_easy_sub: "Slow", lvl_normal: "Bamboo (Normal)", lvl_normal_sub: "Standard", lvl_pro: "Pine (Pro)", lvl_pro_sub: "Fast", lvl_olympic: "Fuji (God)", lvl_olympic_sub: "Dream",
                 home_title: "Mission", btn_game_start: "Let's Go!", btn_change_lvl: "Change Level",
-                overlay_rule: "How to Play", res_title: "Excellent!", res_score: "Score", btn_close: "Close",
+                overlay_rule: "How to Play", res_title: "Unlocked!", res_score: "Score", btn_close: "Close",
                 mem_remember: "Memorize!", mem_ask: "Where was",
-                share_text: "[New Year UNLOCK] Omikuji Result: ",
-                game_type_stroop: "Red & White", game_desc_stroop: "Tap the COLOR,\nnot the word!",
-                game_type_direction: "Lion Dance", game_desc_direction: "Which way is\nthe Lion facing?",
+                share_text: "[New Year UNLOCK] Brain Type Diagnosis! ",
                 game_type_math_reflex: "Odd or Even", game_desc_math_reflex: "Is the answer\nOdd or Even?",
                 game_type_memory_flash: "First Dream", game_desc_memory_flash: "Memorize the\nlucky items!",
                 game_type_karuta: "New Year Karuta", game_desc_karuta: "Pick the card\nthat matches the text!", 
@@ -481,7 +603,7 @@
 
         // --- APP CONTROLLER ---
         const app = {
-            state: { lang: 'ja', currentView: 'language', score: 0, timeLeft: AppConfig.gameDuration, isPlaying: false, currentGameType: 'stroop', timerInterval: null, difficulty: 'normal', memoryAnswer: null, inputBlocked: false, currentOmikujiTitle: '' },
+            state: { lang: 'ja', currentView: 'language', score: 0, timeLeft: AppConfig.gameDuration, isPlaying: false, currentGameType: 'math_reflex', timerInterval: null, difficulty: 'normal', memoryAnswer: null, inputBlocked: false, currentBrainName: '' },
 
             init: function() {
                 this.switchView('language');
@@ -515,8 +637,8 @@
                     if (lpTitle) lpTitle.innerText = texts[`game_type_${type}`];
                     if (lpDesc) lpDesc.innerText = texts[`game_desc_${type}`];
                     
-                    const icons = { stroop: 'fa-palette', direction: 'fa-compass', math_reflex: 'fa-abacus', memory_flash: 'fa-eye', karuta: 'fa-layer-group', high_low: 'fa-sack-dollar' };
-                    if (lpIcon) lpIcon.className = `fa-solid ${icons[type] || 'fa-brain'} text-red-500 text-4xl`;
+                    const icons = { math_reflex: 'fa-abacus', memory_flash: 'fa-eye', karuta: 'fa-layer-group', high_low: 'fa-sack-dollar' };
+                    if (lpIcon) lpIcon.className = `fa-solid ${icons[type] || 'fa-brain'} text-red-500 text-3xl`;
 
                     document.querySelectorAll('[data-i18n]').forEach(el => {
                         const key = el.getAttribute('data-i18n');
@@ -569,6 +691,10 @@
                     else { header.classList.add('hidden'); header.classList.remove('flex'); }
                 }
                 
+                // Reset scroll
+                const app = document.getElementById('app');
+                if(app) app.scrollTop = 0;
+
                 ['language', 'loading', 'menu', 'lp', 'difficulty', 'home', 'game', 'result'].forEach(v => {
                     const el = document.getElementById(`view-${v}`);
                     if (el) {
@@ -616,9 +742,7 @@
                     this.renderMemoryFlash(stage);
                 } else {
                     controls.style.display = 'grid';
-                    if (type === 'stroop') this.renderStroop(stage, controls);
-                    else if (type === 'direction') this.renderDirection(stage, controls);
-                    else if (type === 'math_reflex') this.renderMath(stage, controls);
+                    if (type === 'math_reflex') this.renderMath(stage, controls);
                     else if (type === 'karuta') this.renderKaruta(stage, controls); 
                     else if (type === 'high_low') this.renderHighLow(stage, controls);
                 }
@@ -630,7 +754,7 @@
             renderMemoryFlash: function(stage) {
                 const texts = Dict[this.state.lang];
                 this.state.inputBlocked = true;
-                stage.innerHTML = `<div id="mem-question-area" class="w-full h-16 mb-2 flex items-center justify-center"></div><div id="mem-grid" class="flex-1 grid grid-cols-2 gap-2 w-full p-2 max-w-[320px]"></div>`;
+                stage.innerHTML = `<div id="mem-question-area" class="w-full h-10 mb-1 flex items-center justify-center shrink-0"></div><div id="mem-grid" class="flex-1 grid grid-cols-2 gap-2 w-full p-1 max-w-[300px] min-h-0 overflow-visible"></div>`;
                 const qArea = document.getElementById('mem-question-area');
                 const grid = document.getElementById('mem-grid');
                 
@@ -662,7 +786,7 @@
                     slots[posIndex].classList.add('border-red-200', 'bg-red-50');
                 });
                 
-                qArea.innerHTML = `<span class="bg-red-100 text-red-600 px-6 py-2 rounded-full font-bold font-serif shadow-sm text-sm">${texts.mem_remember}</span>`;
+                qArea.innerHTML = `<span class="bg-red-100 text-red-600 px-4 py-1.5 rounded-full font-bold font-serif shadow-sm text-xs">${texts.mem_remember}</span>`;
                 
                 let showTime = 1000;
                 if (this.state.difficulty === 'normal') showTime = 600;
@@ -680,94 +804,9 @@
                     this.state.memoryAnswer = targetPositions[targetIdxInArray];
                     const targetIcon = shuffledIcons[targetIdxInArray];
                     this.state.inputBlocked = false;
-                    qArea.innerHTML = `<div class="flex items-center justify-center gap-3 animate-pop bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100"><i class="fa-solid ${targetIcon} text-3xl text-red-600"></i><span class="text-slate-700 font-bold font-serif">${texts.mem_ask}?</span></div>`;
+                    qArea.innerHTML = `<div class="flex items-center justify-center gap-2 animate-pop bg-white px-4 py-1.5 rounded-xl shadow-sm border border-slate-100"><i class="fa-solid ${targetIcon} text-2xl text-red-600"></i><span class="text-slate-700 font-bold font-serif text-sm">${texts.mem_ask}?</span></div>`;
                 }, showTime);
             },
-
-            // 2. Stroop
-            renderStroop: function(stage, controls) {
-                const texts = Dict[this.state.lang];
-                const allColors = [
-                    { name: {ja:'紅', en:'RED'}, code: 'text-red-600', bg: 'bg-red-500', val: 'red' },
-                    { name: {ja:'白', en:'WHITE'}, code: 'text-slate-200', bg: 'bg-slate-500', val: 'white', border: 'border-slate-300' },
-                    { name: {ja:'金', en:'GOLD'}, code: 'text-yellow-500', bg: 'bg-yellow-500', val: 'gold' },
-                    { name: {ja:'黒', en:'BLACK'}, code: 'text-slate-800', bg: 'bg-slate-800', val: 'black' }
-                ];
-                
-                let pool = allColors; 
-                const targetText = pool[Math.floor(Math.random() * pool.length)];
-                let targetColor = pool[Math.floor(Math.random() * pool.length)];
-                
-                if (Math.random() > 0.2) {
-                     const otherColors = pool.filter(c => c.val !== targetText.val);
-                     if(otherColors.length > 0) targetColor = otherColors[Math.floor(Math.random() * otherColors.length)];
-                }
-                const correctAnswer = targetColor.val;
-                
-                let displayClass = targetColor.code;
-                if(targetColor.val === 'white') displayClass = 'text-slate-300 text-shadow-sm';
-
-                const animationClass = this.state.difficulty === 'olympic' || this.state.difficulty === 'pro' ? 'animate-confuse' : '';
-
-                stage.innerHTML = `
-                    <div class="h-full flex flex-col justify-center items-center">
-                        <div class="inline-block bg-slate-100 px-4 py-1 rounded-full text-xs font-bold text-slate-500 mb-6">文字の色は？</div>
-                        <div class="text-7xl font-black font-serif ${displayClass} drop-shadow-md scale-110 ${animationClass}">${targetText.name[this.state.lang]}</div>
-                    </div>`;
-                
-                [...pool].sort(() => Math.random() - 0.5).forEach(opt => {
-                    const btn = document.createElement('button');
-                    btn.className = `${opt.bg} text-white btn-newyear text-lg font-bold font-serif h-full flex items-center justify-center shadow-md border-b-4 border-black/20`;
-                    btn.innerText = opt.name[this.state.lang];
-                    btn.onclick = () => this.handleAnswer(opt.val === correctAnswer);
-                    controls.appendChild(btn);
-                });
-                controls.classList.remove('grid-cols-2', 'grid-cols-3'); controls.classList.add('grid-cols-2');
-            },
-
-            // 3. Direction
-            renderDirection: function(stage, controls) {
-                const texts = Dict[this.state.lang];
-                const dirs = ['up', 'down', 'left', 'right'];
-                const icons = { up: 'fa-arrow-up', down: 'fa-arrow-down', left: 'fa-arrow-left', right: 'fa-arrow-right' };
-                const actualDir = dirs[Math.floor(Math.random() * dirs.length)];
-                let targetDir = actualDir;
-                let instruction = texts.txt_same;
-                
-                let instructionColor = "text-slate-500"; 
-                let isReverse = false;
-
-                if (this.state.difficulty !== 'easy' && Math.random() > 0.4) {
-                     instruction = texts.txt_rev;
-                     targetDir = this.getOppositeDir(actualDir);
-                     isReverse = true;
-                }
-                
-                if (this.state.difficulty === 'olympic' || this.state.difficulty === 'pro') {
-                    instructionColor = Math.random() > 0.5 ? "text-red-500" : "text-blue-500";
-                } else {
-                    instructionColor = isReverse ? "text-red-500" : "text-blue-500";
-                }
-
-                stage.innerHTML = `
-                    <div class="h-full flex flex-col justify-center items-center">
-                        <div class="inline-block bg-white border border-slate-200 px-4 py-2 rounded-full text-lg font-bold font-serif mb-6 ${instructionColor} shadow-sm border-b-4">${instruction}</div>
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gold blur-xl opacity-30 rounded-full"></div>
-                            <div class="text-8xl text-slate-700 drop-shadow-md relative z-10"><i class="fa-solid ${icons[actualDir]}"></i></div>
-                        </div>
-                    </div>`;
-                
-                dirs.forEach(d => {
-                    const btn = document.createElement('button');
-                    btn.className = `bg-white border-2 border-slate-200 text-slate-500 border-b-4 rounded-2xl text-4xl font-bold h-full flex items-center justify-center shadow-sm active:translate-y-1 active:border-b-2 active:bg-red-50 transition-all`;
-                    btn.innerHTML = `<i class="fa-solid ${icons[d]}"></i>`;
-                    btn.onclick = () => this.handleAnswer(d === targetDir);
-                    controls.appendChild(btn);
-                });
-                controls.classList.remove('grid-cols-3'); controls.classList.add('grid-cols-2');
-            },
-            getOppositeDir: function(d) { if(d==='up') return 'down'; if(d==='down') return 'up'; if(d==='left') return 'right'; return 'left'; },
 
             // 4. Math
             renderMath: function(stage, controls) {
@@ -781,12 +820,12 @@
                     n1 = Math.floor(Math.random() * 9) + 1;
                     n2 = Math.floor(Math.random() * 9) + 1;
                     sum = n1 + n2;
-                    formulaStr = `<span>${n1}</span><span class="text-red-400 text-3xl mx-1">+</span><span>${n2}</span>`;
+                    formulaStr = `<span>${n1}</span><span class="text-red-400 text-2xl mx-1">+</span><span>${n2}</span>`;
                 } else if (this.state.difficulty === 'normal') {
                      n1 = Math.floor(Math.random() * 20) + 1;
                      n2 = Math.floor(Math.random() * 20) + 1;
                      if (Math.random() > 0.5) { sum = n1 + n2; op1="+"; } else { sum = n1 - n2; op1="-"; }
-                     formulaStr = `<span>${n1}</span><span class="text-red-400 text-3xl mx-1">${op1}</span><span>${n2}</span>`;
+                     formulaStr = `<span>${n1}</span><span class="text-red-400 text-2xl mx-1">${op1}</span><span>${n2}</span>`;
                 } else {
                     n1 = Math.floor(Math.random() * 20) + 5;
                     n2 = Math.floor(Math.random() * 10) + 2;
@@ -796,15 +835,15 @@
                     sum = n1;
                     if(op1 === "+") sum += n2; else sum -= n2;
                     if(op2 === "+") sum += n3; else sum -= n3;
-                    formulaStr = `<span class="text-4xl">${n1}</span><span class="text-red-400 text-2xl mx-1">${op1}</span><span class="text-4xl">${n2}</span><span class="text-red-400 text-2xl mx-1">${op2}</span><span class="text-4xl">${n3}</span>`;
+                    formulaStr = `<span class="text-3xl">${n1}</span><span class="text-red-400 text-xl mx-1">${op1}</span><span class="text-3xl">${n2}</span><span class="text-red-400 text-xl mx-1">${op2}</span><span class="text-3xl">${n3}</span>`;
                 }
 
                 const isEven = Math.abs(sum) % 2 === 0;
                 
                 stage.innerHTML = `
                     <div class="h-full flex flex-col justify-center items-center">
-                        <div class="text-xs font-bold text-slate-400 mb-4 bg-slate-100 px-3 py-1 rounded-full">丁(偶数) か 半(奇数) か？</div>
-                        <div class="flex items-center justify-center text-5xl font-black text-slate-800 font-serif bg-white px-6 py-4 rounded-xl border-2 border-slate-100 shadow-sm w-full">
+                        <div class="text-[10px] font-bold text-slate-400 mb-3 bg-slate-100 px-3 py-1 rounded-full">丁(偶数) か 半(奇数) か？</div>
+                        <div class="flex items-center justify-center text-4xl font-black text-slate-800 font-serif bg-white px-4 py-3 rounded-xl border-2 border-slate-100 shadow-sm w-full max-w-[260px]">
                             ${formulaStr}
                         </div>
                     </div>`;
@@ -813,8 +852,8 @@
                     const btn = document.createElement('button');
                     const diceIcon = check ? 'fa-dice-four' : 'fa-dice-five'; 
                     const bgClass = col === 'blue' ? 'bg-indigo-600' : 'bg-red-600';
-                    btn.className = `${bgClass} text-white btn-newyear text-2xl font-bold h-full py-4 flex flex-col items-center justify-center shadow-md font-serif border-2 border-white/20`;
-                    btn.innerHTML = `<div><i class="fa-solid ${diceIcon} text-3xl mb-1 opacity-50"></i><br>${label}</div>`;
+                    btn.className = `${colorClass} text-white btn-newyear text-xl font-bold h-full py-2 flex flex-col items-center justify-center shadow-md font-serif border-2 border-white/20`;
+                    btn.innerHTML = `<div><i class="fa-solid ${diceIcon} text-2xl mb-1 opacity-50"></i><br>${label}</div>`;
                     btn.onclick = () => this.handleAnswer(check);
                     controls.appendChild(btn);
                 };
@@ -848,15 +887,15 @@
 
                 stage.innerHTML = `
                     <div class="h-full flex flex-col justify-center items-center">
-                        <div class="inline-block bg-white border border-slate-200 px-6 py-2 rounded-full text-xs font-bold mb-4 text-slate-400">読み札</div>
-                        <div class="card-washi px-6 py-4 text-3xl font-black font-serif text-slate-800 drop-shadow-sm border-4 border-red-500 animate-pop">
+                        <div class="inline-block bg-white border border-slate-200 px-4 py-1.5 rounded-full text-[10px] font-bold mb-3 text-slate-400">読み札</div>
+                        <div class="card-washi px-5 py-3 text-2xl font-black font-serif text-slate-800 drop-shadow-sm border-4 border-red-500 animate-pop">
                             ${target.t[this.state.lang]}
                         </div>
                     </div>`;
                 
                 currentSet.forEach(item => {
                     const btn = document.createElement('button');
-                    const textSize = optionCount >= 6 ? 'text-3xl' : 'text-5xl';
+                    const textSize = optionCount >= 6 ? 'text-2xl' : 'text-4xl';
                     btn.className = `bg-white border-2 border-red-100 text-red-500 border-b-4 rounded-xl ${textSize} font-bold h-full flex items-center justify-center shadow-sm active:translate-y-1 active:border-b-2 active:bg-red-50 transition-all`;
                     btn.innerHTML = `<i class="fa-solid ${item.i}"></i>`;
                     btn.onclick = () => this.handleAnswer(item === target);
@@ -895,16 +934,16 @@
                 }
                 
                 stage.innerHTML = `
-                    <div class="h-full flex flex-col justify-center items-center">
-                        <div class="text-xs font-bold text-slate-400 mb-6 bg-slate-100 px-3 py-1 rounded-full">中身が多いのはどっち？</div>
+                    <div class="h-full flex flex-col justify-center items-center w-full">
+                        <div class="text-xs font-bold text-slate-400 mb-6 bg-slate-100 px-4 py-1.5 rounded-full">中身が多いのはどっち？</div>
                         <div class="flex gap-2 items-center w-full justify-center px-1">
-                            <div class="flex flex-col items-center flex-1">
-                                <div class="text-base font-black text-slate-700 bg-white px-2 py-1 rounded mb-2 border border-slate-200 w-full text-center">${str1}</div>
+                            <div class="flex flex-col items-center flex-1 max-w-[48%]">
+                                <div class="text-lg font-black text-slate-700 bg-white px-1 py-2 rounded-lg mb-2 border-2 border-slate-100 w-full text-center whitespace-nowrap tracking-tight shadow-sm overflow-hidden">${str1}</div>
                                 <i class="fa-solid fa-envelope text-6xl text-red-500 drop-shadow-md"></i>
                             </div>
-                            <div class="text-lg text-slate-400 font-bold italic">VS</div>
-                            <div class="flex flex-col items-center flex-1">
-                                <div class="text-base font-black text-slate-700 bg-white px-2 py-1 rounded mb-2 border border-slate-200 w-full text-center">${str2}</div>
+                            <div class="text-xl text-slate-300 font-black italic">VS</div>
+                            <div class="flex flex-col items-center flex-1 max-w-[48%]">
+                                <div class="text-lg font-black text-slate-700 bg-white px-1 py-2 rounded-lg mb-2 border-2 border-slate-100 w-full text-center whitespace-nowrap tracking-tight shadow-sm overflow-hidden">${str2}</div>
                                 <i class="fa-solid fa-envelope text-6xl text-blue-500 drop-shadow-md"></i>
                             </div>
                         </div>
@@ -913,7 +952,7 @@
                 const mkBtn = (val, color, isCorrect) => {
                     const btn = document.createElement('button');
                     const colorClass = color === 'red' ? 'bg-red-500' : 'bg-blue-500';
-                    btn.className = `${colorClass} text-white btn-newyear text-xl font-bold h-full py-4 flex flex-col items-center justify-center shadow-md font-serif`;
+                    btn.className = `${colorClass} text-white btn-newyear text-xl font-bold h-full py-2 flex flex-col items-center justify-center shadow-md font-serif`;
                     btn.innerHTML = `こっち！`;
                     btn.onclick = () => this.handleAnswer(isCorrect);
                     controls.appendChild(btn);
@@ -955,33 +994,47 @@
                 UserData.recordPlay(this.state.score);
                 document.getElementById('final-score').innerText = this.state.score;
                 
-                // --- OMIKUJI LOGIC ---
-                let resultData = OmikujiData.suekichi; // Default
-                if (this.state.score >= 200) resultData = OmikujiData.kichi;
-                if (this.state.score >= 400) resultData = OmikujiData.chukichi;
-                if (this.state.score >= 600) resultData = OmikujiData.daikichi;
+                // --- BRAIN TYPE SELECTION ---
+                const brain = BrainData[Math.floor(Math.random() * BrainData.length)];
+                const kanaPart = brain.kana ? `<span class="text-xs text-red-300 ml-1">(${brain.kana})</span>` : "";
 
                 // Update UI with detailed text
-                const area = document.getElementById('omikuji-result-area');
+                const area = document.getElementById('brain-result-area');
                 area.innerHTML = `
-                    <div class="flex items-center justify-center mb-4">
-                         <div class="text-6xl font-black text-red-600 font-serif drop-shadow-md animate-pop">${resultData.title} <span class="text-3xl">✨</span></div>
+                    <div class="flex flex-col items-center justify-center mb-4 border-b-2 border-red-100 pb-4">
+                         <div class="text-sm font-bold text-red-500 bg-red-100 px-3 py-1 rounded-full mb-2">今年の主役脳</div>
+                         <div class="text-4xl font-black text-slate-800 font-serif text-center leading-tight mb-1">
+                            ${brain.name}
+                         </div>
+                         ${kanaPart}
                     </div>
-                    <div class="text-center text-xs font-bold text-slate-400 mb-3">${resultData.subtitle}</div>
-                    <div class="text-left text-sm font-medium text-slate-700 bg-red-50 p-4 rounded-xl border border-red-100 leading-relaxed mb-3">
-                        ${resultData.text}
-                    </div>
-                    <div class="text-center font-serif text-base text-red-600 font-bold border-t border-red-100 pt-3">
-                        ひとこと： ${resultData.word}
+                    
+                    <div class="text-left text-sm font-medium text-slate-700 space-y-4">
+                        <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                            <div class="font-bold text-red-600 text-base mb-1 font-serif">● この脳はどんな役割（機能）？</div>
+                            <div class="leading-relaxed text-sm font-medium">${brain.role}</div>
+                        </div>
+                        
+                        <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                            <div class="font-bold text-red-600 text-base mb-1 font-serif">● この脳の可能性を解放するには（UNLOCK）</div>
+                            <div class="leading-relaxed text-sm font-medium">${brain.unlock}</div>
+                        </div>
+
+                        <div class="pt-2 text-center">
+                            <div class="text-xs font-bold text-slate-400 mb-1">▼ これだけ覚えておいて！</div>
+                            <div class="font-bold text-red-600 font-serif text-xl leading-tight drop-shadow-sm">
+                                ${brain.word}
+                            </div>
+                        </div>
                     </div>
                 `;
                 
-                this.state.currentOmikujiTitle = resultData.title;
+                this.state.currentBrainName = brain.name;
                 this.switchView('result');
             },
             share: function(platform) {
                 const texts = Dict[this.state.lang];
-                const text = `${texts.share_text} ${this.state.score} (${this.state.currentOmikujiTitle}) #新春UNLOCK`;
+                const text = texts.share_text.replace("TYPE", this.state.currentBrainName) + this.state.score;
                 const url = "https://liff.line.me/YOUR_LIFF_ID";
                 if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
             }
