@@ -308,6 +308,7 @@
             <div class="w-full bg-white/20 rounded-full h-1.5 mb-2 overflow-hidden mt-1 shrink-0">
                 <div id="timer-bar" class="bg-white h-full rounded-full transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.5)]" style="width: 100%"></div>
             </div>
+
             <div class="flex justify-between items-end mb-2 px-2 border-b-2 border-white/20 pb-1 text-white shrink-0">
                 <div class="flex flex-col">
                      <span class="text-[9px] font-bold opacity-80" id="game-level-badge">LEVEL</span>
@@ -318,6 +319,7 @@
                     <span class="text-[10px] font-bold opacity-80">点</span>
                 </div>
             </div>
+
             <div id="game-stage" class="flex-1 card-washi flex flex-col p-3 mb-2 relative transition-colors duration-300 items-center justify-center min-h-0">
                 <div id="instruction-overlay" class="absolute inset-0 bg-white/95 z-30 flex flex-col justify-center items-center text-center p-6 rounded-2xl">
                     <div class="text-4xl text-red-500 mb-3 animate-bounce"><i class="fa-solid fa-clover"></i></div>
@@ -327,6 +329,7 @@
                 </div>
                 <div id="stimulus-container" class="w-full h-full flex flex-col relative items-center justify-center"></div>
             </div>
+
             <div id="controls-area" class="grid grid-cols-2 gap-2 h-40 mb-2 shrink-0"></div>
         </div>
 
@@ -335,6 +338,7 @@
             
             <div class="text-center mb-3 mt-1">
                 <h2 class="text-4xl font-black text-yellow-300 font-serif drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]" data-i18n="res_title">UNLOCK完了！</h2>
+                <p class="text-xs font-bold text-red-900/80 mt-1">今年の主役脳は…？</p>
             </div>
 
             <div class="card-washi w-full max-w-[340px] py-6 px-5 text-center mb-4 bg-white relative border-4 border-double border-red-100 flex flex-col items-center">
@@ -352,8 +356,8 @@
                 </div>
             </div>
 
-            <!-- LINE CTA Button -->
-            <a href="https://line.me/R/ti/p/@458zzinx" target="_blank" class="w-full max-w-[340px] bg-[#06C755] text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-3 active:scale-95 transition-transform mb-3 relative overflow-hidden group border border-green-400">
+            <!-- LINE CTA Button (Visible and Clickable) -->
+            <a href="https://line.me/R/ti/p/@458zzinx" target="_blank" class="w-full max-w-[340px] bg-[#06C755] text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-3 active:scale-95 transition-transform mb-3 relative overflow-hidden group border border-green-400 cursor-pointer z-50">
                 <i class="fa-brands fa-line text-3xl absolute left-4"></i>
                 <div class="flex flex-col items-center leading-tight">
                     <span class="text-[10px] opacity-90">脳とからだについて情報配信します！</span>
@@ -363,8 +367,8 @@
             </a>
 
             <div class="flex w-full max-w-[340px] gap-2 mb-3">
-                <button onclick="app.share('twitter')" class="flex-1 bg-black text-white font-bold py-2.5 rounded-lg shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs"><i class="fa-brands fa-x-twitter"></i> Xでシェア</button>
-                <button onclick="app.enterHome()" class="flex-1 bg-slate-200 text-slate-600 font-bold py-2.5 rounded-lg shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs">もう一度</button>
+                <button onclick="app.share('twitter')" class="flex-1 bg-black text-white font-bold py-2.5 rounded-lg shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs cursor-pointer z-50"><i class="fa-brands fa-x-twitter"></i> Xでシェア</button>
+                <button onclick="app.enterHome()" class="flex-1 bg-slate-200 text-slate-600 font-bold py-2.5 rounded-lg shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform text-xs cursor-pointer z-50">もう一度</button>
             </div>
             
             <button onclick="app.switchView('menu')" class="text-white/70 text-xs font-bold underline p-2 mb-2"><span data-i18n="btn_back_menu">お品書きに戻る</span></button>
@@ -384,7 +388,7 @@
     <!-- SCRIPT -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-        const AppConfig = { gameDuration: 30, storageBaseKey: 'newyear_unlock_v19_' };
+        const AppConfig = { gameDuration: 30, storageBaseKey: 'newyear_unlock_v22_' };
         
         // --- DATA: Brain Diagnosis ---
         const BrainData = [
@@ -827,17 +831,20 @@
                         </div>
                     </div>`;
                 
-                const mkBtn = (label, col, check) => {
+                const mkBtn = (label, col, check, iconClass) => {
                     const btn = document.createElement('button');
-                    const diceIcon = check ? 'fa-dice-four' : 'fa-dice-five'; 
                     const bgClass = col === 'blue' ? 'bg-indigo-600' : 'bg-red-600';
-                    btn.className = `${colorClass} text-white btn-newyear text-xl font-bold h-full py-2 flex flex-col items-center justify-center shadow-md font-serif border-2 border-white/20`;
-                    btn.innerHTML = `<div><i class="fa-solid ${diceIcon} text-2xl mb-1 opacity-50"></i><br>${label}</div>`;
+                    btn.className = `${bgClass} text-white btn-newyear text-xl font-bold h-full py-2 flex flex-col items-center justify-center shadow-md font-serif border-2 border-white/20`;
+                    btn.innerHTML = `<div><i class="fa-solid ${iconClass} text-2xl mb-1 opacity-50"></i><br>${label}</div>`;
                     btn.onclick = () => this.handleAnswer(check);
                     controls.appendChild(btn);
                 };
-                mkBtn(texts.txt_even, 'blue', isEven);
-                mkBtn(texts.txt_odd, 'red', !isEven);
+                
+                // 偶数ボタン（常に偶数のサイコロ）
+                mkBtn(texts.txt_even, 'blue', isEven, 'fa-dice-four');
+                // 奇数ボタン（常に奇数のサイコロ）
+                mkBtn(texts.txt_odd, 'red', !isEven, 'fa-dice-five');
+
                 controls.classList.remove('grid-cols-3'); controls.classList.add('grid-cols-2');
             },
             
