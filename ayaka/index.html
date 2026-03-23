@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あやか、がんばれ！</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            background-color: #FFF8E8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: #ffffff;
+            border: 4px solid #1A1A1A;
+            border-radius: 24px;
+            padding: 20px 36px;
+            margin-bottom: 24px;
+            animation: bounce 2s ease-in-out infinite;
+            box-shadow: 6px 6px 0px #1A1A1A;
+        }
+
+        .speech-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 24px solid #ffffff;
+        }
+
+        .speech-bubble::before {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 28px solid #1A1A1A;
+        }
+
+        .speech-bubble p {
+            font-size: 28px;
+            font-weight: 900;
+            color: #005CA2;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+        }
+
+        .character {
+            width: 320px;
+            height: auto;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(3deg);
+            }
+            75% {
+                transform: rotate(-3deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .character {
+                width: 240px;
+            }
+            .speech-bubble p {
+                font-size: 22px;
+            }
+            .speech-bubble {
+                padding: 16px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="speech-bubble">
+            <p>あやか、がんばれ！</p>
+        </div>
+        <img src="character.png" alt="キャラクター" class="character">
+    </div>
+</body>
+</html>
