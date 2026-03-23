@@ -114,14 +114,120 @@
                 padding: 16px 24px;
             }
         }
+
+        /* Password Gate */
+        #password-gate {
+            position: fixed;
+            inset: 0;
+            background: #FFF8E8;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #password-gate.hidden {
+            display: none;
+        }
+        #password-gate .gate-box {
+            background: #fff;
+            border: 4px solid #1A1A1A;
+            box-shadow: 6px 6px 0px #1A1A1A;
+            border-radius: 16px;
+            padding: 36px 32px;
+            max-width: 340px;
+            width: 90%;
+            text-align: center;
+        }
+        #password-gate h2 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 6px;
+            color: #1A1A1A;
+        }
+        #password-gate p {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        #password-gate input[type="password"] {
+            width: 100%;
+            border: 2px solid #1A1A1A;
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+            font-family: monospace;
+        }
+        #password-gate input[type="password"]:focus {
+            border-color: #005CA2;
+        }
+        #password-gate button {
+            width: 100%;
+            padding: 12px;
+            background: #005CA2;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: "Noto Sans JP", sans-serif;
+        }
+        #password-gate button:hover {
+            background: #003f73;
+        }
+        #password-gate .error-msg {
+            color: #c0392b;
+            font-size: 0.8rem;
+            font-weight: 700;
+            min-height: 1.2em;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Password Gate -->
+    <div id="password-gate">
+        <div class="gate-box">
+            <h2>🔒 あやかページ</h2>
+            <p>パスワードを入力してください</p>
+            <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
+            <button onclick="checkPassword()">入力する</button>
+            <div class="error-msg" id="pw-error"></div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="speech-bubble">
             <p>あやか、がんばれ！</p>
         </div>
         <img src="character.png" alt="キャラクター" class="character">
     </div>
+
+    <script>
+        (function() {
+            if (sessionStorage.getItem('ayaka_auth') === '1') {
+                document.getElementById('password-gate').classList.add('hidden');
+            }
+        })();
+
+        function checkPassword() {
+            if (document.getElementById('pw-input').value === 'bookbouquet-unlock') {
+                sessionStorage.setItem('ayaka_auth', '1');
+                document.getElementById('password-gate').classList.add('hidden');
+            } else {
+                document.getElementById('pw-error').textContent = 'パスワードが正しくありません';
+                document.getElementById('pw-input').value = '';
+                document.getElementById('pw-input').focus();
+            }
+        }
+
+        document.getElementById('pw-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+    </script>
 </body>
 </html>
