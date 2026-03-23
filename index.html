@@ -42,75 +42,6 @@
     </script>
 
     <style>
-        /* Password Gate */
-        #password-gate {
-            position: fixed;
-            inset: 0;
-            background: #fff;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 24px;
-        }
-        #password-gate.hidden {
-            display: none;
-        }
-        #password-gate .gate-box {
-            border: 2px solid #1A1A1A;
-            padding: 40px 32px;
-            max-width: 360px;
-            width: 90%;
-            text-align: center;
-        }
-        #password-gate h2 {
-            font-size: 1.25rem;
-            font-weight: 900;
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
-        }
-        #password-gate p {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 24px;
-        }
-        #password-gate input[type="password"] {
-            width: 100%;
-            border: 1px solid #1A1A1A;
-            padding: 12px 16px;
-            font-size: 1rem;
-            font-family: "Roboto Mono", monospace;
-            outline: none;
-            box-sizing: border-box;
-            margin-bottom: 12px;
-        }
-        #password-gate input[type="password"]:focus {
-            border-color: #005CA2;
-            box-shadow: 0 0 0 2px #FFF100;
-        }
-        #password-gate button {
-            width: 100%;
-            padding: 14px;
-            background: #1A1A1A;
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        #password-gate button:hover {
-            background: #005CA2;
-        }
-        #password-gate .error-msg {
-            color: #c0392b;
-            font-size: 0.8rem;
-            font-weight: 700;
-            min-height: 1.2em;
-            margin-top: 8px;
-        }
-
         body {
             font-family: "Noto Sans JP", sans-serif;
             color: #333;
@@ -231,17 +162,6 @@
     </style>
 </head>
 <body class="pb-32">
-
-    <!-- Password Gate -->
-    <div id="password-gate">
-        <div class="gate-box">
-            <h2>UNLOCK</h2>
-            <p>パスワードを入力してください</p>
-            <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
-            <button onclick="checkPassword()">入力する</button>
-            <div class="error-msg" id="pw-error"></div>
-        </div>
-    </div>
 
     <!-- Header: Simple, Official, Sticky -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -454,31 +374,6 @@
     
     <!-- Application Logic -->
     <script>
-        // Password Gate Logic
-        (function() {
-            var PASS = 'bookbouquet-unlock';
-            var KEY  = 'unlock_auth';
-            if (sessionStorage.getItem(KEY) === '1') {
-                document.getElementById('password-gate').classList.add('hidden');
-            }
-        })();
-
-        function checkPassword() {
-            var input = document.getElementById('pw-input').value;
-            if (input === 'bookbouquet-unlock') {
-                sessionStorage.setItem('unlock_auth', '1');
-                document.getElementById('password-gate').classList.add('hidden');
-            } else {
-                document.getElementById('pw-error').textContent = 'パスワードが正しくありません';
-                document.getElementById('pw-input').value = '';
-                document.getElementById('pw-input').focus();
-            }
-        }
-
-        document.getElementById('pw-input').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') checkPassword();
-        });
-
         lucide.createIcons();
 
         // Modal Logic
