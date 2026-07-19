@@ -1,0 +1,21 @@
+:root {
+  --unlock-yellow: #ffc400;
+  --unlock-yellow-dark: #f2b900;
+  --unlock-black: #111111;
+  --unlock-text: #222222;
+  --unlock-muted: #5f6470;
+  --unlock-line: #e6e6e6;
+  --unlock-surface: #ffffff;
+  --unlock-warm: #fffdf7;
+  --unlock-kids: #fff8e8;
+  --unlock-corporate: #f3f8ec;
+  --unlock-application: #f7f1fa;
+  --unlock-professional: #f4f7fb;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow-card: 0 8px 28px rgba(17,17,17,.06);
+  --shadow-hover: 0 14px 38px rgba(17,17,17,.10);
+  --container: 1180px;
+}
