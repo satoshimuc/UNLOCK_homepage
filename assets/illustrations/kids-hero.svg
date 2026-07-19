@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 190" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- puzzle piece -->
+  <path d="M20 34h13a4.5 4.5 0 0 1 9 0h7v13a4.5 4.5 0 0 1 0 9v7H43a4.5 4.5 0 0 0-9 0H20Z" fill="#FFC400"/>
+  <!-- speech bubble -->
+  <g fill="#fff"><path d="M12 78h34a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6H30l-10 9 2-9h-4a6 6 0 0 1-6-6V78Z"/></g>
+  <circle cx="25" cy="90" r="1.8" fill="#111" stroke="none"/>
+  <circle cx="32" cy="90" r="1.8" fill="#111" stroke="none"/>
+  <circle cx="39" cy="90" r="1.8" fill="#111" stroke="none"/>
+  <!-- lightbulb -->
+  <path d="M212 46a16 16 0 1 0-24 13.8V68h16v-8.2A16 16 0 0 0 212 46Z" fill="#FFF3C4"/>
+  <path d="M189 74h14M191 80h10"/>
+  <path d="M200 20v-7M223 30l6-4M177 30l-6-4M225 52h7M168 52h-7" stroke="#FFC400" stroke-width="3.5"/>
+  <!-- book -->
+  <g fill="#fff"><path d="M176 150c8-6 20-6 27 0v34c-7-5-19-5-27 0Z"/><path d="M203 150c8-6 20-6 27 0v34c-7-5-19-5-27 0Z"/></g>
+  <path d="M203 150v34"/>
+  <!-- boy body (yellow shirt) -->
+  <path d="M84 190c0-25 16-42 36-42s36 17 36 42" fill="#FFC400"/>
+  <!-- raised arm -->
+  <path d="M150 176c8-16 12-30 15-46" stroke="#FFC400" stroke-width="13"/>
+  <path d="M165 128c1-6 3-9 2-14"/>
+  <!-- head -->
+  <circle cx="118" cy="92" r="36" fill="#fff"/>
+  <!-- hair -->
+  <path d="M82 92c0-28 16-44 36-44s36 16 36 40c-9-9-20-8-27-3-10-7-24-6-45 7Z" fill="#111" stroke="none"/>
+  <path d="M82 92c0-28 16-44 36-44s36 16 36 40" />
+  <!-- face -->
+  <circle cx="106" cy="96" r="2.6" fill="#111" stroke="none"/>
+  <circle cx="130" cy="96" r="2.6" fill="#111" stroke="none"/>
+  <path d="M110 106c4 5 14 5 18 0"/>
+</svg>

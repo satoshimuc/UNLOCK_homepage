@@ -242,10 +242,10 @@ button:focus-visible {
 .hero-card .art {
   margin-top: auto;
   align-self: flex-end;
-  width: 52%;
+  width: 60%;
   max-width: 200px;
 }
-.hero-card.wide .art { width: 46%; }
+.hero-card.wide .art { width: 52%; max-width: 260px; }
 .hero-card.kids { background: var(--unlock-kids); }
 .hero-card.corp { background: var(--unlock-corporate); }
 .hero-card.app  { background: var(--unlock-application); }
@@ -274,6 +274,7 @@ button:focus-visible {
 .mission-lead h2 { margin: 0; font-size: 21px; font-weight: 800; color: var(--unlock-black); white-space: nowrap; }
 .mission-lead p { margin: 0; font-size: 14px; color: var(--unlock-muted); }
 .mission-step { text-align: center; }
+.mission-icon { width: 46px; height: 46px; display: block; margin: 0 auto 8px; }
 .mission-step b { display: block; font-size: 20px; font-weight: 800; color: var(--unlock-black); }
 .mission-step small { display: block; margin-top: 6px; font-size: 13px; color: var(--unlock-muted); line-height: 1.5; }
 .mission-arrow { color: var(--unlock-yellow-dark); width: 30px; height: 30px; }

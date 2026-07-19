@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 190" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- left person -->
+  <path d="M28 190c0-24 14-40 34-40s34 16 34 40" fill="#FFC400"/>
+  <circle cx="62" cy="88" r="30" fill="#fff"/>
+  <path d="M34 86c0-22 12-36 28-36s28 14 28 32c-8-7-17-6-23-2-8-6-19-5-33 6Z" fill="#111" stroke="none"/>
+  <circle cx="53" cy="92" r="2.4" fill="#111" stroke="none"/>
+  <circle cx="71" cy="92" r="2.4" fill="#111" stroke="none"/>
+  <path d="M55 100c4 4 11 4 15 0"/>
+  <!-- left tie -->
+  <path d="M62 118l-6 8 6 20 6-20Z" fill="#FFC400"/>
+  <!-- left raised arm -->
+  <path d="M84 150c12-10 20-24 26-40" stroke="#FFC400" stroke-width="12"/>
+  <!-- right person -->
+  <path d="M144 190c0-24 14-40 34-40s34 16 34 40" fill="#F4A9A0"/>
+  <circle cx="178" cy="88" r="30" fill="#fff"/>
+  <path d="M150 88c0-24 14-38 28-38s28 16 28 40c-6-10-16-12-24-8-8-6-20-4-32 6Z" fill="#111" stroke="none"/>
+  <circle cx="170" cy="92" r="2.4" fill="#111" stroke="none"/>
+  <circle cx="188" cy="92" r="2.4" fill="#111" stroke="none"/>
+  <path d="M171 100c4 4 11 4 15 0"/>
+  <!-- right raised arm -->
+  <path d="M156 150c-12-10-20-24-26-40" stroke="#F4A9A0" stroke-width="12"/>
+  <!-- high five spark -->
+  <path d="M120 96v-12M120 96l10-8M120 96l-10-8M120 96l12 3M120 96l-12 3" stroke="#FFC400" stroke-width="4"/>
+</svg>
