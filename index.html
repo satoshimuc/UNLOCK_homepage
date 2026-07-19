@@ -1,404 +1,372 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNLOCK</title>
-        <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT8CBC1JLV"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-ZT8CBC1JLV');
-    </script>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Noto Sans JP is the standard for Japanese Gov sites -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'da-black': '#1A1A1A',
-                        'da-gray': '#F2F2F2',
-                        'da-blue': '#005CA2', /* Gov link color style */
-                        'da-yellow': '#FFF100', /* Focus/Accent style */
-                        'da-text': '#333333',
-                    },
-                    fontFamily: {
-                        sans: ['"Noto Sans JP"', 'sans-serif'],
-                        mono: ['"Roboto Mono"', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UNLOCK | 脳とからだを、もう一度あそばせる。</title>
+  <meta name="description" content="UNLOCKは、遊びを通して、ひと・もの・ことの可能性を解放するブランドです。眠っている感覚を呼び覚まします。">
 
-    <style>
-        body {
-            font-family: "Noto Sans JP", sans-serif;
-            color: #333;
-            background-color: #fff;
-            line-height: 1.75;
-            -webkit-font-smoothing: antialiased;
-        }
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UNLOCK | 脳とからだを、もう一度あそばせる。">
+  <meta property="og:description" content="UNLOCKは、遊びを通して、ひと・もの・ことの可能性を解放するブランドです。">
+  <meta property="og:image" content="assets/reference/homepage-final.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-        /* Utility */
-        .wrapper {
-            max-width: 800px; /* Slightly wider for the grid feel */
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT8CBC1JLV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZT8CBC1JLV');
+  </script>
 
-        /* Digital Agency Style Link with Arrow */
-        .link-arrow {
-            display: inline-flex;
-            align-items: center;
-            color: #005CA2;
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            transition: all 0.2s;
-        }
-        .link-arrow:hover {
-            background-color: #F2F2F2;
-            color: #003366;
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-        /* DA Style Button */
-        .btn-da {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 20px 24px;
-            background-color: #fff;
-            color: #1A1A1A;
-            font-weight: 700;
-            border: 1px solid #1A1A1A;
-            transition: all 0.2s;
-            text-decoration: none;
-            position: relative;
-        }
-        .btn-da:hover {
-            background-color: #1A1A1A;
-            color: #fff;
-        }
-        .btn-da:hover i {
-            stroke: #fff;
-        }
-        .btn-da:active {
-            transform: translateY(1px);
-        }
+  <link rel="stylesheet" href="styles.css">
 
-        /* Section Header with Top Border */
-        .section-header {
-            border-top: 4px solid #1A1A1A;
-            padding-top: 24px;
-            margin-bottom: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        /* Grid List Item */
-        .grid-item {
-            border-top: 1px solid #e5e7eb;
-            padding: 24px 0;
-            transition: background-color 0.2s;
-        }
-        .grid-item:last-child {
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .grid-item:hover {
-            background-color: #f9fafb;
-        }
-
-        /* Tag Style */
-        .tag {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 12px;
-            background-color: #f3f4f6;
-            color: #1f2937;
-            margin-bottom: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-content {
-            background: white;
-            padding: 32px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            border: 1px solid #1A1A1A;
-        }
-    </style>
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UNLOCK",
+    "legalName": "OfficeMUC Co., Ltd.",
+    "url": "https://www.officemuc.jp/",
+    "description": "UNLOCKは、遊びを通して、ひと・もの・ことの可能性を解放するブランドです。",
+    "sameAs": [
+      "https://instagram.com/unlock_jpn",
+      "https://x.com/satoshimuc"
+    ]
+  }
+  </script>
 </head>
-<body class="pb-32">
+<body>
 
-    <!-- Header: Simple, Official, Sticky -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="wrapper h-16 flex items-center justify-between">
-            <h1 class="text-2xl font-black tracking-tight text-da-black flex items-center gap-2"><img src="logo.svg" style="width:50%;"></h1>
-            <nav class="hidden sm:block text-sm font-bold text-gray-600">
-                Menu
-            </nav>
+<!-- ======================= Header ======================= -->
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="UNLOCK OfficeMUC">
+      <img class="wordmark" src="assets/logo/unlock-wordmark.svg" alt="UNLOCK">
+      <img class="badge" src="assets/logo/office-muc-badge.svg" alt="OfficeMUC">
+    </a>
+
+    <nav class="main-nav" aria-label="メインナビゲーション">
+      <a href="#about">UNLOCKとは</a>
+      <a href="#services">サービス</a>
+      <a href="#business">事例</a>
+      <a href="#partners">パートナー</a>
+      <a href="#company">会社情報</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+
+    <a class="btn yellow header-cta" href="https://line.me/R/oaMessage/%40458zzinx" target="_blank" rel="noopener">
+      <img class="ico" src="assets/icons/mail.svg" alt="" aria-hidden="true">相談する
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="メニューを開く">
+      <img class="ico" src="assets/icons/menu.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="モバイルナビゲーション">
+    <a href="#about">UNLOCKとは</a>
+    <a href="#services">サービス</a>
+    <a href="#business">事例</a>
+    <a href="#partners">パートナー</a>
+    <a href="#company">会社情報</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ======================= Hero ======================= -->
+  <section class="hero" id="about">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">
+          遊ぼう。理由は、あとでわかる。
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.6 6.9L21.5 9l-5.4 4.6L18 21l-6-3.9L6 21l1.9-7.4L2.5 9l6.9-1.1z"/></svg>
+        </span>
+        <h1>脳とからだを、<br><span class="mark">もう一度あそばせる。</span></h1>
+        <p class="lead">私たちは、ひと・もの・ことの可能性を解放するブランドです。遊びを通して、眠っている感覚を呼び覚まします。</p>
+        <div class="hero-actions">
+          <a class="btn yellow" href="#services">サービスを見る
+            <img class="ico" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+          </a>
+          <a class="btn outline" href="#contact">
+            <img class="ico" src="assets/icons/mail.svg" alt="" aria-hidden="true">お問い合わせ
+          </a>
         </div>
-    </header>
+      </div>
 
-    <main class="wrapper mt-12">
-        
-        <!-- Hero: Typography focus, Left aligned -->
-        <section class="mb-20">
-            <div class="mb-6">
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black leading-snug mb-8 tracking-tight text-da-black" style="font-size:2.20rem;">
-                脳とからだを、<br>
-                もう一度あそばせる。
-            </h2>
-            <p class="text-base text-gray-700 leading-relaxed max-w-xl font-medium">
-                私たちは、ひと・もの・ことの可能性を解放するブランドです。
-                遊びを通じて、眠っている感覚を呼び覚まします。
-            </p>
-        </section>
-
-        <!-- Services: Structured Grid -->
-        <section class="mb-20">
-            <div class="section-header">
-                <h3 class="text-2xl font-bold tracking-tight">Services</h3>
-                <span class="text-sm font-bold text-gray-500">事業内容</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="border-t border-gray-300 pt-6">
-                    <span class="tag">For Kids</span>
-                    <h4 class="text-lg font-bold mb-4">子ども向け事業</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-gray-400">
-                        <li>知育玩具 開発 / 販売</li>
-                        <li>絵本 / アニメ 製作</li>
-                        <li>知育プログラム開発</li>
-                    </ul>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="border-t border-gray-300 pt-6">
-                    <span class="tag">For Corporate</span>
-                    <h4 class="text-lg font-bold mb-4">法人向け事業</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-gray-400">
-                        <li>健康経営支援</li>
-                        <li>ライフキネティック プログラム開発</li>
-                        <li>健康アプリケーション 開発 / 運営</li>
-                    </ul>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="border-t border-gray-300 pt-6">
-                    <span class="tag">For Professional</span>
-                    <h4 class="text-lg font-bold mb-4">プロフェッショナル向け</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-gray-400">
-                        <li>能力開発プログラム開発</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Actions: Brutalist Buttons -->
-        <section class="mb-20">
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="https://miniapp.line.me/unlock_braincapital" class="btn-da group">
-<!--                <a href="game/index.html" class="btn-da group"> -->
-                    <div class="flex flex-col items-start">
-                        <span class="text-xs font-bold text-da-blue mb-1">Application</span>
-                        <span class="text-lg font-bold flex items-center gap-2">
-                            <i data-lucide="brain-circuit" class="w-5 h-5"></i>
-                            UNLOCK脳トレ
-                        </span>
-                    </div>
-                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
-                </a>
-
-                <button onclick="openModal()" class="btn-da group text-left">
-                    <div class="flex flex-col items-start">
-                        <span class="text-xs font-bold text-da-blue mb-1">Gallery</span>
-                        <span class="text-lg font-bold flex items-center gap-2">
-                            <i data-lucide="baby" class="w-5 h-5"></i>
-                            子供向けのトレーニング
-                        </span>
-                    </div>
-                    <i data-lucide="images" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </section>
-
-        <!-- Partners & Note: List Style -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-            <!-- Partners -->
-            <section>
-                <div class="border-b-4 border-black pb-2 mb-6">
-                    <h3 class="text-xl font-bold">Partners</h3>
-                </div>
-                <div>
-                    <a href="https://setagayautd.com/" target="_blank" class="grid-item flex justify-between items-center group">
-                        <span class="font-bold group-hover:underline decoration-da-blue underline-offset-4">世田谷ユナイテッド</span>
-                        <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-da-blue"></i>
-                    </a>
-                    <a href="https://kamakura-inter.com/" target="_blank" class="grid-item flex justify-between items-center group">
-                        <span class="font-bold group-hover:underline decoration-da-blue underline-offset-4">鎌倉インテル</span>
-                        <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-da-blue"></i>
-                    </a>
-                    <div class="grid-item flex justify-between items-center">
-                        <span class="font-bold text-gray-500">noue knospe</span>
-                        <span class="text-xs text-gray-400">Coming soon</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Note & Social -->
-            <section>
-                <div class="border-b-4 border-black pb-2 mb-6">
-                    <h3 class="text-xl font-bold">Media</h3>
-                </div>
-                <div>
-                    <a href="https://note.com/unlock_kinetik/m/m5628fa3edb14" target="_blank" class="grid-item flex justify-between items-center group">
-                        <div class="flex items-center gap-3">
-                            <span class="bg-gray-100 text-[10px] font-bold px-2 py-1">NOTE</span>
-                            <span class="font-bold group-hover:underline decoration-da-blue underline-offset-4">健康経営について</span>
-                        </div>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-da-blue"></i>
-                    </a>
-                    <a href="https://instagram.com/unlock_jpn" target="_blank" class="grid-item flex justify-between items-center group">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
-                            <span class="font-bold group-hover:underline decoration-da-blue underline-offset-4">Instagram</span>
-                        </div>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-da-blue"></i>
-                    </a>
-                    <a href="https://x.com/satoshimuc" target="_blank" class="grid-item flex justify-between items-center group">
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
-                            <span class="font-bold group-hover:underline decoration-da-blue underline-offset-4">X (Twitter)</span>
-                        </div>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-da-blue"></i>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- Contact CTA: Strong contrast -->
-        <section class="bg-da-gray p-8 md:p-12 text-center border-t border-b border-gray-300">
-            <h3 class="text-xl font-bold mb-6">お問い合わせ</h3>
-            <p class="text-sm text-gray-600 mb-8">ご質問・ご相談は公式LINEより受け付けております。</p>
-
-            <a href="https://line.me/R/oaMessage/%40458zzinx"
-                target="_blank" rel="noopener"
-                class="inline-flex justify-center items-center w-full md:w-auto px-12 py-4 bg-da-black text-white font-bold hover:bg-da-blue transition-colors">
-                LINEでお問い合わせ
-                <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
-            </a>
-        </section>
-
-        <footer class="mt-12 text-center md:text-left border-t border-gray-200 pt-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <span class="text-xl font-black tracking-tight flex items-center gap-2">
-                    <span class="w-4 h-4 bg-black block"></span>
-                    UNLOCK
-                </span>
-                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">
-                    &copy; 2025 UNLOCK. All Rights Reserved.
-                </p>
-            </div>
-            <!-- Standard Gov Footer Links Dummy -->
-<!--            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4 text-xs text-da-blue underline underline-offset-2">
-                <a href="#">プライバシーポリシー</a>
-            </div> -->
-        </footer>
-
-    </main>
-
-    <!-- Modal for Kids Training Images -->
-    <div id="imageModal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
-                <h4 class="font-bold text-lg">トレーニングイメージ</h4>
-                <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition">
-                    <i data-lucide="x" class="w-6 h-6 text-black"></i>
-                </button>
-            </div>
-            <div class="space-y-6">
-                <div>
-                    <div class="bg-gray-100 aspect-video flex items-center justify-center relative overflow-hidden border border-gray-200">
-                        <img src="forChild1.png" class="absolute inset-0 w-full h-full object-cover" alt="Kids Training 1">
-                    </div>
-                    <p class="text-xs font-bold mt-2 text-gray-500">CASE 01: 知育玩具を活用した遊び</p>
-                </div>
-                <div>
-                    <div class="bg-gray-100 aspect-video flex items-center justify-center relative overflow-hidden border border-gray-200">
-                        <img src="forChild2.png" class="absolute inset-0 w-full h-full object-cover" alt="Kids Training 2">
-                    </div>
-                    <p class="text-xs font-bold mt-2 text-gray-500">CASE 02: 身体を動かすプログラム</p>
-                </div>
-            </div>
-        </div>
+      <div class="hero-cards">
+        <article class="hero-card wide kids">
+          <span class="pill">For Kids</span>
+          <h3>子どもたちの未来を<br>ひらく</h3>
+          <img class="art" src="assets/illustrations/first.svg" alt="" aria-hidden="true">
+        </article>
+        <article class="hero-card corp">
+          <span class="pill">For Corporate</span>
+          <h3>組織の可能性を<br>ひらく</h3>
+          <img class="art" src="assets/illustrations/play.svg" alt="" aria-hidden="true">
+        </article>
+        <article class="hero-card app">
+          <span class="pill">Application</span>
+          <h3>遊びで、脳を<br>アップデートする</h3>
+          <img class="art" src="assets/illustrations/brain.svg" alt="" aria-hidden="true">
+        </article>
+      </div>
     </div>
+  </section>
 
-    <!-- LIFF SDK -->
-    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    
-    <!-- Application Logic -->
-    <script>
-        lucide.createIcons();
+  <!-- ======================= Mission strip ======================= -->
+  <section class="mission">
+    <div class="container">
+      <div class="mission-inner">
+        <svg class="mission-dots" viewBox="0 0 120 90" aria-hidden="true" fill="#ffc400">
+          <g><circle cx="10" cy="10" r="3"/><circle cx="30" cy="8" r="3"/><circle cx="50" cy="12" r="3"/><circle cx="70" cy="8" r="3"/><circle cx="90" cy="14" r="3"/><circle cx="110" cy="10" r="3"/><circle cx="20" cy="30" r="3"/><circle cx="42" cy="32" r="3"/><circle cx="64" cy="28" r="3"/><circle cx="86" cy="34" r="3"/><circle cx="108" cy="30" r="3"/><circle cx="34" cy="52" r="3"/><circle cx="58" cy="50" r="3"/><circle cx="82" cy="54" r="3"/><circle cx="104" cy="50" r="3"/></g>
+        </svg>
+        <div class="mission-lead">
+          <img class="lock" src="assets/icons/lock.svg" alt="" aria-hidden="true">
+          <h2>UNLOCKの役割</h2>
+          <p>遊びの力で、可能性を解放する。</p>
+        </div>
+        <div class="mission-step">
+          <b>あそぶ</b>
+          <small>楽しさからはじまる</small>
+        </div>
+        <svg class="mission-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        <div class="mission-step">
+          <b>ひらく</b>
+          <small>眠っている感覚を呼び覚ます</small>
+        </div>
+        <svg class="mission-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        <div class="mission-step">
+          <b>つながる</b>
+          <small>ひと・もの・ことの可能性が広がる</small>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Modal Logic
-        function openModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
+  <!-- ======================= Business ======================= -->
+  <section class="section" id="business">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Business
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.6 6.9L21.5 9l-5.4 4.6L18 21l-6-3.9L6 21l1.9-7.4L2.5 9l6.9-1.1z"/></svg>
+          <span class="ja">事業内容</span>
+        </h2>
+      </div>
+      <div class="grid-3">
+        <article class="biz-card">
+          <div class="card-top">
+            <span class="pill">For Kids</span>
+            <img class="card-icon" src="assets/illustrations/first.svg" alt="" aria-hidden="true">
+          </div>
+          <h3>子ども向け事業</h3>
+          <ul>
+            <li>知育玩具 開発 / 販売</li>
+            <li>絵本 / アニメ 制作</li>
+            <li>知育プログラム開発</li>
+          </ul>
+          <img class="go" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </article>
 
-        function closeModal(event) {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
+        <article class="biz-card">
+          <div class="card-top">
+            <span class="pill">For Corporate</span>
+            <img class="card-icon" src="assets/illustrations/play.svg" alt="" aria-hidden="true">
+          </div>
+          <h3>法人向け事業</h3>
+          <ul>
+            <li>健康経営支援</li>
+            <li>ライフキネティック プログラム開発</li>
+            <li>健康アプリケーション 開発 / 運営</li>
+          </ul>
+          <img class="go" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </article>
 
-        // LIFF Logic
-        document.addEventListener("DOMContentLoaded", function() {
-            // Replace with actual LIFF ID
-            const LIFF_ID = "YOUR_LIFF_ID";
-            if(LIFF_ID !== "YOUR_LIFF_ID"){
-                liff.init({ liffId: LIFF_ID })
-                    .then(() => { console.log("LIFF initialized"); })
-                    .catch((err) => { console.error("LIFF error", err); });
-            }
-        });
-    </script>
+        <article class="biz-card">
+          <div class="card-top">
+            <span class="pill">For Professional</span>
+            <img class="card-icon" src="assets/illustrations/brain.svg" alt="" aria-hidden="true">
+          </div>
+          <h3>プロフェッショナル向け</h3>
+          <ul>
+            <li>能力開発プログラム開発</li>
+          </ul>
+          <img class="go" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Services ======================= -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Services
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.6 6.9L21.5 9l-5.4 4.6L18 21l-6-3.9L6 21l1.9-7.4L2.5 9l6.9-1.1z"/></svg>
+        </h2>
+        <a class="see-all" href="#business">すべてのサービスを見る
+          <img class="arrow" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </a>
+      </div>
+
+      <div class="scroller" id="serviceScroller">
+        <a class="service-card" href="https://miniapp.line.me/unlock_braincapital" target="_blank" rel="noopener">
+          <div class="service-head">
+            <img class="service-art" src="assets/illustrations/brain.svg" alt="" aria-hidden="true">
+            <h3>脳タイプ診断 /<br>BrainCapital測定</h3>
+          </div>
+          <p>自分の脳タイプを知り、強みや伸ばし方がわかる診断・測定サービスです。</p>
+          <img class="service-go" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </a>
+
+        <a class="service-card" href="https://miniapp.line.me/unlock_braincapital" target="_blank" rel="noopener">
+          <div class="service-head">
+            <img class="service-art" src="assets/illustrations/play.svg" alt="" aria-hidden="true">
+            <h3>UNLOCK PLAY</h3>
+          </div>
+          <p>毎日のお題で感性をひらく、あそびのプラットフォーム。親子でも、大人ひとりでも楽しめます。</p>
+          <img class="service-go" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </a>
+
+        <a class="service-card" href="#contact">
+          <div class="service-head">
+            <img class="service-art" src="assets/illustrations/first.svg" alt="" aria-hidden="true">
+            <h3>はじめてできた</h3>
+          </div>
+          <p>子どもの「はじめてできた！」をかんたん記録。家族の宝物を残せるサービスです。</p>
+          <img class="service-go" src="assets/icons/arrow-circle.svg" alt="" aria-hidden="true">
+        </a>
+
+        <article class="service-card coming">
+          <div class="plus">＋</div>
+          <h3>今後もサービスを<br>続々追加予定！</h3>
+        </article>
+      </div>
+
+      <div class="scroll-hint">
+        <button type="button" id="scrollPrev" aria-label="前へ">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <span class="dash" aria-hidden="true"></span>
+        <span>横にスクロールできます</span>
+        <span class="dash" aria-hidden="true"></span>
+        <button type="button" id="scrollNext" aria-label="次へ">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Partners ======================= -->
+  <section class="section" id="partners">
+    <div class="container partners-wrap">
+      <div class="section-head">
+        <h2 class="section-title">Partners
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.6 6.9L21.5 9l-5.4 4.6L18 21l-6-3.9L6 21l1.9-7.4L2.5 9l6.9-1.1z"/></svg>
+        </h2>
+      </div>
+      <div class="grid-3">
+        <a class="partner-card" href="https://setagayautd.com/" target="_blank" rel="noopener">
+          <span class="p-logo">SU</span>
+          <span class="p-body">世田谷ユナイテッド</span>
+          <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+        </a>
+        <a class="partner-card" href="https://kamakura-inter.com/" target="_blank" rel="noopener">
+          <span class="p-logo">KI</span>
+          <span class="p-body">鎌倉インテル</span>
+          <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+        </a>
+        <div class="partner-card soon">
+          <span class="p-logo">nk</span>
+          <span class="p-body">noue knospe<small>Coming soon</small></span>
+        </div>
+      </div>
+      <img class="owl" src="assets/icons/owl.svg" alt="UNLOCKのマスコット、フクロウ">
+    </div>
+  </section>
+
+  <!-- ======================= Contact CTA band ======================= -->
+  <section class="contact" id="contact">
+    <svg class="contact-wave" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,26 C150,4 300,4 450,15 C600,26 750,26 900,15 C1050,4 1150,4 1200,15 L1200,26 Z" fill="#ffc400"/>
+    </svg>
+    <div class="container">
+      <img class="sprout" src="assets/icons/sprout.svg" alt="" aria-hidden="true">
+      <div class="contact-body">
+        <h2>今日から、いっしょに未来をひらこう！</h2>
+        <a class="btn dark" href="https://line.me/R/oaMessage/%40458zzinx" target="_blank" rel="noopener">
+          <img class="ico" src="assets/icons/mail.svg" alt="" aria-hidden="true">お問い合わせはこちら
+        </a>
+      </div>
+      <svg class="hills" viewBox="0 0 120 80" aria-hidden="true">
+        <circle cx="92" cy="26" r="15" fill="#fff"/>
+        <path d="M0 80 C25 46 45 46 62 66 C78 84 96 52 120 74 L120 80 Z" fill="#78B842"/>
+      </svg>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================= Footer ======================= -->
+<footer class="site-footer" id="company">
+  <div class="container">
+    <a class="brand footer-brand" href="#top" aria-label="UNLOCK OfficeMUC">
+      <img class="wordmark" src="assets/logo/unlock-wordmark.svg" alt="UNLOCK">
+      <img class="badge" src="assets/logo/office-muc-badge.svg" alt="OfficeMUC">
+    </a>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="#about">UNLOCKとは</a>
+      <a href="#services">サービス</a>
+      <a href="#business">事例</a>
+      <a href="#partners">パートナー</a>
+      <a href="#company">会社情報</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://note.com/unlock_kinetik/m/m5628fa3edb14" target="_blank" rel="noopener" aria-label="note">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg>
+      </a>
+      <a href="https://instagram.com/unlock_jpn" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://x.com/satoshimuc" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+      </a>
+    </div>
+    <p class="footer-copy">&copy; OfficeMUC Co., Ltd.</p>
+  </div>
+</footer>
+
+<!-- ======================= Kids training modal ======================= -->
+<div id="imageModal" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h3>トレーニングイメージ</h3>
+      <button class="modal-close" onclick="closeModal()" aria-label="閉じる">&times;</button>
+    </div>
+    <div class="modal-case">
+      <img src="forChild1.png" alt="知育玩具を活用した遊び">
+      <p>CASE 01: 知育玩具を活用した遊び</p>
+    </div>
+    <div class="modal-case">
+      <img src="forChild2.png" alt="身体を動かすプログラム">
+      <p>CASE 02: 身体を動かすプログラム</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIFF SDK -->
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
